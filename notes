@@ -15,8 +15,8 @@ class bst{
 	
 	public:
 		bst(cmp x): op{x}{} //so at least write a constructor that lets you pass a value to op DO THIS!!!!
-		//YOU CAN SPECIFY A DEFAULT VALUE FOR THIS CMP as: 
-		template <typename kt, typename vt, typename cmp = std::less<kt>> //std::less is templated for the keys!! (The only things that we will compare)
+	//YOU CAN SPECIFY A DEFAULT VALUE FOR THIS CMP as: 
+	template <typename kt, typename vt, typename cmp = std::less<kt>> //std::less is templated for the keys!! (The only things that we will compare)
 
 
 
@@ -215,7 +215,6 @@ When you dereference a const iterator you get a const reference that can only be
 
 so insert will return an [inside the class bst!!!]
 std::pair<iterator, bool> insert(const kt&); where iterator is the alias in line 209
-};
 if you want to implement it outside the class, do this (and this is why one template is better than two)
 template <typename kt, typename vt, typename cmp>
 std::pair<iterator,bool> IS WRONG!! ITERATOR IS DEFINED INSIDE OF THE CLASS BST
