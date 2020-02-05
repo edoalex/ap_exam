@@ -39,7 +39,7 @@ public:
 
 	bst(cmp op): _op{op} {std::cout << "bst custom ctor" << std::endl;} //custom ctor //test precondition with dynamic_cast
 	bst(const bst& B) {std::cout << "bst custom copy ctor" << std::endl;} //copy ctor
-	bst(bst&& B) {std::cout << "bst move ctor" << std::endl;} //move ctor non serve no
+	bst(bst&& B) {std::cout << "bst move ctor" << std::endl;} 
 
 	bst& operator=(const bst& B) {} //copy assignment
 	bst& operator=(bst&& B) {} //move assignment se non serve no
