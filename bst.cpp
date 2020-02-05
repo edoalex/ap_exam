@@ -2,18 +2,18 @@
 #include<memory>
 #include<utility>
 
-template <typename T>
+template <typename pair_type>
 struct node{//it's a struct because we are going to need to access all the elements of the struct node
 
-	T _element;
+	pair_type _element;
 
-	std::shared_ptr<node> _parent; //automatically destructs
+	std::shared_ptr<node> const _parent; //automatically destructs
 	std::unique_ptr<node> _left;
 	std::unique_ptr<node> _right;
 
 	//should we implement explicitely a default ctor for the node?
 
-	node(const T& element, const node * parent) : 
+	node(const pair_type& element, const node * parent) : 
 		_element{element}, _parent{parent} {std::cout << "node custom ctor" << std::endl;} //custom ctor
 		//_left and _right default set to nullptr since the constructor is called only by insert
 		//which always adds leaves to the tree which have no children
@@ -32,9 +32,8 @@ class bst{
 
 public:
 
-	//add using iterator after implementing iterator class
-	using iterator = iterator<node_type, typename node_type::value_type>;
-	using const_iterator = iterator<node_type, typename const node_type::value_type>;
+	using iterator = iterator<node_type, typename node_type::pair_type>;
+	using const_iterator = iterator<node_type, typename const node_type::pair_type>;
 
 
 	bst(cmp op): _op{op} {std::cout << "bst custom ctor" << std::endl;} //custom ctor //test precondition with dynamic_cast
@@ -67,7 +66,7 @@ public:
 
 	void balance();
 
-	vt& operator[](const kt& x);//key_type hanged to kt
+	vt& operator[](const kt& x);//key_type changed to kt
 	vt& operator[](kt&& x);
 
 	template <typename KT, typename VT, typename CMP>
@@ -80,27 +79,38 @@ public:
 //in linked list class iterator is templated, and declared inside class list;
 //should we do the same? In case, add a template with 3 values and put bst<KT,VT,CMP>::iterator
 
-template<typename node_type, typename T>
-class iterator{//do we implement a class or a struct? He implemented a class also in the linked list
+template<typename node_type, typename pair_type>
+class iterator{
 	
-	node_type * current;
+	std::shared_ptr<node_type> _current;
 
 public:
-	
-	using value_type = T;
-	using reference = value_type&;
-	using pointer = value_type*;
+
+	using reference = pair_type&;
+	using pointer = pair_type*;
 	using iterator_category = std::forward_iterator_tag;
 	using difference_type = std::prtdiff_t;
 
-	explicit iterator(node_type * x) noexcept : current{x} {}
+	explicit iterator(std::shared_ptr<node_type> node) noexcept : _current{node} {}
 
-	reference operator*() const {
-		return current->value_type;//WRONG! //do we want the value or the pair key-value?
+	reference operator*() const noexcept {
+		return _current->_element; //here we return a reference to the pair(key, value)
+	}
+
+	pointer operator->() const noexcept{
+		return &(*(*this)); // we return the address of the element of the object to which the iterator is pointing to
+	}
+
+	iterator& operator++() noexcept{}
+	
+	iterator operator++(int) noexcept{
+		iterator tmp{_current};
+		++(*this);
+		return tmp;
 	}
 
 	friend bool operator==(const iterator& a, const iterator& b) {
-		return a.current == b.current;
+		return a._current == b._current;
 	}
 	friend bool operator!=(const iterator& a, const iterator& b) {
 		return !(a == b);

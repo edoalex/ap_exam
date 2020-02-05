@@ -4,16 +4,16 @@
 #include<memory>
 #include<utility>
 
-template <typename T>
+template <typename pair_type>
 struct node{
 
-	T _element;
+	pair_type _element;
 
-	std::shared_ptr<node> _parent; //automatically destructs
+	std::shared_ptr<node> const _parent; //automatically destructs
 	std::unique_ptr<node> _left;
 	std::unique_ptr<node> _right;
 
-	node(const T& element, const node * parent);
+	node(const pair_type& element, const node * parent);
 
 	~node();
 
@@ -28,8 +28,8 @@ class bst{
 
 public:
 
-	using iterator = iterator<node_type, typename node_type::value_type>;
-	using const_iterator = iterator<node_type, typename const node_type::value_type>;
+	using iterator = iterator<node_type, typename node_type::pair_type>;
+	using const_iterator = iterator<node_type, typename const node_type::pair_type>;
 
 	//constructors and destructors:
 	//note that these constructors can go only in the header if they are default constructors!!
@@ -79,20 +79,28 @@ public:
 
 };
 
-template<typename node_type, typename T>
+template<typename node_type, typename pair_type>
 class iterator{//do we implement a class or a struct? He implemented a class also in the linked list
 	
-	node_type * current;
+	std::shared_ptr<node_type> _current;
 
 public:
-	
-	using value_type = T;
-	using reference = value_type&;
-	using pointer = value_type*;
+
+	using reference = pair_type&;
+	using pointer = pair_type*;
 	using iterator_category = std::forward_iterator_tag;
 	using difference_type = std::prtdiff_t;
 
+
 	explicit iterator(node_type * x) noexcept;
+
+	reference operator*() const noexcept;
+
+	pointer operator->() const noexcept;
+
+	iterator& operator++() noexcept;
+
+	iterator operator++(int) noexcept;
 
 	friend bool operator==(const iterator& a, const iterator& b);
 
