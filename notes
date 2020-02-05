@@ -261,3 +261,4 @@ insert ....
 and add in bst.hpp 
 #include "bits_bst.hpp"
 in the end
+
