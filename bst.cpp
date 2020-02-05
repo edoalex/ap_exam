@@ -1,6 +1,7 @@
 #include<iostream>
 #include<memory>
 #include<utility>
+#include<bst.hpp>
 
 template <typename pair_type>
 struct node{//it's a struct because we are going to need to access all the elements of the struct node
@@ -102,7 +103,7 @@ public:
 	}
 
 	iterator& operator++() noexcept{}
-	
+
 	iterator operator++(int) noexcept{
 		iterator tmp{_current};
 		++(*this);
