@@ -13,7 +13,16 @@ struct node{
 	std::unique_ptr<node> _left;
 	std::unique_ptr<node> _right;
 
+	//we didn't implement a default constructor that initiates all the values of the node to 0
+	//because we don't want to allow users to create multiple nodes with the same key
+	//That's why we implemented a default constructor that deletes itself when called
+
+
+	node() = delete;
+	node(pair_type&& element, const node * parent) noexcept;
+
 	node(const pair_type& element, const node * parent);
+
 
 	~node();
 

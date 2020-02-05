@@ -12,14 +12,23 @@ struct node{//it's a struct because we are going to need to access all the eleme
 	std::unique_ptr<node> _left;
 	std::unique_ptr<node> _right;
 
-	//should we implement explicitely a default ctor for the node?
+	//we didn't implement a default constructor that initiates all the values of the node to 0
+	//because we don't want to allow users to create multiple nodes with the same key
+	//That's why we implemented a default constructor that deletes itself when called
+
+	node(pair_type&& element, const node * parent) noexcept :
+		_element{std::move(element)}, _parent{parent} {std::cout << "node move ctor" << std::endl;}
 
 	node(const pair_type& element, const node * parent) : 
-		_element{element}, _parent{parent} {std::cout << "node custom ctor" << std::endl;} //custom ctor
+		_element{element}, _parent{parent} {std::cout << "node copy ctor" << std::endl;} //custom ctor
 		//_left and _right default set to nullptr since the constructor is called only by insert
 		//which always adds leaves to the tree which have no children
 
-	~node() {std::cout << "node custom dtor" << std::endl;}
+	~node() {std::cout << "node dtor" << std::endl;}
+
+	//the assignments (move and copy) are not implemented because the only cases in which we are going 
+	//to need to modify an already existing node can be done by only changing some values
+	//of the node itself; in any case, we don't have the subsituting node already available
 
 };
 
@@ -44,7 +53,7 @@ public:
 	bst& operator=(const bst& B) {} //copy assignment
 	bst& operator=(bst&& B) {} //move assignment se non serve no
 
-	~bst() {std::cout << "bst custom dtor" << std::endl;}
+	~bst() {std::cout << "bst dtor" << std::endl;}
 
 	std::pair<iterator, bool> insert(const pair_type& x);
 	std::pair<iterator, bool> insert(pair_type&& x);
@@ -54,21 +63,75 @@ public:
 
 	void clear();
 
-	iterator begin();
-	const_iterator begin() const;
-	const_iterator cbegin() const;
+	iterator begin(){
+		node_type * it = head.get();
+		while(it->_left != nullptr){
+			it = it->_left;
+		}
+		return iterator{*it};
+	}
+	const_iterator begin() const{
+		node_type * it = head.get();
+		while(it->_left != nullptr){
+			it = it->_left;
+		}
+		return const_iterator{*it};
+	}
+	const_iterator cbegin() const{
+		node_type * it = head.get();
+		while(it->_left != nullptr){
+			it = it->_left;
+		}
+		return const_iterator{*it};
+	}
 
-	iterator end(); // return one past the right-most element
-        const_iterator end() const; // return one past the right-most element
-	const_iterator cend() const; // return one past the right-most element
+	iterator end(){
+		node_type * it = head.get();
+		while(it->_right != nullptr){
+			it = it->_right;
+		}
+		return iterator{*(it->_right)};//returns one past the last element
+	} 
+    const_iterator end() const{
+		node_type * it = head.get();
+		while(it->_right != nullptr){
+			it = it->_right;
+		}
+		return const_iterator{*(it->_right)};
+	}  
+	const_iterator cend() const{
+		node_type * it = head.get();
+		while(it->_right != nullptr){
+			it = it->_right;
+		}
+		return const_iterator{*(it->_right)};
+	}  
 
+	//we need a find that receives an rvalue; do we template it and use std::forward or do we implement two functions?
 	iterator find(const kt& x);
 	const_iterator find(const kt& x) const;
 
 	void balance();
 
-	vt& operator[](const kt& x);//key_type changed to kt
-	vt& operator[](kt&& x);
+	vt& operator[](const kt& x){
+		auto tmp = find(x);
+		if(tmp._current == nullptr){
+			vt no_value{};
+			auto new_pair = std::make_pair(x, no_value);
+			insert(new_pair);
+			std::cout << "pair inserted" << std::endl;
+			return no_value;
+		}
+		return (*tmp).first;
+		//alternatively:
+		//return std::get<0>(*tmp);
+	}
+	vt& operator[](kt&& x){
+		auto tmp = find(x);
+		return (*tmp).first;
+		//alternatively:
+		//return std::get<0>(*tmp);
+	}
 
 	template <typename KT, typename VT, typename CMP>
 	friend std::ostream& operator<<(std::ostream& os, const bst<KT, VT, CMP>& x);
