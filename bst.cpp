@@ -58,9 +58,9 @@ public:
 	const_iterator begin() const;
 	const_iterator cbegin() const;
 
-	iterator end();
-	const_iterator end() const;
-	const_iterator cend() const;
+	iterator end(); // return one past the right-most element
+        const_iterator end() const; // return one past the right-most element
+	const_iterator cend() const; // return one past the right-most element
 
 	iterator find(const kt& x);
 	const_iterator find(const kt& x) const;
@@ -99,10 +99,28 @@ public:
 	}
 
 	pointer operator->() const noexcept{
-		return &(*(*this)); // we return the address of the element of the object to which the iterator is pointing to
+		return &(*(*this)); // we return the address of the element (pair) of the node to which the iterator is pointing to
 	}
-
-	iterator& operator++() noexcept{}
+  
+	iterator& operator++() noexcept{
+	  // if( non posso andare in basso dx )
+	  if(_current->_right == nullptr){
+	    // while( non posso andare alto dx )
+	    while(_current->_parent != nullptr && (_current->_parent)->_left != _current){
+	      // vai in alto sx
+	      _current = _current->_parent;
+	    }
+	    return _current->_parent;
+	  }
+	  else{
+	    _current = _current->_right;
+	    // vai in basso sx finchè puoi
+	    while(_current->_left != nullptr){
+	      _current = _current->_left;
+	    }
+	    return _current;
+	  }
+	}
 
 	iterator operator++(int) noexcept{
 		iterator tmp{_current};
