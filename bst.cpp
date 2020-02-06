@@ -60,6 +60,10 @@ public:
 	~bst() {std::cout << "bst dtor" << std::endl;}
 
 	std::pair<iterator, bool> insert(const pair_type& x){ //check if it can be optimized
+	  if (head == nullptr){
+	    head.reset(new node{x, nullptr}); // maybe nullprt = make_shared(nullptr)
+	    return std::make_pair(iterator(head.get(), true));
+	  }
 		node_type * ptr = head.get();
 
 		while(op_eq(x.first, (ptr->_element).first) == false){
@@ -69,7 +73,7 @@ public:
 				if(ptr->_left == nullptr){
 
 					(ptr->_left).reset(new node{x, std::make_shared<node_type>(ptr)});
-					return std::make_pair(iterator{ptr->_left}, true);
+					return std::make_pair(iterator{(ptr->_left).get()}, true);
 
 				}
 
@@ -80,7 +84,7 @@ public:
 				if(ptr->_right == nullptr){
 					
 					(ptr->_right).reset(new node{x, std::make_shared<node_type>(ptr)});
-					return std::make_pair(iterator{ptr->_right}, true);
+					return std::make_pair(iterator{(ptr->_right).get()}, true);
 
 				}
 
@@ -92,8 +96,12 @@ public:
 	}
 
 	std::pair<iterator, bool> insert(pair_type&& x){ //check if it can be optimized
-		node_type * ptr = head.get();
-
+	  if (head == nullptr){
+	    head.reset(new node{std::move(x), nullptr}); // maybe nullprt = make_shared(nullptr)
+	    return std::make_pair(iterator(head.get(), true));
+	  }
+	  node_type * ptr = head.get();
+		
 		while(op_eq(x.first, (ptr->_element).first) == false){
 
 			if(_op(x.first, (ptr->_element).first) == true){
@@ -101,7 +109,7 @@ public:
 				if(ptr->_left == nullptr){
 
 					(ptr->_left).reset(new node{std::move(x), std::make_shared<node_type>(ptr)});
-					return std::make_pair(iterator{ptr->_left}, true);
+					return std::make_pair(iterator{(ptr->_left).get()}, true);
 
 				}
 
@@ -112,7 +120,7 @@ public:
 				if(ptr->_right == nullptr){
 					
 					(ptr->_right).reset(new node{std::move(x), std::make_shared<node_type>(ptr)});
-					return std::make_pair(iterator{ptr->_right}, true);
+					return std::make_pair(iterator{(ptr->_right).get()}, true);
 
 				}
 
@@ -202,7 +210,15 @@ public:
 	}
 
 	template <typename KT, typename VT, typename CMP>
-	friend std::ostream& operator<<(std::ostream& os, const bst<KT, VT, CMP>& x);
+	friend std::ostream& operator<<(std::ostream& os, const bst& x){
+	  auto it = cbegin();
+	  auto end = cend();
+	  while(it != end){
+	    os << (*it).first << " : " << (*it).second << std::endl; 
+	    ++it;
+	  }
+	  return os;
+	}
 
 	void erase(const kt& x);
 
