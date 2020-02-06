@@ -32,7 +32,7 @@ struct node{//it's a struct because we are going to need to access all the eleme
 
 };
 
-template <typename kt, typename vt, typename cmp = std::less<kt>>
+template <typename kt, typename vt, typename cmp>
 class bst{
 	cmp _op;
 
@@ -189,8 +189,8 @@ public:
 	vt& operator[](const kt& x){
 		auto tmp = find(x);
 		if(tmp._current == nullptr){
-			vt no_value{};
-			insert(std::make_pair(x, no_value));
+		  //			vt no_value{};
+			insert(std::make_pair(x, vt{})); // maybe vt no_value{}
 			std::cout << "pair inserted" << std::endl;
 			return no_value;
 		}
@@ -237,7 +237,7 @@ public:
 	using reference = pair_type&;
 	using pointer = pair_type*;
 	using iterator_category = std::forward_iterator_tag;
-	using difference_type = std::prtdiff_t;
+	using difference_type = std::ptrdiff_t;
 
 	explicit iterator(std::shared_ptr<node_type> node) noexcept : _current{node} {}
 

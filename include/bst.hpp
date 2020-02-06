@@ -3,34 +3,17 @@
 
 #include<memory>
 #include<utility>
+#include<iostream>
 
-template <typename pair_type>
-struct node{
-
-	pair_type _element;
-
-	std::shared_ptr<node> const _parent; //automatically destructs
-	std::unique_ptr<node> _left;
-	std::unique_ptr<node> _right;
-
-	//we didn't implement a default constructor that initiates all the values of the node to 0
-	//because we don't want to allow users to create multiple nodes with the same key
-	//That's why we implemented a default constructor that deletes itself when called
-
-
-	node() = delete;
-	node(pair_type&& element, const node * parent) noexcept;
-
-	node(const pair_type& element, const node * parent);
-
-
-	~node();
-
-};
 
 template <typename kt, typename vt, typename cmp = std::less<kt>>
 class bst{
+        template<typename node_type, typename pair_type>
+        class __iterator;
 
+        template <typename pair_type>
+        struct node;
+  
 	cmp _op;
 	
 	using node_type = node<std::pair<const kt, vt>>;
@@ -40,9 +23,9 @@ class bst{
 	bool op_eq(const kt& x,const kt& y);
 
 public:
-
-	using iterator = iterator<node_type, typename node_type::pair_type>;
-	using const_iterator = iterator<node_type, typename const node_type::pair_type>;
+        using pair_type = typename node_type::pair_type;
+	using iterator = __iterator<node_type, pair_type>;
+	using const_iterator = __iterator<node_type, const pair_type>;
 
 	//constructors and destructors:
 	//note that these constructors can go only in the header if they are default constructors!!
@@ -61,6 +44,7 @@ public:
 
 	//functions to implement:
 
+  
 	std::pair<iterator, bool> insert(const pair_type& x);
 	std::pair<iterator, bool> insert(pair_type&& x);
 
@@ -89,11 +73,37 @@ public:
 	friend std::ostream& operator<<(std::ostream& os, const bst<KT, VT, CMP>& x);
 
 	void erase(const kt& x);
+};
+
+
+template <typename kt, typename vt, typename cmp>
+template <typename pair_type>
+struct bst<kt, vt, cmp>::node{
+
+	pair_type _element;
+
+	std::shared_ptr<node> const _parent; //automatically destructs
+	std::unique_ptr<node> _left;
+	std::unique_ptr<node> _right;
+
+	//we didn't implement a default constructor that initiates all the values of the node to 0
+	//because we don't want to allow users to create multiple nodes with the same key
+	//That's why we implemented a default constructor that deletes itself when called
+
+
+	node() = delete;
+	node(pair_type&& element, const node * parent) noexcept;
+
+	node(const pair_type& element, const node * parent);
+
+
+	~node();
 
 };
 
+template<typename kt, typename vt, typename cmp>
 template<typename node_type, typename pair_type>
-class iterator{//do we implement a class or a struct? He implemented a class also in the linked list
+class bst<kt, vt, cmp>::__iterator{//do we implement a class or a struct? He implemented a class also in the linked list
 	
 	std::shared_ptr<node_type> _current;
 
@@ -101,25 +111,26 @@ public:
 
 	using reference = pair_type&;
 	using pointer = pair_type*;
-	using iterator_category = std::forward_iterator_tag;
-	using difference_type = std::prtdiff_t;
+        using difference_type = std::ptrdiff_t;
+        using iterator_category = std::forward_iterator_tag;
 
 
-	explicit iterator(node_type * x) noexcept;
+
+	explicit __iterator(node_type*) noexcept;
 
 	reference operator*() const noexcept;
 
 	pointer operator->() const noexcept;
 
-	iterator& operator++() noexcept;
+	__iterator& operator++() noexcept;
 
-	iterator operator++(int) noexcept;
+	__iterator operator++(int) noexcept;
 
-	friend bool operator==(const iterator& a, const iterator& b);
+  template<typename Node_type, typename Pair_type>  
+  friend bool operator==(const __iterator<Node_type, Pair_type>&, const __iterator<Node_type, Pair_type>&);   // do we need `friend`?
 
-	friend bool operator!=(const iterator& a, const iterator& b);
-
-
+  template<typename Node_type, typename Pair_type>  
+  friend bool operator!=(const __iterator<Node_type, Pair_type>&, const __iterator<Node_type, Pair_type>&);
 
 };
 
