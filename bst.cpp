@@ -40,6 +40,10 @@ class bst{
 
 	std::unique_ptr<node_type> head;  //maybe node templated ; is unique needed? 
 
+	bool op_eq(const kt& x,const kt& y){//reference?
+		return (op(x, y) == false && op(y, x) == false) ? true : false;
+	}
+
 public:
 
 	using iterator = iterator<node_type, typename node_type::pair_type>;
@@ -55,8 +59,69 @@ public:
 
 	~bst() {std::cout << "bst dtor" << std::endl;}
 
-	std::pair<iterator, bool> insert(const pair_type& x);
-	std::pair<iterator, bool> insert(pair_type&& x);
+	std::pair<iterator, bool> insert(const pair_type& x){ //check if it can be optimized
+		node_type * ptr = head.get();
+
+		while(op_eq(x.first, (ptr->_element).first) == false){
+
+			if(_op(x.first, (ptr->_element).first) == true){
+
+				if(ptr->_left == nullptr){
+
+					(ptr->_left).reset(new node{x, std::make_shared<node_type>(ptr)});
+					return std::make_pair(iterator{ptr->_left}, true);
+
+				}
+
+				ptr = ptr->_left;
+			}
+			else{
+
+				if(ptr->_right == nullptr){
+					
+					(ptr->_right).reset(new node{x, std::make_shared<node_type>(ptr)});
+					return std::make_pair(iterator{ptr->_right}, true);
+
+				}
+
+				ptr = ptr->_right;
+			}
+		}
+
+		return std::make_pair(iterator{nullptr}, false);
+	}
+
+	std::pair<iterator, bool> insert(pair_type&& x){ //check if it can be optimized
+		node_type * ptr = head.get();
+
+		while(op_eq(x.first, (ptr->_element).first) == false){
+
+			if(_op(x.first, (ptr->_element).first) == true){
+
+				if(ptr->_left == nullptr){
+
+					(ptr->_left).reset(new node{std::move(x), std::make_shared<node_type>(ptr)});
+					return std::make_pair(iterator{ptr->_left}, true);
+
+				}
+
+				ptr = ptr->_left;
+			}
+			else{
+
+				if(ptr->_right == nullptr){
+					
+					(ptr->_right).reset(new node{std::move(x), std::make_shared<node_type>(ptr)});
+					return std::make_pair(iterator{ptr->_right}, true);
+
+				}
+
+				ptr = ptr->_right;
+			}
+		}
+
+		return std::make_pair(iterator{nullptr}, false);
+	}
 
 	template<class... Types>
 	std::pair<iterator,bool> emplace(Types&&... args);
@@ -117,20 +182,23 @@ public:
 		auto tmp = find(x);
 		if(tmp._current == nullptr){
 			vt no_value{};
-			auto new_pair = std::make_pair(x, no_value);
-			insert(new_pair);
+			insert(std::make_pair(x, no_value));
 			std::cout << "pair inserted" << std::endl;
 			return no_value;
 		}
-		return (*tmp).first;
-		//alternatively:
-		//return std::get<0>(*tmp);
+		return (*tmp).second;
 	}
+
 	vt& operator[](kt&& x){
-		auto tmp = find(x);
-		return (*tmp).first;
-		//alternatively:
-		//return std::get<0>(*tmp);
+		auto tmp = find(x);//does it work like this? should we use forward and make a unique function? or auto y = std::move(x); find(y) ?
+		if(tmp._current == nullptr){
+			vt no_value{};
+			insert(std::make_pair(std::move(x), no_value));
+			std::cout << "pair inserted" << std::endl;
+			return no_value;
+		}
+		return (*tmp).second;
+	
 	}
 
 	template <typename KT, typename VT, typename CMP>
@@ -162,7 +230,7 @@ public:
 	}
 
 	pointer operator->() const noexcept{
-		return &(*(*this)); // we return the address of the element (pair) of the node to which the iterator is pointing to
+		return &(*(*this)); // we return the pointer to the element (pair) of the node to which the iterator is pointing to
 	}
   
 	iterator& operator++() noexcept{
@@ -173,7 +241,8 @@ public:
 	      // vai in alto sx
 	      _current = _current->_parent;
 	    }
-	    return _current->_parent;
+	    _current = _current->_parent;
+	    return *this;
 	  }
 	  else{
 	    _current = _current->_right;
@@ -181,7 +250,7 @@ public:
 	    while(_current->_left != nullptr){
 	      _current = _current->_left;
 	    }
-	    return _current;
+	    return *this;
 	  }
 	}
 

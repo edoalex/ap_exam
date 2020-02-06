@@ -32,8 +32,12 @@ template <typename kt, typename vt, typename cmp = std::less<kt>>
 class bst{
 
 	cmp _op;
+	
 	using node_type = node<std::pair<const kt, vt>>;
+	
 	std::unique_ptr<node_type> head;
+
+	bool op_eq(const kt& x,const kt& y);
 
 public:
 
