@@ -23,7 +23,7 @@ class bst{
 	bool op_eq(const kt& x,const kt& y);
 
 public:
-        using pair_type = typename node_type::pair_type;
+    using pair_type = typename node_type::pair_type;
 	using iterator = __iterator<node_type, pair_type>;
 	using const_iterator = __iterator<node_type, const pair_type>;
 
@@ -109,18 +109,18 @@ class bst<kt, vt, cmp>::__iterator{//do we implement a class or a struct? He imp
 
 public:
 
-	using reference = pair_type&;
-	using pointer = pair_type*;
-        using difference_type = std::ptrdiff_t;
-        using iterator_category = std::forward_iterator_tag;
+	//using reference = pair_type&;
+	//using pointer = pair_type*;
+    using difference_type = std::ptrdiff_t;
+    using iterator_category = std::forward_iterator_tag;
 
 
 
 	explicit __iterator(node_type*) noexcept;
 
-	reference operator*() const noexcept;
+	pair_type& operator*() const noexcept;
 
-	pointer operator->() const noexcept;
+	pair_type* operator->() const noexcept;
 
 	__iterator& operator++() noexcept;
 

@@ -210,7 +210,7 @@ public:
 	}
 
 	template <typename KT, typename VT, typename CMP>
-	friend std::ostream& operator<<(std::ostream& os, const bst& x){
+	friend std::ostream& operator<<(std::ostream& os, const bst<KT, VT, CMP>& x){
 	  auto it = cbegin();
 	  auto end = cend();
 	  while(it != end){
