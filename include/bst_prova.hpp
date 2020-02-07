@@ -21,7 +21,7 @@ class bst{
 	std::unique_ptr<node_type> head;
 
 	bool op_eq(const kt& x,const kt& y){//reference?
-		return (op(x, y) == false && op(y, x) == false) ? true : false;
+		return (_op(x, y) == false && _op(y, x) == false) ? true : false;
 	}
 
 public:
@@ -76,8 +76,8 @@ public:
 	return std::make_pair(iterator{nullptr}, false);
 }
 	std::pair<iterator, bool> insert(pair_type&& x){ //check if it can be optimized
-	if (head == nullptr){
-		head.reset(new node_type{std::move(x), nullptr}); // maybe nullprt = make_shared(nullptr)
+	if (!head){
+		head.reset(new node_type{std::move(x), std::make_shared<node_type>(nullptr)}); // maybe nullprt = make_shared(nullptr)
 		return std::make_pair(iterator{head.get()}, true);
 	}
 	node_type * ptr = head.get();
@@ -92,7 +92,7 @@ public:
 
 				return std::make_pair(iterator{(ptr->_left).get()}, true);
 			}
-			ptr = ptr->_left;
+			ptr = (ptr->_left).get();
 		}else{
 
 			if(ptr->_right == nullptr){
@@ -100,7 +100,7 @@ public:
 				(ptr->_right).reset(new node_type{std::move(x), std::make_shared<node_type>(ptr)});
 				return std::make_pair(iterator{(ptr->_right).get()}, true);
 			}
-			ptr = ptr->_right;
+			ptr = (ptr->_right).get();
 		}
 	}
 
@@ -115,21 +115,21 @@ public:
 	iterator begin(){
 	node_type * it = head.get();
 	while(it->_left != nullptr){
-		it = it->_left;
+		it = (it->_left).get();
 	}
 	return iterator{*it};
 }
 	const_iterator begin() const{
 	node_type * it = head.get();
 	while(it->_left != nullptr){
-		it = it->_left;
+		it = (it->_left).get();
 	}
 	return const_iterator{*it};
 }
 	const_iterator cbegin() const{
 	node_type * it = head.get();
 	while(it->_left != nullptr){
-		it = it->_left;
+		it = (it->_left).get();
 	}
 	return const_iterator{*it};
 }
@@ -137,7 +137,7 @@ public:
 	iterator end(){
 	node_type * it = head.get();
 	while(it->_right != nullptr){
-		it = it->_right;
+		it = (it->_right).get();
 	}
 	return iterator{*(it->_right)};//returns one past the last element
 } 
@@ -145,14 +145,14 @@ public:
 	const_iterator end() const{
 	node_type * it = head.get();
 	while(it->_right != nullptr){
-		it = it->_right;
+		it = (it->_right).get();
 	}
 	return const_iterator{*(it->_right)};
 }  
 	const_iterator cend() const{
 	node_type * it = head.get();
 	while(it->_right != nullptr){
-		it = it->_right;
+		it = (it->_right).get();
 	}
 	return const_iterator{*(it->_right)};
 } 
@@ -215,9 +215,9 @@ struct bst<kt, vt, cmp>::node{
 
 
 	node() = delete;
-	node(pair_type&& element, const node * parent) noexcept : _element{std::move(element)}, _parent{parent} {std::cout << "node move ctor" << std::endl;}
+	node(pair_type&& element, const std::shared_ptr<node> parent) noexcept : _element{std::move(element)}, _parent{parent} {std::cout << "node move ctor" << std::endl;}
 
-	node(const pair_type& element, const node * parent) : _element{element}, _parent{parent} {std::cout << "node copy ctor" << std::endl;} //custom ctor
+	node(const pair_type& element, const std::shared_ptr<node> parent) : _element{element}, _parent{parent} {std::cout << "node copy ctor" << std::endl;} //custom ctor
 
 
 	~node() = default;
