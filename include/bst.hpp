@@ -40,14 +40,14 @@ public:
 	bst& operator=(const bst& B);
 	bst& operator=(bst&& B);
 
-	~bst();
+	~bst() = default;
 
 
 	//functions to implement:
 
   
-	std::pair<iterator, bool> insert(const pair_type& x);
-	std::pair<iterator, bool> insert(pair_type&& x);
+	std::pair<iterator, bool> insert(const pair_type&);
+        std::pair<iterator, bool> insert(pair_type&& x);
 
 	template<class... Types>
 	std::pair<iterator,bool> emplace(Types&&... args);
@@ -98,7 +98,7 @@ struct bst<kt, vt, cmp>::node{
 	node(const pair_type& element, const node * parent);
 
 
-	~node();
+	~node() = default;
 
 };
 
