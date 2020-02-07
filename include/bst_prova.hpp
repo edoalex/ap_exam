@@ -50,7 +50,7 @@ public:
   
 	std::pair<iterator, bool> insert(const pair_type& x){ //check if it can be optimized
 	if (head == nullptr){
-		head.reset(new node_type{x, nullptr}); // maybe nullprt = make_shared(nullptr)
+	  	head.reset(new node_type{x, nullptr}); // maybe nullprt = make_shared(nullptr)
 		return std::make_pair(iterator(head.get(), true));
 	}
 	node_type * ptr = head.get();
@@ -77,7 +77,7 @@ public:
 }
 	std::pair<iterator, bool> insert(pair_type&& x){ //check if it can be optimized
 	if (!head){
-		head.reset(new node_type{std::move(x), std::make_shared<node_type>(nullptr)}); // maybe nullprt = make_shared(nullptr)
+	   	head.reset(new node_type{std::move(x), nullptr}); // maybe nullprt = make_shared(nullptr)
 		return std::make_pair(iterator{head.get()}, true);
 	}
 	node_type * ptr = head.get();
@@ -88,7 +88,7 @@ public:
 
 			if(ptr->_left == nullptr){
 				
-				(ptr->_left).reset(new node_type{std::move(x), std::make_shared<node_type>(ptr)});
+			  // (ptr->_left).reset(new node_type{std::move(x), std::make_shared<node_type>(ptr)});
 
 				return std::make_pair(iterator{(ptr->_left).get()}, true);
 			}
@@ -97,7 +97,7 @@ public:
 
 			if(ptr->_right == nullptr){
 
-				(ptr->_right).reset(new node_type{std::move(x), std::make_shared<node_type>(ptr)});
+			  //	(ptr->_right).reset(new node_type{std::move(x), std::make_shared<node_type>(ptr)});
 				return std::make_pair(iterator{(ptr->_right).get()}, true);
 			}
 			ptr = (ptr->_right).get();
