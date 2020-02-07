@@ -2,7 +2,7 @@
 
 int main(){
 
-  bst tree{};
+  bst<int,int> tree{};
 
   tree.insert({4,5});
   tree.insert({9,5});
