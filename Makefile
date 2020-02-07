@@ -4,9 +4,10 @@ CXXFLAGS = -std=c++14 -Wall -Wextra -I include/
 SRC = src/bst.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 
-all: exe.x
+all:
+	 c++ main.cpp -o exe.x -std=c++14 -I include -Wall -Wextra
 
-exe.x: $(OBJ)
+#exe.x: $(OBJ)
 	$(CXX) -o $@ $^ $(CXXFLAGS)
 
 %.o:%.cc
