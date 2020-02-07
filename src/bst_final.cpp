@@ -228,42 +228,42 @@ bst<kt, vt, cmp>::__iterator<node_type, pair_type>::__iterator(node_type * x) no
 
 template <typename kt, typename vt, typename cmp>
 template<typename node_type, typename pair_type>
-pair_type& bst<kt, vt, cmp>::__iterator<node_type, pair_type>::operator*() const noexcept {
-		return _current->_element; //here we return a reference to the pair(key, value)
-	}
+typename bst<kt, vt, cmp>::template __iterator<node_type, pair_type>::reference bst<kt, vt, cmp>::__iterator<node_type, pair_type>::operator*() const noexcept {
+	return _current->_element; //here we return a reference to the pair(key, value)
+}
 
 template <typename kt, typename vt, typename cmp>
 template<typename node_type, typename pair_type>
-pair_type* bst<kt, vt, cmp>::__iterator<node_type, pair_type>::operator->() const noexcept{
-		return &(*(*this)); // we return the pointer to the element (pair) of the node to which the iterator is pointing to
-	}
+typename bst<kt, vt, cmp>::template __iterator<node_type, pair_type>::pointer bst<kt, vt, cmp>::__iterator<node_type, pair_type>::operator->() const noexcept{
+	return &(*(*this)); // we return the pointer to the element (pair) of the node to which the iterator is pointing to
+}
 
 template <typename kt, typename vt, typename cmp>
 template<typename node_type, typename pair_type>
-bst<kt, vt, cmp>::__iterator<node_type, pair_type>& bst<kt, vt, cmp>::__iterator<node_type, pair_type>::operator++() noexcept{ //do we need a second scope resolution?
-	  // if( non posso andare in basso dx )
-	  if(_current->_right == nullptr){
-	    // while( non posso andare alto dx )
-	    while(_current->_parent != nullptr && (_current->_parent)->_left != _current){
-	      // vai in alto sx
-	      _current = _current->_parent;
-	    }
-	    _current = _current->_parent;
-	    return *this;
-	  }
-	  else{
-	    _current = _current->_right;
-	    // vai in basso sx finchè puoi
-	    while(_current->_left != nullptr){
-	      _current = _current->_left;
-	    }
-	    return *this;
-	  }
+typename bst<kt, vt, cmp>::template __iterator<node_type, pair_type>& bst<kt, vt, cmp>::__iterator<node_type, pair_type>::operator++() noexcept{ //do we need a second scope resolution?
+	// if( non posso andare in basso dx )
+	if(_current->_right == nullptr){
+		// while( non posso andare alto dx )
+		while(_current->_parent != nullptr && (_current->_parent)->_left != _current){
+			// vai in alto sx
+			_current = _current->_parent;
+		}
+		_current = _current->_parent;
+		return *this;
 	}
+	else{
+		_current = _current->_right;
+		// vai in basso sx finchè puoi
+		while(_current->_left != nullptr){
+			_current = _current->_left;
+		}
+		return *this;
+	}
+}
 
 template <typename kt, typename vt, typename cmp>
 template<typename node_type, typename pair_type>
-bst<kt, vt, cmp>::__iterator<node_type, pair_type> bst<kt, vt, cmp>::__iterator<node_type, pair_type>::operator++(int) noexcept{
+typename bst<kt, vt, cmp>::template __iterator<node_type, pair_type> bst<kt, vt, cmp>::__iterator<node_type, pair_type>::operator++(int) noexcept{
 		iterator tmp{_current};
 		++(*this);
 		return tmp;

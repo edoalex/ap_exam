@@ -109,8 +109,8 @@ class bst<kt, vt, cmp>::__iterator{//do we implement a class or a struct? He imp
 
 public:
 
-	//using reference = pair_type&;
-	//using pointer = pair_type*;
+	using reference = pair_type&;
+	using pointer = pair_type*;
     using difference_type = std::ptrdiff_t;
     using iterator_category = std::forward_iterator_tag;
 
@@ -118,9 +118,11 @@ public:
 
 	explicit __iterator(node_type*) noexcept;
 
-	pair_type& operator*() const noexcept;
+	//pair_type& operator*() const noexcept;
+	reference operator*() const noexcept;
 
-	pair_type* operator->() const noexcept;
+	//pair_type* operator->() const noexcept;
+	pointer operator->() const noexcept;
 
 	__iterator& operator++() noexcept;
 
