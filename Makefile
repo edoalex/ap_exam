@@ -1,50 +1,25 @@
-EXE = exe.x
 CXX = c++
-CXXFLAGS = -I include -g -std=c++11 -Wall -Wextra -I ../../06_error_handling/
+CXXFLAGS = -std=c++14 -Wall -Wextra -I include/
 
-SRC= main.cc src/dog.cc src/animal.cc src/snake.cc src/helper_functions.cc
-OBJ=$(SRC:.cc=.o)
-INC = include/animal.h  include/dog.h  include/helper_functions.h  include/snake.h
+SRC = src/bst.cpp main.cpp
+OBJ = $(SRC:.cpp=.o)
 
-VPATH = ../../06_error_handling
+all: exe.x
 
-# eliminate default suffixes
-.SUFFIXES:
-SUFFIXES =
+exe.x: $(OBJ)
+	$(CXX) -o $@ $^ $(CXXFLAGS)
 
-# just consider our own suffixes
-.SUFFIXES: .cc .o
+%.o:%.cc
+	$(CXX) $< -o $@ -c $(CXXFLAGS)
 
-all: $(EXE)
+main.o: main.cpp
 
-.PHONY: all
+src/bst.o: src/bst.cpp include/bst.hpp
+
+format: $(SRC) include/bst.hpp
+	@clang-format -i $^ 2>/dev/null || echo "Please install clang-format to run this commands"
 
 clean:
-	rm -rf $(OBJ) $(EXE) src/*~ include/*~ *~ html latex
+	@rm -f *~ */*~ exe.x src/*.o *.o
 
-.PHONY: clean
-
-%.o: %.cc ap_error.h
-	$(CXX) -c $< -o $@ $(CXXFLAGS)
-
-$(EXE): $(OBJ)
-	$(CXX) $^ -o $(EXE)
-
-documentation: Doxygen/doxy.in
-	doxygen $^
-
-.PHONY: documentation
-
-main.o: include/dog.h include/animal.h include/snake.h \
- include/helper_functions.h
-
-src/animal.o: include/animal.h 
-
-src/dog.o: include/animal.h include/dog.h
-src/snake.o: include/animal.h include/snake.h
-src/helper_functions.o: include/animal.h include/helper_functions.h
-
-format: $(SRC) $(INC)
-	@clang-format -i $^ -verbose || echo "Please install clang-format to run this commands"
-
-.PHONY: format
+.PHONY: clean all format
