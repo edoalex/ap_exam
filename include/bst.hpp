@@ -8,11 +8,11 @@
 
 template <typename kt, typename vt, typename cmp = std::less<kt>>
 class bst{
-        template<typename node_type, typename pair_type>
-        class __iterator;
+    template<typename node_type, typename pair_type>
+    class __iterator;
 
-        template <typename pair_type>
-        struct node;
+    template <typename pair_type>
+    struct node;
   
 	cmp _op;
 	
@@ -23,8 +23,9 @@ class bst{
 	bool op_eq(const kt& x,const kt& y);
 
 public:
-    using pair_type = typename node_type::pair_type;
-	using iterator = __iterator<node_type, pair_type>;
+	using pair_type = std::pair<const kt, vt>;
+    //using pair_type = typename node_type::pair_type;
+	using iterator = __iterator<node_type, pair_type>;	
 	using const_iterator = __iterator<node_type, const pair_type>;
 
 	//constructors and destructors:
