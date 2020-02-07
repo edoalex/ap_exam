@@ -1,14 +1,16 @@
-#include<bst.hpp>
+#include"bst_prova.hpp"
+#include<iostream>
+#include<functional>
 
 int main(){
 
-  bst<int,int> tree{};
+  bst<const int,int,std::less<const int>> tree{};
 
-  tree.insert({4,5});
-  tree.insert({9,5});
-  tree.insert({3,7});
+  tree.insert(std::make_pair<const int,int>(4,5));
+  //tree.insert({5,5});
+  //tree.insert({7,9});
 
-  std::cout << bst << std::endl; 
+  std::cout << tree << std::endl;
   
   return 0;
   
