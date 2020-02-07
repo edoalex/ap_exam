@@ -28,7 +28,7 @@ template <typename kt, typename vt, typename cmp>
 std::pair<typename bst<kt, vt, cmp>::iterator, bool> bst<kt, vt, cmp>::insert(const pair_type& x){ //check if it can be optimized
 	if (head == nullptr){
 		head.reset(new node_type{x, nullptr}); // maybe nullprt = make_shared(nullptr)
-		return std::make_pair(iterator(head.get(), true));
+		return std::make_pair(iterator{head.get()}, true);
 	}
 	node_type * ptr = head.get();
 
