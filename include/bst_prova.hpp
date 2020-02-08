@@ -46,7 +46,7 @@ public:
 
   
 	std::pair<iterator, bool> insert(const pair_type& x){ //check if it can be optimized
-		std::cout << "insert(const pair_type& x) called" << std::endl;
+	  //	std::cout << "insert(const pair_type& x) called" << std::endl;
 		if (head == nullptr){
 		  	head.reset(new node_type{x, nullptr});
 			return std::make_pair(iterator{head.get()}, true);
@@ -75,7 +75,7 @@ public:
 	}
 	
   std::pair<iterator, bool> insert(pair_type&& x){ //check if it can be optimized
-		std::cout << "insert(pair_type&& x) called" << std::endl;
+    //	std::cout << "insert(pair_type&& x) called" << std::endl;
 		if (!head){
 			head.reset(new node_type{std::move(x), nullptr}); // maybe nullprt = make_shared(nullptr)
 			return std::make_pair(iterator{head.get()}, true);
@@ -217,15 +217,10 @@ struct bst<kt, vt, cmp>::node{
 	//because we don't want to allow users to create multiple nodes with the same key
 	//That's why we implemented a default constructor that deletes itself when called
 
-
 	node() = delete;
-	node(pair_type&& element, node * const parent) noexcept : _element{std::move(element)}, _parent{parent} {std::cout << "node move ctor" << std::endl;} //removed a const before node
-
-	node(const pair_type& element, node * const parent) : _element{element}, _parent{parent} {std::cout << "node copy ctor" << std::endl;} //custom ctor
-
-
-	~node() {std::cout << "node dtor" << std::endl;} //do we need to delete the raw pointer??
-
+        node(pair_type&& element, node * const parent) noexcept : _element{std::move(element)}, _parent{parent} {} //removed a const before node
+	node(const pair_type& element, node * const parent) : _element{element}, _parent{parent} {} //custom ctor
+        ~node() {}//std::cout << "node dtor" << std::endl;} //do we need to delete the raw pointer??
 };
 
 template<typename kt, typename vt, typename cmp>
