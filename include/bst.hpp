@@ -25,7 +25,7 @@ class bst{
 public:
 	using pair_type = std::pair<const kt, vt>;
     //using pair_type = typename node_type::pair_type;
-	using iterator = __iterator<node_type, pair_type>;	
+	using iterator = __iterator<node_type, pair_type>;
 	using const_iterator = __iterator<node_type, const pair_type>;
 
 	//constructors and destructors:
@@ -47,7 +47,7 @@ public:
 
   
 	std::pair<iterator, bool> insert(const pair_type&);
-        std::pair<iterator, bool> insert(pair_type&& x);
+    std::pair<iterator, bool> insert(pair_type&& x);
 
 	template<class... Types>
 	std::pair<iterator,bool> emplace(Types&&... args);

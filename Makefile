@@ -5,4 +5,4 @@ SRC = src/bst.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all:
-	 c++ main.cpp -o exe.x -std=c++14 -I include -Wall -Wextra
+	 c++ main.cpp -o exe.x -std=c++14 -I include -Wall -Wextra -g

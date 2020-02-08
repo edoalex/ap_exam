@@ -50,34 +50,7 @@ public:
   
 	std::pair<iterator, bool> insert(const pair_type& x){ //check if it can be optimized
 	if (head == nullptr){
-	  	head.reset(new node_type{x, nullptr}); // maybe nullprt = make_shared(nullptr)
-		return std::make_pair(iterator(head.get(), true));
-	}
-	node_type * ptr = head.get();
-
-	while(op_eq(x.first, (ptr->_element).first) == false){
-
-		if(_op(x.first, (ptr->_element).first) == true){
-
-			if(ptr->_left == nullptr){
-				(ptr->_left).reset(new node_type{x, std::make_shared<node_type>(ptr)});
-				return std::make_pair(iterator{(ptr->_left).get()}, true);
-			}
-			ptr = ptr->_left;
-		}
-		else{
-			if(ptr->_right == nullptr){
-				(ptr->_right).reset(new node_type{x, std::make_shared<node_type>(ptr)});
-				return std::make_pair(iterator{(ptr->_right).get()}, true);
-			}
-			ptr = ptr->_right;
-		}
-	}
-	return std::make_pair(iterator{nullptr}, false);
-}
-	std::pair<iterator, bool> insert(pair_type&& x){ //check if it can be optimized
-	if (!head){
-	   	head.reset(new node_type{std::move(x), nullptr}); // maybe nullprt = make_shared(nullptr)
+	  	head.reset(new node_type{x, nullptr});
 		return std::make_pair(iterator{head.get()}, true);
 	}
 	node_type * ptr = head.get();
@@ -87,8 +60,35 @@ public:
 		if(_op(x.first, (ptr->_element).first) == true){
 
 			if(ptr->_left == nullptr){
-				
-			  // (ptr->_left).reset(new node_type{std::move(x), std::make_shared<node_type>(ptr)});
+				(ptr->_left).reset(new node_type{x, ptr});
+				return std::make_pair(iterator{(ptr->_left).get()}, true);
+			}
+			ptr = (ptr->_left).get();
+		}
+		else{
+			if(ptr->_right == nullptr){
+				(ptr->_right).reset(new node_type{x, ptr});
+				return std::make_pair(iterator{(ptr->_right).get()}, true);
+			}
+			ptr = (ptr->_right).get();
+		}
+	}
+	return std::make_pair(iterator{nullptr}, false);
+}
+	std::pair<iterator, bool> insert(pair_type&& x){ //check if it can be optimized
+	if (!head){
+	   	head.reset(new node_type{std::move(x), nullptr}); // maybe nullprt = make_shared(nullptr)
+		return std::make_pair(iterator{head.get()}, true);
+	}
+
+	node_type * ptr = head.get();
+
+	while(op_eq(x.first, (ptr->_element).first) == false){
+
+		if(_op(x.first, (ptr->_element).first) == true){
+
+			if(ptr->_left == nullptr){
+				(ptr->_left).reset(new node_type{std::move(x), ptr});
 
 				return std::make_pair(iterator{(ptr->_left).get()}, true);
 			}
@@ -97,11 +97,12 @@ public:
 
 			if(ptr->_right == nullptr){
 
-			  //	(ptr->_right).reset(new node_type{std::move(x), std::make_shared<node_type>(ptr)});
+			  	(ptr->_right).reset(new node_type{std::move(x), ptr});
 				return std::make_pair(iterator{(ptr->_right).get()}, true);
 			}
 			ptr = (ptr->_right).get();
 		}
+		
 	}
 
 	return std::make_pair(iterator{nullptr}, false);
@@ -113,25 +114,25 @@ public:
 	void clear(){}
 
 	iterator begin(){
-	node_type * it = head.get();
-	while(it->_left != nullptr){
-		it = (it->_left).get();
+		node_type * it = head.get();
+		while(it->_left != nullptr){
+			it = (it->_left).get();
+		}
+		return iterator{it}; //before it was *it
 	}
-	return iterator{*it};
-}
 	const_iterator begin() const{
 	node_type * it = head.get();
 	while(it->_left != nullptr){
 		it = (it->_left).get();
 	}
-	return const_iterator{*it};
+	return const_iterator{it};
 }
 	const_iterator cbegin() const{
 	node_type * it = head.get();
 	while(it->_left != nullptr){
 		it = (it->_left).get();
 	}
-	return const_iterator{*it};
+	return const_iterator{it};
 }
 
 	iterator end(){
@@ -139,7 +140,7 @@ public:
 	while(it->_right != nullptr){
 		it = (it->_right).get();
 	}
-	return iterator{*(it->_right)};//returns one past the last element
+	return iterator{(it->_right).get()};//returns one past the last element
 } 
 
 	const_iterator end() const{
@@ -147,14 +148,14 @@ public:
 	while(it->_right != nullptr){
 		it = (it->_right).get();
 	}
-	return const_iterator{*(it->_right)};
+	return const_iterator{(it->_right).get()};
 }  
 	const_iterator cend() const{
 	node_type * it = head.get();
 	while(it->_right != nullptr){
 		it = (it->_right).get();
 	}
-	return const_iterator{*(it->_right)};
+	return const_iterator{(it->_right).get()};
 } 
 
 	iterator find(const kt& x){}
@@ -165,34 +166,34 @@ public:
 	vt& operator[](const kt& x){
 	auto tmp = find(x);
 	if(tmp._current == nullptr){
-	  //			vt no_value{};
-		auto pair = insert(std::make_pair(x, vt{})); // maybe vt no_value{}
-		std::cout << "pair inserted" << std::endl;
-		return (*(pair.first)).second;
+		  //			vt no_value{};
+			auto pair = insert(std::make_pair(x, vt{})); // maybe vt no_value{}
+			std::cout << "pair inserted" << std::endl;
+			return (*(pair.first)).second;
+		}
+		return (*tmp).second;
 	}
-	return (*tmp).second;
-}
 	vt& operator[](kt&& x){
 	auto tmp = find(x);//does it work like this? should we use forward and make a unique function? or auto y = std::move(x); find(y) ?
-	if(tmp._current == nullptr){
-		vt no_value{};
-		insert(std::make_pair(std::move(x), no_value));
-		std::cout << "pair inserted" << std::endl;
-		return no_value;
+		if(tmp._current == nullptr){
+			//vt no_value{};
+			auto pair = insert(std::make_pair(std::move(x), vt{}));
+			std::cout << "pair inserted" << std::endl;
+			return (*(pair.first)).second;
+		}
+		return (*tmp).second;
 	}
-	return (*tmp).second;
-}
 
 	template <typename KT, typename VT, typename CMP>
 	friend std::ostream& operator<<(std::ostream& os, const bst<KT, VT, CMP>& x){
-	auto it = x.cbegin();
-	auto end = x.cend();
-	while(it != end){
-		os << (*it).first << " : " << (*it).second << std::endl; 
-		++it;
+		auto it = x.cbegin();
+		auto end = x.cend();
+		while(it != end){
+			os << (*it).first << " : " << (*it).second << std::endl; 
+			++it;
+		}
+		return os;
 	}
-	return os;
-}
 
 
 	void erase(const kt& x){}
@@ -205,7 +206,7 @@ struct bst<kt, vt, cmp>::node{
 
 	pair_type _element;
 
-	std::shared_ptr<node> const _parent; //automatically destructs
+	node * const _parent;
 	std::unique_ptr<node> _left;
 	std::unique_ptr<node> _right;
 
@@ -215,12 +216,14 @@ struct bst<kt, vt, cmp>::node{
 
 
 	node() = delete;
-	node(pair_type&& element, const std::shared_ptr<node> parent) noexcept : _element{std::move(element)}, _parent{parent} {std::cout << "node move ctor" << std::endl;}
+	explicit node(const node&) = default;
+	//node(node * parent) = delete;
+	node(pair_type&& element, node * const parent) noexcept : _element{std::move(element)}, _parent{parent} {std::cout << "node move ctor" << std::endl;} //removed a const before node
 
-	node(const pair_type& element, const std::shared_ptr<node> parent) : _element{element}, _parent{parent} {std::cout << "node copy ctor" << std::endl;} //custom ctor
+	node(const pair_type& element, node * const parent) : _element{element}, _parent{parent} {std::cout << "node copy ctor" << std::endl;} //custom ctor
 
 
-	~node() = default;
+	~node() = default; //do we need to delete the raw pointer??
 
 };
 
@@ -228,7 +231,7 @@ template<typename kt, typename vt, typename cmp>
 template<typename node_type, typename pair_type>
 class bst<kt, vt, cmp>::__iterator{//do we implement a class or a struct? He implemented a class also in the linked list
 	
-	std::shared_ptr<node_type> _current;
+	node_type * _current;
 
 public:
 
@@ -239,53 +242,55 @@ public:
 
 
 
-	explicit __iterator(node_type* x) noexcept: _current{x} {}
+	explicit __iterator(node_type * x) noexcept: _current{x} {}
 
 	//pair_type& operator*() const noexcept;
 	reference operator*() const noexcept{
-	return _current->_element; //here we return a reference to the pair(key, value)
-}
+		return _current->_element; //here we return a reference to the pair(key, value)
+	}
 
 
 	//pair_type* operator->() const noexcept;
 	pointer operator->() const noexcept{
-	return &(*(*this)); // we return the pointer to the element (pair) of the node to which the iterator is pointing to
-}
+		return &(*(*this)); // we return the pointer to the element (pair) of the node to which the iterator is pointing to
+	}
 
 
 	__iterator& operator++() noexcept{ //do we need a second scope resolution?
-	// if( non posso andare in basso dx )
-	if(_current->_right == nullptr){
-		// while( non posso andare alto dx )
-		while(_current->_parent != nullptr && (_current->_parent)->_left != _current){
-			// vai in alto sx
+		// if( non posso andare in basso dx )
+		if(_current->_right == nullptr){
+			// while( non posso andare alto dx )
+			while(_current->_parent != nullptr && ((_current->_parent)->_left).get() != _current){
+				// vai in alto sx
+				_current = _current->_parent;
+			}
 			_current = _current->_parent;
+			return *this;
 		}
-		_current = _current->_parent;
-		return *this;
-	}
-	else{
-		_current = _current->_right;
-		// vai in basso sx finchè puoi
-		while(_current->_left != nullptr){
-			_current = _current->_left;
+		else{
+			_current = (_current->_right).get();
+			// vai in basso sx finchè puoi
+			while(_current->_left != nullptr){
+				_current = (_current->_left).get();
+			}
+			return *this;
 		}
-		return *this;
 	}
-}
 
 
 	__iterator operator++(int) noexcept{
-	iterator tmp{_current};
-	++(*this);
-	return tmp;
-}
+		iterator tmp{_current};
+		++(*this);
+		return tmp;
+	}
 
-  template<typename Node_type, typename Pair_type>  
-  friend bool operator==(const __iterator<Node_type, Pair_type>&, const __iterator<Node_type, Pair_type>&);   // do we need `friend`?
+  friend bool operator==(const __iterator& a, const __iterator& b){
+  	return a._current == b._current;
+  }
 
-  template<typename Node_type, typename Pair_type>  
-  friend bool operator!=(const __iterator<Node_type, Pair_type>&, const __iterator<Node_type, Pair_type>&);
+  friend bool operator!=(const __iterator& a, const __iterator& b){
+  	return !(a == b);
+  }
 
 };
 
