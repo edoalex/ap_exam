@@ -161,8 +161,86 @@ public:
 		return const_iterator{(it->_right).get()};
 	}
 
-	iterator find(const kt& x){}
-	const_iterator find(const kt& x) const{}
+	iterator find(const kt& x){
+
+	  std::cout << "greetings from iterator find(...)" << std::endl;
+	  
+	  if(!head){
+	    std::cout << "the tree is empty" << std::endl;
+	    return iterator{nullptr}; 
+	  }
+	  
+	  node_type * tmp = head.get();
+
+	  while(op_eq(x,(tmp->_element).first) == false){
+
+	    if(_op(x,(tmp->_element).first) == true){
+
+	      if(tmp->_left == nullptr){
+		std::cout << "node with key " << x << " not found in the tree" << std::endl;
+		return end();
+	      }
+
+	      tmp = (tmp->_left).get();
+	      
+	    } else {
+
+	      if(tmp->_right == nullptr){
+	        std::cout << "node with key " << x << " not found in the tree" << std::endl;
+	        return end();
+              }
+
+	      tmp = (tmp->_right).get();
+
+	    }
+	     
+	  }
+
+	  std::cout << "node with key " << x << " found in the tree" << std::endl;
+	  return iterator{tmp};
+	  
+	}
+
+        const_iterator find(const kt& x) const{
+
+	  std::cout << "greetings from const_iterator find(...)" << std::endl;
+	  
+          if(!head){
+            std::cout << "the tree is empty" << std::endl;
+            return const_iterator{nullptr};
+          }
+
+          node_type * tmp = head.get();
+
+          while(op_eq(x,(tmp->_element).first) == false){
+
+            if(_op(x,(tmp->_element).first) == true){
+
+              if(tmp->_left == nullptr){
+                std::cout << "node with key " << x << " not found in the tree" << std::endl;
+                return end();
+              }
+
+              tmp = (tmp->_left).get();
+
+            } else {
+
+              if(tmp->_right == nullptr){
+                std::cout << "node with key " << x << " not found in the tree" << std::endl;
+                return end();
+              }
+
+              tmp = (tmp->_right).get();
+
+            }
+
+          }
+
+          std::cout << "node with key " << x << " found in the tree" << std::endl;
+          return const_iterator{tmp};
+
+
+	}
 
 	void balance(){}
 
@@ -192,7 +270,7 @@ public:
 		auto it = x.cbegin();
 		auto end = x.cend();
 		while(it != end){
-			os << (*it).first << " : " << (*it).second << std::endl; 
+			os << it->first << "\t:\t" << it->second << std::endl; 
 			++it;
 		}
 		return os;
