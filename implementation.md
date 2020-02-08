@@ -11,7 +11,6 @@
 - `bst`
   - `erase`
   - `balance`
-  - `find`
   - `clear`
   - `emplace`
   - `copy ass`
@@ -22,14 +21,14 @@
 ## Function already implemented
 
 - `bst`
-
-  - 
+- 
     - `dft ctor `	
-  - `dtor`
-  - `custom ctor` (op)
-
+    - `dtor`
+    - `custom ctor` (op)
     - `insert`( reference )
-    - `insert`( rvalue )
+  - `insert`( rvalue )
+    - `find` (return it)
+    - `find` (return const_it)
     - `begin` (iterator)
     - `begin` (const iterator)
     - `cbegin` 
@@ -39,19 +38,19 @@
   - `operator[]` (reference)
   - `operator[]` (rvalue)
     - `operator<<` 
-
 - `node`
-  - `dft ctor`
-  - `move ctor`
-  - `copy ctor`
+  - 
+    - `move ctor`
+    - `copy ctor`
 - `iterator`
-  - `custom ctor`
-  - `operator*`
-  - `operator->`
+  - 
+    - `custom ctor`
+    - `operator*`
+    - `operator->`
     - `operator++` 
     - `operator++`(int)
-  - `operator==`
-  - `operator!=`
+    - `operator==`
+    - `operator!=`
 
 ## Things to be done sooner or later
 
