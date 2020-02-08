@@ -74,7 +74,7 @@ public:
 		return std::make_pair(iterator{nullptr}, false);
 	}
 	
-	std::pair<iterator, bool> insert(pair_type&& x){ //check if it can be optimized
+  std::pair<iterator, bool> insert(pair_type&& x){ //check if it can be optimized
 		std::cout << "insert(pair_type&& x) called" << std::endl;
 		if (!head){
 			head.reset(new node_type{std::move(x), nullptr}); // maybe nullprt = make_shared(nullptr)
@@ -193,7 +193,7 @@ public:
 		auto end = x.cend();
 		while(it != end){
 			os << (*it).first << " : " << (*it).second << std::endl; 
-			it++;
+			++it;
 		}
 		return os;
 	}
@@ -263,7 +263,7 @@ public:
 
 	__iterator& operator++() noexcept{ //do we need a second scope resolution?
 		// if( non posso andare in basso dx )
-		std::cout<< "pre incremenent" << std::endl;
+		//std::cout<< "pre incremenent" << std::endl;
 		if(_current->_right == nullptr){
 			// while( non posso andare alto dx )
 			while(_current->_parent != nullptr && ((_current->_parent)->_left).get() != _current){
@@ -285,7 +285,7 @@ public:
 
 
 	__iterator operator++(int) noexcept{
-		std::cout<< "post incremenent" << std::endl;
+	  //std::cout<< "post incremenent" << std::endl;
 		__iterator tmp{_current};
 		++(*this);
 		return tmp;
