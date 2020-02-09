@@ -9,82 +9,86 @@
 template <typename kt, typename vt, typename cmp = std::less<kt>>
 class bst{
 
-    template<typename node_type, typename pair_type>
-    class __iterator;
+  template<typename node_type, typename pair_type>
+  class __iterator;
 
-    template <typename pair_type>
-    struct node;
+  template <typename pair_type>
+  struct node;
   
-	cmp _op;
+  cmp _op;
 	
-	using node_type = node<std::pair<const kt, vt>>;
+  using node_type = node<std::pair<const kt, vt>>;
 	
-	std::unique_ptr<node_type> head;
+  std::unique_ptr<node_type> head;
 
-	bool op_eq(const kt& x,const kt& y){
-		return (_op(x, y) == false && _op(y, x) == false) ? true : false;
-	}
+  bool op_eq(const kt& x,const kt& y){
+    return (_op(x, y) == false && _op(y, x) == false) ? true : false;
+  }
 
 public:
-	using pair_type = std::pair<const kt, vt>;
-    //using pair_type = typename node_type::pair_type;
-	using iterator = __iterator<node_type, pair_type>;	
-	using const_iterator = __iterator<node_type, const pair_type>;
 
-	//constructors and destructors:
-	//note that these constructors can go only in the header if they are default constructors!!
-	bst() noexcept = default; //default ctor
-	bst(cmp op): _op{op} {std::cout << "bst custom ctor" << std::endl;}
-	bst(const bst& B){std::cout << "bst custom copy ctor" << std::endl;}
-	bst(bst&& B){std::cout << "bst move ctor" << std::endl;} 
+  using pair_type = std::pair<const kt, vt>;
+  //using pair_type = typename node_type::pair_type;
+  using iterator = __iterator<node_type, pair_type>;	
+  using const_iterator = __iterator<node_type, const pair_type>;
 
-	//operator overloading:
-	//do we need to put in the headers also the operator overloading? Probably yes, they are still functions
-	bst& operator=(const bst& B){} //copy assignment
-	bst& operator=(bst&& B){} //move assignment
+  //constructors and destructors:
+  //note that these constructors can go only in the header if they are default constructors!!
+  bst() noexcept = default; //default ctor
+  bst(cmp op): _op{op} {std::cout << "bst custom ctor" << std::endl;}
+  bst(const bst& B){std::cout << "bst custom copy ctor" << std::endl;}
+  bst(bst&& B){std::cout << "bst move ctor" << std::endl;} 
 
-	~bst() {std::cout << "bst dtor" << std::endl;}
+  //operator overloading:
+  //do we need to put in the headers also the operator overloading? Probably yes, they are still functions
+  bst& operator=(const bst& B){} //copy assignment
+  bst& operator=(bst&& B){} //move assignment
 
+  ~bst() {std::cout << "bst dtor" << std::endl;}
   
-	std::pair<iterator, bool> insert(const pair_type& x){ //check if it can be optimized
-	  //	std::cout << "insert(const pair_type& x) called" << std::endl;
-		if (head == nullptr){
-		  	head.reset(new node_type{x, nullptr});
-			return std::make_pair(iterator{head.get()}, true);
-		}
-		node_type * ptr = head.get();
+  std::pair<iterator, bool> insert(const pair_type& x){ //check if it can be optimized
+  //std::cout << "insert(const pair_type& x) called" << std::endl;
+  if(head == nullptr){
+    head.reset(new node_type{x, nullptr});
+    return std::make_pair(iterator{head.get()}, true);
+  }
 
-		while(op_eq(x.first, (ptr->_element).first) == false){
+  node_type * ptr = head.get();
 
-			if(_op(x.first, (ptr->_element).first) == true){
+  while(op_eq(x.first, (ptr->_element).first) == false){
 
-				if(ptr->_left == nullptr){
-					(ptr->_left).reset(new node_type{x, ptr});
-					return std::make_pair(iterator{(ptr->_left).get()}, true);
-				}
-				ptr = (ptr->_left).get();
-			}
-			else{
-				if(ptr->_right == nullptr){
-					(ptr->_right).reset(new node_type{x, ptr});
-					return std::make_pair(iterator{(ptr->_right).get()}, true);
-				}
-				ptr = (ptr->_right).get();
-			}
-		}
-		return std::make_pair(iterator{nullptr}, false);
-	}
+    if(_op(x.first, (ptr->_element).first) == true){
+
+      if(ptr->_left == nullptr){
+	(ptr->_left).reset(new node_type{x, ptr});
+	return std::make_pair(iterator{(ptr->_left).get()}, true);
+      }
+      
+      ptr = (ptr->_left).get();
+
+    }else{
+
+      if(ptr->_right == nullptr){
+	(ptr->_right).reset(new node_type{x, ptr});
+	return std::make_pair(iterator{(ptr->_right).get()}, true);
+      }
+      
+      ptr = (ptr->_right).get();
+    }
+  }
+  return std::make_pair(iterator{nullptr}, false);
+  }
 	
   std::pair<iterator, bool> insert(pair_type&& x){ //check if it can be optimized
-    //	std::cout << "insert(pair_type&& x) called" << std::endl;
-		if (!head){
-			head.reset(new node_type{std::move(x), nullptr}); // maybe nullprt = make_shared(nullptr)
-			return std::make_pair(iterator{head.get()}, true);
-		}
+  //std::cout << "insert(pair_type&& x) called" << std::endl;
+    if(!head){
+      head.reset(new node_type{std::move(x), nullptr}); // maybe nullprt = make_shared(nullptr)
+      return std::make_pair(iterator{head.get()}, true);
+    }
 
-		node_type * ptr = head.get();
+    node_type * ptr = head.get();
 
-		while(op_eq(x.first, (ptr->_element).first) == false){
+    while(op_eq(x.first, (ptr->_element).first) == false){
 
 			if(_op(x.first, (ptr->_element).first) == true){
 
@@ -112,7 +116,9 @@ public:
 	template<class... Types>
 	std::pair<iterator,bool> emplace(Types&&... args){}
 
-	void clear(){}
+	void clear(){
+	  head.reset(nullptr);
+	}
 
 	iterator begin(){
 		node_type * it = head.get();
@@ -271,19 +277,40 @@ public:
 		}
 		return os;
 	}
-
-
+  /*
 	void erase(const kt& x){ //use iterators??
-		auto ptr = find(x)._current;
-		if(ptr == nullptr){
-			std::cout << "the node with key = " << x << "is not present in the tree" << std::endl;
-			return;
-		}
-		else{
-			if()
 
-		}
+	  iterator it = find(x);
+	  
+	  if(!it._current){
+	    std::cout << "node with key = " << x << " not present in the tree" << std::endl;
+	    return;
+	  }
+	  
+	  if((*(it._current))._left == nullptr && (*(it._current))._right == nullptr){ //both children nullptr
+
+	    if(it._current == head){
+
+	      head.reset(nullptr);
+	      return;
+	      
+	    } else { 
+
+	      (((it._current)->_parent)->_right == it._current) ? ((it._current)->_parent)->_right == nullptr : ((it._current)->_parent)->_left = nullptr; 
+	      
+	    }
+	    
+	      } else if("se non hai il figlio di sinistra (hai un solo figlio ed è di destra)") {
+	    "attacca e riattacca ramo di destra"
+	      } else if("se non hai il figlio di destra (hai un solo figlio ed è di sinistra)") {
+	    "attacca e riattacca il figlio di sinistra"
+	      } else {
+	    "hai entrambi i figli"
+	    "cosa più complessa"
+	  }
+	  
 	}
+*/
 };
 
 
@@ -302,9 +329,9 @@ struct bst<kt, vt, cmp>::node{
 	//That's why we implemented a default constructor that deletes itself when called
 
 	node() = delete;
-    node(pair_type&& element, node * const parent) noexcept : _element{std::move(element)}, _parent{parent} {} //removed a const before node
+        node(pair_type&& element, node * const parent) noexcept : _element{std::move(element)}, _parent{parent} {} //removed a const before node
 	node(const pair_type& element, node * const parent) : _element{element}, _parent{parent} {} //custom ctor
-    ~node() {}//std::cout << "node dtor" << std::endl;} //do we need to delete the raw pointer??
+       ~node() {std::cout << "node dtor" << std::endl;} //do we need to delete the raw pointer??
 };
 
 template<typename kt, typename vt, typename cmp>
