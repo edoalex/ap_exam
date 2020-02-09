@@ -10,12 +10,19 @@ int main(){
 	tree.insert(x);
 	tree.insert({12,3});
 
-	tree.find(8);
-	tree.find(99);
+	//tree.find(8);
+	//tree.find(99);
 
-	int key = 8;
-	std::cout << "key = " << key << " holds value = " << tree[key] << std::endl;
+	//int key = 8;
+	//std::cout << "key = " << key << " holds value = " << tree[key] << std::endl;
 	
 	std::cout << tree << std::endl;
+
+	tree.clear();
+
+	std::cout << "HELLO TREE" << std::endl;
+	
+	std::cout << tree << std::endl;
+	
 	return 0;
 }
