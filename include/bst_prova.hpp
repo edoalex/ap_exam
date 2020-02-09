@@ -273,7 +273,17 @@ public:
 	}
 
 
-	void erase(const kt& x){}
+	void erase(const kt& x){ //use iterators??
+		auto ptr = find(x)._current;
+		if(ptr == nullptr){
+			std::cout << "the node with key = " << x << "is not present in the tree" << std::endl;
+			return;
+		}
+		else{
+			if()
+
+		}
+	}
 };
 
 
