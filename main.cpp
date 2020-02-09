@@ -4,24 +4,27 @@
 int main(){
 	bst<int,int> tree{};
 
-	const std::pair<int,int> x = std::make_pair<int,int>(9,4);
-
-	tree.insert({8,3});
-	tree.insert(x);
-	tree.insert({12,3});
-
-	//tree.find(8);
-	//tree.find(99);
-
-	//int key = 8;
-	//std::cout << "key = " << key << " holds value = " << tree[key] << std::endl;
+	//	const std::pair<int,int> x = std::make_pair<int,int>(2,2);
+	tree.insert({8,8});
+	tree.insert({4,4});
+	tree.insert({2,2});
+	tree.insert({1,1});
+	tree.insert({3,3});
+	tree.insert({6,1});
+	tree.insert({5,2});
+	tree.insert({7,1});
+	tree.insert({12,12});
+	tree.insert({10,10});
+	tree.insert({9,9});
+	tree.insert({11,11});
+	tree.insert({14,14});
+	tree.insert({13,13});
+	tree.insert({15,15});
 	
 	std::cout << tree << std::endl;
 
-	tree.clear();
+	tree.erase(8);
 
-	std::cout << "HELLO TREE" << std::endl;
-	
 	std::cout << tree << std::endl;
 	
 	return 0;

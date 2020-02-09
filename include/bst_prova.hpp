@@ -300,7 +300,7 @@ public:
 
 
  void erase(const kt& x){
-
+   /*
     iterator it = find(x);                                                                                                                         
 
     auto me = it._current;
@@ -313,48 +313,79 @@ public:
     //naming an object for a cleaner code
     auto ave = me->_parent;
     
-    if((*me)._left == nullptr && (*me)._right == nullptr){ //both children nullptr                                                                                                   
-
+    if((*me)._left == nullptr && (*me)._right == nullptr){ //both children nullptr                       
       if(me == head.get()){
-
         head.reset(nullptr);
         return;
-
       } else {
-
         ((ave->_right).get() == me) ? (ave->_right = nullptr) : (ave->_left = nullptr);
-
       }
-
-    //no left child, then only right child                                                                                                                                           
-    } else if (!me->_left) { //cut and paste right bow                                                                                                                               
-        auto tmp = me->_right.release();
-	if(!ave) {
-	  head.reset(tmp);
-	  head->_parent = nullptr;
-	}
-	else {
-	  ave->_right.reset(tmp);
-	  (ave->_right)->_parent = ave;
-	}
-
-    //no right child, then only left child                                                                                                                                           
-    } else if (!me->_right) { //cut and paste left bow     
-
-        auto tmp = me->_left.release();
-	if(!ave) {
-	  head.reset(tmp);
-	  head->_parent = nullptr;
-	}
-	else {
-	  ave->_left.reset(tmp);
-	  (ave->_left)->_parent = ave;
-	}
-
-    } else { //both children present                                                                                                                                                             
+      
+      //no left child, then only right child                                                        
+    } else if (!me->_left) { //cut and paste right bow                                          
+      auto tmp = me->_right.release();
+      if(!ave) {
+	head.reset(tmp);
+	head->_parent = nullptr;
       }
+      else {
+	ave->_right.reset(tmp);
+	(ave->_right)->_parent = ave;
+      }
+	
+      //no right child, then only left child                                     
+    } else if (!me->_right) { //cut and paste left bow 
+      auto tmp = me->_left.release();
+      if(!ave) {
+	head.reset(tmp);
+	head->_parent = nullptr;
+      }
+      else {
+	ave->_left.reset(tmp);
+	(ave->_left)->_parent = ave;
+      }
+	
+      //both children present
+    } else {
+      //auto next = ++it._current;
+      //auto next_parent = next->_parent;
 
-  }
+      
+       auto next = ++it._current;
+        auto next_parent = next->_parent;
+        (next_parent->_left).release();
+
+        // if I'm root
+        if(!ave){
+	  next->_parent = nullptr;
+	  head.release();
+	  head.reset(next);
+        }
+        else{ // if I'm not root
+	  // I'm right son
+	  if((ave->_right).get() == me){
+	    (ave->_right).release();
+	    (ave->_right).reset(next);
+          }
+	  // I'm left son
+	  else{
+	    (ave->_left).release();
+	    (ave->_left).reset(next);
+	  }
+	  next->_parent = ave;
+      }
+    
+      me->_parent = nullptr; // do we really need it? 
+
+      auto to_stick = (me->_right).get();
+      (me->_right).release();
+      while(next->_right) { next = (next->_right).get(); }
+      (next->_right).reset(to_stick);
+      to_stick->_parent = next;
+      
+    }
+   */
+ }
 
 };
 
