@@ -11,7 +11,6 @@
 - `bst`
   - `erase`
   - `balance`
-  - `clear`
   - `emplace`
   - `copy ass`
   - `move ass`
@@ -22,22 +21,25 @@
 
 - `bst`
 - 
-    - `dft ctor `	
-    - `dtor`
-    - `custom ctor` (op)
-    - `insert`( reference )
-  - `insert`( rvalue )
-    - `find` (return it)
-    - `find` (return const_it)
-    - `begin` (iterator)
-    - `begin` (const iterator)
-    - `cbegin` 
-    - `end` (iterator)
-    - `end` (const iterator)
-    - `cend` 
-  - `operator[]` (reference)
-  - `operator[]` (rvalue)
-    - `operator<<` 
+    - 
+    
+      - `clear`
+      - `dft ctor `	
+      - `dtor`
+      - `custom ctor` (op)
+      - `insert`( reference )
+      - `insert`( rvalue )
+      - `find` (return it)
+      - `find` (return const_it)
+      - `begin` (iterator)
+      - `begin` (const iterator)
+      - `cbegin` 
+      - `end` (iterator)
+      - `end` (const iterator)
+      - `cend` 
+      - `operator[]` (reference)
+      - `operator[]` (rvalue)
+      - `operator<<` 
 - `node`
   - 
     - `move ctor`

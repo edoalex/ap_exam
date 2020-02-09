@@ -185,7 +185,7 @@ public:
 
 	iterator find(const kt& x){
 
-	  std::cout << "greetings from iterator find(...)" << std::endl;
+	  // std::cout << "greetings from iterator find(...)" << std::endl;
 	  
 	  if(!head){
 	    std::cout << "the tree is empty" << std::endl;
@@ -199,7 +199,7 @@ public:
 	    if(_op(x,(tmp->_element).first) == true){
 
 	      if(tmp->_left == nullptr){
-		std::cout << "node with key " << x << " not found in the tree" << std::endl;
+		// std::cout << "node with key " << x << " not found in the tree" << std::endl;
 		return end();
 	      }
 
@@ -208,7 +208,7 @@ public:
 	    } else {
 
 	      if(tmp->_right == nullptr){
-	        std::cout << "node with key " << x << " not found in the tree" << std::endl;
+		// std::cout << "node with key " << x << " not found in the tree" << std::endl;
 	        return end();
               }
 
@@ -218,7 +218,7 @@ public:
 	     
 	  }
 
-	  std::cout << "node with key " << x << " found in the tree" << std::endl;
+	  // std::cout << "node with key " << x << " found in the tree" << std::endl;
 	  return iterator{tmp};
 	  
 	}
@@ -301,17 +301,18 @@ public:
 
  void erase(const kt& x){
 
-    iterator it = find(x);
+    iterator it = find(x);                                                                                                                         
 
-    //naming an object for a cleaner code                                                                                                                                            
     auto me = it._current;
-    auto ave = me->_parent;
-
+    
     if(!me){
       std::cout << "node with key = " << x << " not present in the tree" << std::endl;
       return;
     }
 
+    //naming an object for a cleaner code
+    auto ave = me->_parent;
+    
     if((*me)._left == nullptr && (*me)._right == nullptr){ //both children nullptr                                                                                                   
 
       if(me == head.get()){
@@ -327,22 +328,30 @@ public:
 
     //no left child, then only right child                                                                                                                                           
     } else if (!me->_left) { //cut and paste right bow                                                                                                                               
-
         auto tmp = me->_right.release();
-        ave->_right.reset(tmp);
-        (ave->_right)->_parent = ave;
+	if(!ave) {
+	  head.reset(tmp);
+	  head->_parent = nullptr;
+	}
+	else {
+	  ave->_right.reset(tmp);
+	  (ave->_right)->_parent = ave;
+	}
 
     //no right child, then only left child                                                                                                                                           
-    } else if (!me->_right) { //cut and paste left bow                                                                                                                               
+    } else if (!me->_right) { //cut and paste left bow     
 
         auto tmp = me->_left.release();
-        ave->_left.reset(tmp);
-        (ave->_left)->_parent = ave;
+	if(!ave) {
+	  head.reset(tmp);
+	  head->_parent = nullptr;
+	}
+	else {
+	  ave->_left.reset(tmp);
+	  (ave->_left)->_parent = ave;
+	}
 
-    } else { //both sons                                                                                                                                                             
-
-
-
+    } else { //both children present                                                                                                                                                             
       }
 
   }
