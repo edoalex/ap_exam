@@ -8,6 +8,7 @@
 
 template <typename kt, typename vt, typename cmp = std::less<kt>>
 class bst{
+
     template<typename node_type, typename pair_type>
     class __iterator;
 
@@ -201,45 +202,40 @@ public:
 	  
 	}
 
-        const_iterator find(const kt& x) const{
+	const_iterator find(const kt& x) const{
+		std::cout << "greetings from const_iterator find(...)" << std::endl;
 
-	  std::cout << "greetings from const_iterator find(...)" << std::endl;
-	  
-          if(!head){
-            std::cout << "the tree is empty" << std::endl;
-            return const_iterator{nullptr};
-          }
+		if(!head){
+			std::cout << "the tree is empty" << std::endl;
+			return const_iterator{nullptr};
+		}
 
-          node_type * tmp = head.get();
+		node_type * tmp = head.get();
 
-          while(op_eq(x,(tmp->_element).first) == false){
+		while(op_eq(x,(tmp->_element).first) == false){
 
-            if(_op(x,(tmp->_element).first) == true){
+			if(_op(x,(tmp->_element).first) == true){
 
-              if(tmp->_left == nullptr){
-                std::cout << "node with key " << x << " not found in the tree" << std::endl;
-                return end();
-              }
+				if(tmp->_left == nullptr){
+					std::cout << "node with key " << x << " not found in the tree" << std::endl;
+					return end();
+				}
 
-              tmp = (tmp->_left).get();
+				tmp = (tmp->_left).get();
+			} else {
+				
+				if(tmp->_right == nullptr){
+					
+					std::cout << "node with key " << x << " not found in the tree" << std::endl;
+					return end();
 
-            } else {
+				}
+				tmp = (tmp->_right).get();
+			}
+		}
 
-              if(tmp->_right == nullptr){
-                std::cout << "node with key " << x << " not found in the tree" << std::endl;
-                return end();
-              }
-
-              tmp = (tmp->_right).get();
-
-            }
-
-          }
-
-          std::cout << "node with key " << x << " found in the tree" << std::endl;
-          return const_iterator{tmp};
-
-
+		std::cout << "node with key " << x << " found in the tree" << std::endl;
+		return const_iterator{tmp};
 	}
 
 	void balance(){}
@@ -296,9 +292,9 @@ struct bst<kt, vt, cmp>::node{
 	//That's why we implemented a default constructor that deletes itself when called
 
 	node() = delete;
-        node(pair_type&& element, node * const parent) noexcept : _element{std::move(element)}, _parent{parent} {} //removed a const before node
+    node(pair_type&& element, node * const parent) noexcept : _element{std::move(element)}, _parent{parent} {} //removed a const before node
 	node(const pair_type& element, node * const parent) : _element{element}, _parent{parent} {} //custom ctor
-        ~node() {}//std::cout << "node dtor" << std::endl;} //do we need to delete the raw pointer??
+    ~node() {}//std::cout << "node dtor" << std::endl;} //do we need to delete the raw pointer??
 };
 
 template<typename kt, typename vt, typename cmp>
@@ -306,6 +302,20 @@ template<typename node_type, typename pair_type>
 class bst<kt, vt, cmp>::__iterator{//do we implement a class or a struct? He implemented a class also in the linked list
 	
 	node_type * _current;
+
+
+	friend class bst<kt,vt,cmp>;
+	//incomplete list of methods (not working for default template conflict)
+	/*friend vt& bst<kt,vt,cmp>::operator[](const kt& x);
+	friend vt& bst<kt,vt,cmp>::operator[](kt&& x);
+	friend std::pair<bst<kt,vt,cmp>::iterator, bool> bst<kt,vt,cmp>::insert(pair_type&& x);
+	friend std::pair<bst<kt,vt,cmp>::iterator, bool> bst<kt,vt,cmp>::insert(const pair_type& x);
+	friend bst<kt,vt,cmp>::iterator bst<kt,vt,cmp>::find(const kt& x);
+	friend bst<kt,vt,cmp>::const_iterator bst<kt,vt,cmp>::find(const kt& x);*/
+	
+	explicit __iterator(node_type * x) noexcept: _current{x} {
+		//std::cout << "iterator custom ctor" << std::endl;
+	}
 
 public:
 
@@ -316,9 +326,6 @@ public:
 
     //__iterator(){std::cout << "iterator default ctor" << std::endl;}
 
-	explicit __iterator(node_type * x) noexcept: _current{x} {
-		//std::cout << "iterator custom ctor" << std::endl;
-	}
 
 	//~__iterator(){std::cout << "iterator dtor" << std::endl;}
 
