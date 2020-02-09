@@ -47,36 +47,36 @@ public:
   ~bst() {std::cout << "bst dtor" << std::endl;}
   
   std::pair<iterator, bool> insert(const pair_type& x){ //check if it can be optimized
-  //std::cout << "insert(const pair_type& x) called" << std::endl;
-  if(head == nullptr){
-    head.reset(new node_type{x, nullptr});
-    return std::make_pair(iterator{head.get()}, true);
-  }
+	//std::cout << "insert(const pair_type& x) called" << std::endl;
+	  if(head == nullptr){
+	    head.reset(new node_type{x, nullptr});
+	    return std::make_pair(iterator{head.get()}, true);
+	  }
 
-  node_type * ptr = head.get();
+	  node_type * ptr = head.get();
 
-  while(op_eq(x.first, (ptr->_element).first) == false){
+	  while(op_eq(x.first, (ptr->_element).first) == false){
 
-    if(_op(x.first, (ptr->_element).first) == true){
+	    if(_op(x.first, (ptr->_element).first) == true){
 
-      if(ptr->_left == nullptr){
-	(ptr->_left).reset(new node_type{x, ptr});
-	return std::make_pair(iterator{(ptr->_left).get()}, true);
-      }
-      
-      ptr = (ptr->_left).get();
+	      if(ptr->_left == nullptr){
+		(ptr->_left).reset(new node_type{x, ptr});
+		return std::make_pair(iterator{(ptr->_left).get()}, true);
+	      }
+	      
+	      ptr = (ptr->_left).get();
 
-    }else{
+	    }else{
 
-      if(ptr->_right == nullptr){
-	(ptr->_right).reset(new node_type{x, ptr});
-	return std::make_pair(iterator{(ptr->_right).get()}, true);
-      }
-      
-      ptr = (ptr->_right).get();
-    }
-  }
-  return std::make_pair(iterator{nullptr}, false);
+	      if(ptr->_right == nullptr){
+		(ptr->_right).reset(new node_type{x, ptr});
+		return std::make_pair(iterator{(ptr->_right).get()}, true);
+	      }
+	      
+	      ptr = (ptr->_right).get();
+	    }
+	  }
+	  return std::make_pair(iterator{nullptr}, false);
   }
 	
   std::pair<iterator, bool> insert(pair_type&& x){ //check if it can be optimized
@@ -122,30 +122,39 @@ public:
 
 	iterator begin(){
 		node_type * it = head.get();
-		while(it->_left != nullptr){
-			it = (it->_left).get();
+		if(it != nullptr){
+			while(it->_left != nullptr){
+				it = (it->_left).get();
+			}
 		}
 		return iterator{it};
 	}
 	
 	const_iterator begin() const{
 		node_type * it = head.get();
-		while(it->_left != nullptr){
-			it = (it->_left).get();
+		if(it != nullptr){
+			while(it->_left != nullptr){
+				it = (it->_left).get();
+			}
 		}
 		return const_iterator{it};
 	}
 	
 	const_iterator cbegin() const{
 		node_type * it = head.get();
-		while(it->_left != nullptr){
-			it = (it->_left).get();
+		if(it != nullptr){
+			while(it->_left != nullptr){
+				it = (it->_left).get();
+			}
 		}
 		return const_iterator{it};
 	}
 
 	iterator end(){
 		node_type * it = head.get();
+		if(it == nullptr){
+			return iterator{nullptr};
+		}
 		while(it->_right != nullptr){
 			it = (it->_right).get();
 		}
@@ -154,6 +163,9 @@ public:
 
 	const_iterator end() const{
 		node_type * it = head.get();
+		if(it == nullptr){
+			return const_iterator{nullptr};
+		}
 		while(it->_right != nullptr){
 			it = (it->_right).get();
 		}
@@ -162,6 +174,9 @@ public:
 	
 	const_iterator cend() const{
 		node_type * it = head.get();
+		if(it == nullptr){
+			return const_iterator{nullptr};
+		}
 		while(it->_right != nullptr){
 			it = (it->_right).get();
 		}
@@ -271,9 +286,14 @@ public:
 	friend std::ostream& operator<<(std::ostream& os, const bst<KT, VT, CMP>& x){
 		auto it = x.cbegin();
 		auto end = x.cend();
-		while(it != end){
-			os << it->first << "\t:\t" << it->second << std::endl; 
-			++it;
+		if(it == end){
+			std::cout << "the tree is empty" << std::endl;
+		}
+		else{
+			while(it != end){
+				os << it->first << "\t:\t" << it->second << std::endl; 
+				++it;
+			}
 		}
 		return os;
 	}
