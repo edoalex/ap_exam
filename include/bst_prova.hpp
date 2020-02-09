@@ -297,40 +297,56 @@ public:
 		}
 		return os;
 	}
-  /*
-	void erase(const kt& x){ //use iterators??
 
-	  iterator it = find(x);
-	  
-	  if(!it._current){
-	    std::cout << "node with key = " << x << " not present in the tree" << std::endl;
-	    return;
-	  }
-	  
-	  if((*(it._current))._left == nullptr && (*(it._current))._right == nullptr){ //both children nullptr
 
-	    if(it._current == head){
+ void erase(const kt& x){
 
-	      head.reset(nullptr);
-	      return;
-	      
-	    } else { 
+    iterator it = find(x);
 
-	      (((it._current)->_parent)->_right == it._current) ? ((it._current)->_parent)->_right == nullptr : ((it._current)->_parent)->_left = nullptr; 
-	      
-	    }
-	    
-	      } else if("se non hai il figlio di sinistra (hai un solo figlio ed è di destra)") {
-	    "attacca e riattacca ramo di destra"
-	      } else if("se non hai il figlio di destra (hai un solo figlio ed è di sinistra)") {
-	    "attacca e riattacca il figlio di sinistra"
-	      } else {
-	    "hai entrambi i figli"
-	    "cosa più complessa"
-	  }
-	  
-	}
-*/
+    //naming an object for a cleaner code                                                                                                                                            
+    auto me = it._current;
+    auto ave = me->_parent;
+
+    if(!me){
+      std::cout << "node with key = " << x << " not present in the tree" << std::endl;
+      return;
+    }
+
+    if((*me)._left == nullptr && (*me)._right == nullptr){ //both children nullptr                                                                                                   
+
+      if(me == head.get()){
+
+        head.reset(nullptr);
+        return;
+
+      } else {
+
+        ((ave->_right).get() == me) ? (ave->_right = nullptr) : (ave->_left = nullptr);
+
+      }
+
+    //no left child, then only right child                                                                                                                                           
+    } else if (!me->_left) { //cut and paste right bow                                                                                                                               
+
+        auto tmp = me->_right.release();
+        ave->_right.reset(tmp);
+        (ave->_right)->_parent = ave;
+
+    //no right child, then only left child                                                                                                                                           
+    } else if (!me->_right) { //cut and paste left bow                                                                                                                               
+
+        auto tmp = me->_left.release();
+        ave->_left.reset(tmp);
+        (ave->_left)->_parent = ave;
+
+    } else { //both sons                                                                                                                                                             
+
+
+
+      }
+
+  }
+
 };
 
 
@@ -340,7 +356,7 @@ struct bst<kt, vt, cmp>::node{
 
 	pair_type _element;
 
-	node * const _parent;
+  node * _parent; //const removed when writing erase
 	std::unique_ptr<node> _left;
 	std::unique_ptr<node> _right;
 
@@ -349,8 +365,8 @@ struct bst<kt, vt, cmp>::node{
 	//That's why we implemented a default constructor that deletes itself when called
 
 	node() = delete;
-        node(pair_type&& element, node * const parent) noexcept : _element{std::move(element)}, _parent{parent} {} //removed a const before node
-	node(const pair_type& element, node * const parent) : _element{element}, _parent{parent} {} //custom ctor
+        node(pair_type&& element, node * parent) noexcept : _element{std::move(element)}, _parent{parent} {} //removed a const before node || do I need to write const node * parent?
+	node(const pair_type& element, node * parent) : _element{element}, _parent{parent} {} //custom ctor
        ~node() {std::cout << "node dtor" << std::endl;} //do we need to delete the raw pointer??
 };
 
