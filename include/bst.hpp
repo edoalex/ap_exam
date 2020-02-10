@@ -10,27 +10,27 @@ template <typename kt, typename vt, typename cmp = std::less<kt>>
 class bst{
 
   template<typename node_type, typename pair_type>
-  class __iterator;
+	class __iterator;
 
   template <typename pair_type>
-  struct node;
-  
-  cmp _op;
-	
-  using node_type = node<std::pair<const kt, vt>>;
-	
-  std::unique_ptr<node_type> head;
+	struct node;
 
-  bool op_eq(const kt& x,const kt& y){
-    return (_op(x, y) == false && _op(y, x) == false) ? true : false;
-  }
+	cmp _op;
+	
+	using node_type = node<std::pair<const kt, vt>>;
+	
+	std::unique_ptr<node_type> head;
+
+	bool op_eq(const kt& x,const kt& y){
+		return (_op(x, y) == false && _op(y, x) == false) ? true : false;
+	}
 
 public:
 
-  using pair_type = std::pair<const kt, vt>;
+	using pair_type = std::pair<const kt, vt>;
   //using pair_type = typename node_type::pair_type;
-  using iterator = __iterator<node_type, pair_type>;	
-  using const_iterator = __iterator<node_type, const pair_type>;
+	using iterator = __iterator<node_type, pair_type>;	
+	using const_iterator = __iterator<node_type, const pair_type>;
 
   //constructors and destructors:
   //note that these constructors can go only in the header if they are default constructors!!
@@ -48,116 +48,116 @@ public:
   
   std::pair<iterator, bool> insert(const pair_type& x){ //check if it can be optimized
 	//std::cout << "insert(const pair_type& x) called" << std::endl;
-	  if(head == nullptr){
-	    head.reset(new node_type{x, nullptr});
-	    return std::make_pair(iterator{head.get()}, true);
-	  }
+  	if(head == nullptr){
+  		head.reset(new node_type{x, nullptr});
+  		return std::make_pair(iterator{head.get()}, true);
+  	}
 
-	  node_type * ptr = head.get();
+  	node_type * ptr = head.get();
 
-	  while(op_eq(x.first, (ptr->_element).first) == false){
+  	while(op_eq(x.first, (ptr->_element).first) == false){
 
-	    if(_op(x.first, (ptr->_element).first) == true){
+  		if(_op(x.first, (ptr->_element).first) == true){
 
-	      if(ptr->_left == nullptr){
-		(ptr->_left).reset(new node_type{x, ptr});
-		return std::make_pair(iterator{(ptr->_left).get()}, true);
-	      }
-	      
-	      ptr = (ptr->_left).get();
+  			if(ptr->_left == nullptr){
+  				(ptr->_left).reset(new node_type{x, ptr});
+  				return std::make_pair(iterator{(ptr->_left).get()}, true);
+  			}
 
-	    }else{
+  			ptr = (ptr->_left).get();
 
-	      if(ptr->_right == nullptr){
-		(ptr->_right).reset(new node_type{x, ptr});
-		return std::make_pair(iterator{(ptr->_right).get()}, true);
-	      }
-	      
-	      ptr = (ptr->_right).get();
-	    }
-	  }
-	  return std::make_pair(iterator{nullptr}, false);
+  		}else{
+
+  			if(ptr->_right == nullptr){
+  				(ptr->_right).reset(new node_type{x, ptr});
+  				return std::make_pair(iterator{(ptr->_right).get()}, true);
+  			}
+
+  			ptr = (ptr->_right).get();
+  		}
+  	}
+  	return std::make_pair(iterator{nullptr}, false);
   }
-	
+
   std::pair<iterator, bool> insert(pair_type&& x){ //check if it can be optimized
   //std::cout << "insert(pair_type&& x) called" << std::endl;
-    if(!head){
+  	if(!head){
       head.reset(new node_type{std::move(x), nullptr}); // maybe nullprt = make_shared(nullptr)
       return std::make_pair(iterator{head.get()}, true);
-    }
+  }
 
-    node_type * ptr = head.get();
+  node_type * ptr = head.get();
 
-    while(op_eq(x.first, (ptr->_element).first) == false){
+  while(op_eq(x.first, (ptr->_element).first) == false){
 
-			if(_op(x.first, (ptr->_element).first) == true){
+  	if(_op(x.first, (ptr->_element).first) == true){
 
-				if(ptr->_left == nullptr){
-					(ptr->_left).reset(new node_type{std::move(x), ptr});
+  		if(ptr->_left == nullptr){
+  			(ptr->_left).reset(new node_type{std::move(x), ptr});
 
-					return std::make_pair(iterator{(ptr->_left).get()}, true);
-				}
-				ptr = (ptr->_left).get();
-			}else{
+  			return std::make_pair(iterator{(ptr->_left).get()}, true);
+  		}
+  		ptr = (ptr->_left).get();
+  	}else{
 
-				if(ptr->_right == nullptr){
+  		if(ptr->_right == nullptr){
 
-				  	(ptr->_right).reset(new node_type{std::move(x), ptr});
-					return std::make_pair(iterator{(ptr->_right).get()}, true);
-				}
-				ptr = (ptr->_right).get();
-			}
-			
-		}
-		std::cout << "node not inserted, key: " << x.first << " is already present" << std::endl;
-		return std::make_pair(iterator{nullptr}, false);
-	}
+  			(ptr->_right).reset(new node_type{std::move(x), ptr});
+  			return std::make_pair(iterator{(ptr->_right).get()}, true);
+  		}
+  		ptr = (ptr->_right).get();
+  	}
+
+  }
+  std::cout << "node not inserted, key: " << x.first << " is already present" << std::endl;
+  return std::make_pair(iterator{nullptr}, false);
+}
 
 	template<class... Types>
-	std::pair<iterator,bool> emplace(Types&&... args){}
+std::pair<iterator,bool> emplace(Types&&... args){}
 
-	void clear(){
-	  head.reset(nullptr);
-	}
+void clear(){
+	head.reset(nullptr);
+}
 
-	iterator begin(){
-		node_type * it = head.get();
-		if(it != nullptr){
-			while(it->_left != nullptr){
-				it = (it->_left).get();
-			}
+iterator begin(){
+	node_type * it = head.get();
+	if(it != nullptr){
+		while(it->_left != nullptr){
+			it = (it->_left).get();
 		}
-		return iterator{it};
 	}
-	
-	const_iterator begin() const{
-		node_type * it = head.get();
-		if(it != nullptr){
-			while(it->_left != nullptr){
-				it = (it->_left).get();
-			}
-		}
-		return const_iterator{it};
-	}
-	
-	const_iterator cbegin() const{
-		node_type * it = head.get();
-		if(it != nullptr){
-			while(it->_left != nullptr){
-				it = (it->_left).get();
-			}
-		}
-		return const_iterator{it};
-	}
+	return iterator{it};
+}
 
-	iterator end(){
-		node_type * it = head.get();
-		if(it == nullptr){
-			return iterator{nullptr};
+const_iterator begin() const{
+	node_type * it = head.get();
+	if(it != nullptr){
+		while(it->_left != nullptr){
+			it = (it->_left).get();
 		}
-		while(it->_right != nullptr){
-			it = (it->_right).get();
+	}
+	return const_iterator{it};
+}
+
+const_iterator cbegin() const{
+	node_type * it = head.get();
+	if(it != nullptr){
+		while(it->_left != nullptr){
+			it = (it->_left).get();
 		}
+	}
+	return const_iterator{it};
+}
+
+iterator end(){
+	node_type * it = head.get();
+	if(it == nullptr){
+		return iterator{nullptr};
+	}
+	while(it->_right != nullptr){
+		it = (it->_right).get();
+	}
 		return iterator{(it->_right).get()};//returns one past the last element
 	} 
 
@@ -186,41 +186,41 @@ public:
 	iterator find(const kt& x){
 
 	  // std::cout << "greetings from iterator find(...)" << std::endl;
-	  
-	  if(!head){
-	    std::cout << "the tree is empty" << std::endl;
-	    return iterator{nullptr}; 
-	  }
-	  
-	  node_type * tmp = head.get();
 
-	  while(op_eq(x,(tmp->_element).first) == false){
+		if(!head){
+			std::cout << "the tree is empty" << std::endl;
+			return iterator{nullptr}; 
+		}
 
-	    if(_op(x,(tmp->_element).first) == true){
+		node_type * tmp = head.get();
 
-	      if(tmp->_left == nullptr){
+		while(op_eq(x,(tmp->_element).first) == false){
+
+			if(_op(x,(tmp->_element).first) == true){
+
+				if(tmp->_left == nullptr){
 		// std::cout << "node with key " << x << " not found in the tree" << std::endl;
-		return end();
-	      }
+					return end();
+				}
 
-	      tmp = (tmp->_left).get();
-	      
-	    } else {
+				tmp = (tmp->_left).get();
 
-	      if(tmp->_right == nullptr){
+			} else {
+
+				if(tmp->_right == nullptr){
 		// std::cout << "node with key " << x << " not found in the tree" << std::endl;
-	        return end();
-              }
+					return end();
+				}
 
-	      tmp = (tmp->_right).get();
+				tmp = (tmp->_right).get();
 
-	    }
-	     
-	  }
+			}
+
+		}
 
 	  // std::cout << "node with key " << x << " found in the tree" << std::endl;
-	  return iterator{tmp};
-	  
+		return iterator{tmp};
+
 	}
 
 	const_iterator find(const kt& x) const{
@@ -269,148 +269,158 @@ public:
 				std::cout << "pair inserted" << std::endl;
 				return (*(pair.first)).second;
 			}
-		return (*tmp).second;
-	}
-	vt& operator[](kt&& x){
-	auto tmp = find(x);//does it work like this? should we use forward and make a unique function? or auto y = std::move(x); find(y) ?
-		if(tmp._current == nullptr){
-			//vt no_value{};
-			auto pair = insert(std::make_pair(std::move(x), vt{}));
-			std::cout << "pair inserted" << std::endl;
-			return (*(pair.first)).second;
+			return (*tmp).second;
 		}
-		return (*tmp).second;
+		vt& operator[](kt&& x){
+	auto tmp = find(x);//does it work like this? should we use forward and make a unique function? or auto y = std::move(x); find(y) ?
+	if(tmp._current == nullptr){
+			//vt no_value{};
+		auto pair = insert(std::make_pair(std::move(x), vt{}));
+		std::cout << "pair inserted" << std::endl;
+		return (*(pair.first)).second;
 	}
+	return (*tmp).second;
+}
 
 	template <typename KT, typename VT, typename CMP>
-	friend std::ostream& operator<<(std::ostream& os, const bst<KT, VT, CMP>& x){
-		auto it = x.cbegin();
-		auto end = x.cend();
-		if(it == end){
-			std::cout << "the tree is empty" << std::endl;
-		}
-		else{
-			while(it != end){
-				os << it->first << "\t:\t" << it->second << std::endl; 
-				++it;
-			}
-		}
-		return os;
+friend std::ostream& operator<<(std::ostream& os, const bst<KT, VT, CMP>& x){
+	auto it = x.cbegin();
+	auto end = x.cend();
+	if(it == end){
+		std::cout << "the tree is empty" << std::endl;
 	}
+	else{
+		while(it != end){
+			os << it->first << "\t:\t" << it->second << std::endl; 
+			++it;
+		}
+	}
+	return os;
+}
 
 
- void erase(const kt& x){
-    iterator it = find(x);                                                                                                                         
+void erase(const kt& x){
+	iterator it = find(x);                                                                                                                         
 
-    auto me = it._current;
-    
-    if(!me){
-      std::cout << "node with key = " << x << " not present in the tree" << std::endl;
-      return;
-    }
+	auto me = it._current;
+
+	if(!me){
+		std::cout << "node with key = " << x << " not present in the tree" << std::endl;
+		return;
+	}
 
     //naming an object for a cleaner code
-    auto ave = me->_parent;
-    
+	auto ave = me->_parent;
+
     if(me->_left == nullptr && me->_right == nullptr){ //both children nullptr                       
-      if(me == head.get()){
-        head.reset(nullptr);
-        return;
-      } else {
-        ((ave->_right).get() == me) ? (ave->_right = nullptr) : (ave->_left = nullptr);
-      }
-      
-                                                       
+    	if(me == head.get()){
+    		head.reset(nullptr);
+    		return;
+    	} else {
+    		((ave->_right).get() == me) ? (ave->_right = nullptr) : (ave->_left = nullptr);
+    	}
+
+
     } else if ( (me->_left != nullptr) != (me->_right != nullptr) ) {  // just one child  
       //cut and paste that bow                                          
-      node_type * tmp;
-      if( me->_right != nullptr ){
-	tmp = me->_right.release();
-      }
-      else{
-	tmp = me->_left.release();
-      }
+    	node_type * tmp;
+    	if( me->_right != nullptr ){
+    		tmp = me->_right.release();
+    	}
+    	else{
+    		tmp = me->_left.release();
+    	}
       // std::cout << "I've just released node with key: " << (tmp->_element).first << std::endl;
-      if( ave == nullptr ) {
-	head.reset(tmp);
-	head->_parent = nullptr;
-      }
-      else {
-	if( (ave->_left).get() == me ){
-	  ave->_left.reset(tmp);
-	  (ave->_left)->_parent = ave;
-	}
-	else{
-	  ave->_right.reset(tmp);
-	  (ave->_right)->_parent = ave;
-	}
-      }
-      
+    	if( ave == nullptr ) {
+    		head.reset(tmp);
+    		head->_parent = nullptr;
+    	}
+    	else {
+    		if( (ave->_left).get() == me ){
+    			ave->_left.reset(tmp);
+    			(ave->_left)->_parent = ave;
+    		}
+    		else{
+    			ave->_right.reset(tmp);
+    			(ave->_right)->_parent = ave;
+    		}
+    	}
+
     } else { // I have both children 
-    
-      auto next = ++it._current;
-      auto next_parent = next->_parent;
+
+    	auto next = (++it)._current;
+    	std::cout << "next key = " << (next->_element).first << std::endl;
+    	auto next_parent = next->_parent;
+    	std::cout << "next_parent key = " << (next_parent->_element).first << std::endl;
 
       // if first_right = next    ==    next_parent = me  (pathological case)
-      if ( next_parent == me ){
-	auto tmp = (me->_left).release();
-	(me->_right).release();
-	if( ave == nullptr){
-	  head.reset(next);
-	  next->_parent = nullptr;
-	}
-	else{
-	  if( (ave->_right).get() == me ){
-	    (ave->_right).reset(next);
-	  }
-	  else{
-	    (ave->_left).reset(next);
-	  }
-	  next->_parent = ave;
-	}
-	(next->_left).reset(tmp);
-	tmp->_parent = next;
-	return; 
-      }
+    	if ( next_parent == me ){
+    		auto tmp = (me->_left).release();
+    		(me->_right).release();
+    		if( ave == nullptr){
+    			head.reset(next);
+    			next->_parent = nullptr;
+    		}
+    		else{
+    			if( (ave->_right).get() == me ){
+    				(ave->_right).reset(next);
+    			}
+    			else{
+    				(ave->_left).reset(next);
+    			}
+    			next->_parent = ave;
+    		}
+    		(next->_left).reset(tmp);
+    		tmp->_parent = next;
+    		return; 
+    	}
 
       // (non pathological case)
       // step 1 of 3 (replace me with next)
-       (next_parent->_left).release();
+    	(next_parent->_left).release();
       // if I'm root
-      if( ave == nullptr ){
-	next->_parent = nullptr;
-	head.release();
-	head.reset(next);
-      }
-      else{ // if I'm not root
+    	if( ave == nullptr ){
+    		next->_parent = nullptr;
+    		head.release();
+    		head.reset(next);
+    	}else{ // if I'm not root
 	// I'm right son
-	if( (ave->_right).get() == me ){
-	  (ave->_right).release();
-	  (ave->_right).reset(next);
-	}
-	// I'm left son
-	else{
-	  (ave->_left).release();
-	  (ave->_left).reset(next);
-	}
-	next->_parent = ave;
-	me->_parent = nullptr; // do we really need it? 
-      }
+    	if( (ave->_right).get() == me ){
+    		(ave->_right).release();
+    		(ave->_right).reset(next);
+		// I'm left son
+    	}else{
+    		(ave->_left).release();
+    		(ave->_left).reset(next);
+    	}
+    	next->_parent = ave;
+			me->_parent = nullptr; // do we really need it? 
+		}
 
       // step 2 of 3 (stick right prole of me)
-      auto to_stick = (me->_right).release();
-      //(me->_right).release();
-      while( next->_right != nullptr) { next = (next->_right).get(); }
-      (next->_right).reset(to_stick);
-      to_stick->_parent = next;
+		auto to_stick = (me->_right).release();
+	      //(me->_right).release();
+		auto sub = next;
+		while( next->_right != nullptr) { 
+			next = (next->_right).get(); 
+		}
+		(next->_right).reset(to_stick);
+		to_stick->_parent = next;
 
-      // step 3 of 3 (stick left prole of me)
-      //auto prole = (me->_left).release()
-      //(next->_left).reset(prole);
-      (next->_left).reset( (me->_left).release() );
-      (next->_left)->_parent = next;
-    }
- }
+	      // step 3 of 3 (stick left prole of me)
+	      //auto prole = (me->_left).release()
+	      //(next->_left).reset(prole);
+		(sub->_left).reset( (me->_left).release() );
+		(sub->_left)->_parent = sub;
+
+		//delete me using a unique pointer; we didn't want to change the whole algorithm and we didn't want to call the destuctor by hand ("NEVER EVER EVER EVER EVER call the destructor by hand" cit: A.S.);
+		//please forgive us
+		std::unique_ptr<node_type> deleter = nullptr;
+		deleter.reset(me);
+		deleter.reset();
+
+	}
+}
 
 };
 
@@ -422,18 +432,18 @@ struct bst<kt, vt, cmp>::node{
 	pair_type _element;
 
   node * _parent; //const removed when writing erase
-	std::unique_ptr<node> _left;
-	std::unique_ptr<node> _right;
+  std::unique_ptr<node> _left;
+  std::unique_ptr<node> _right;
 
 	//we didn't implement a default constructor that initiates all the values of the node to 0
 	//because we don't want to allow users to create multiple nodes with the same key
 	//That's why we implemented a default constructor that deletes itself when called
 
-	node() = delete;
+  node() = delete;
         node(pair_type&& element, node * parent) noexcept : _element{std::move(element)}, _parent{parent} {} //removed a const before node || do I need to write const node * parent?
 	node(const pair_type& element, node * parent) : _element{element}, _parent{parent} {} //custom ctor
        ~node() {std::cout << "node dtor" << std::endl;} //do we need to delete the raw pointer??
-};
+   };
 
 template<typename kt, typename vt, typename cmp>
 template<typename node_type, typename pair_type>
@@ -459,8 +469,8 @@ public:
 
 	using reference = pair_type&;
 	using pointer = pair_type*;
-    using difference_type = std::ptrdiff_t;
-    using iterator_category = std::forward_iterator_tag;
+	using difference_type = std::ptrdiff_t;
+	using iterator_category = std::forward_iterator_tag;
 
     //__iterator(){std::cout << "iterator default ctor" << std::endl;}
 
