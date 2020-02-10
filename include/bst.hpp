@@ -350,15 +350,31 @@ public:
     
       auto next = ++it._current;
       auto next_parent = next->_parent;
-     
 
-
+      // if first_right = next    ==    next_parent = me  (pathological case)
       if ( next_parent == me ){
-	
+	auto tmp = (me->_left).release();
+	(me->_right).release();
+	if( ave == nullptr){
+	  head.reset(next);
+	  next->_parent = nullptr;
+	}
+	else{
+	  if( (ave->_right).get() == me ){
+	    (ave->_right).reset(next);
+	  }
+	  else{
+	    (ave->_left).reset(next);
+	  }
+	  next->_parent = ave;
+	}
+	(next->_left).reset(tmp);
+	tmp->_parent = next;
 	return; 
       }
 
-      
+      // (non pathological case)
+      // step 1 of 3 (replace me with next)
        (next_parent->_left).release();
       // if I'm root
       if( ave == nullptr ){
@@ -378,16 +394,21 @@ public:
 	  (ave->_left).reset(next);
 	}
 	next->_parent = ave;
+	me->_parent = nullptr; // do we really need it? 
       }
-    
-      me->_parent = nullptr; // do we really need it? 
 
-      auto to_stick = (me->_right).get();
-      (me->_right).release();
-      while( next->_right ) { next = (next->_right).get(); }
+      // step 2 of 3 (stick right prole of me)
+      auto to_stick = (me->_right).release();
+      //(me->_right).release();
+      while( next->_right != nullptr) { next = (next->_right).get(); }
       (next->_right).reset(to_stick);
       to_stick->_parent = next;
-      
+
+      // step 3 of 3 (stick left prole of me)
+      //auto prole = (me->_left).release()
+      //(next->_left).reset(prole);
+      (next->_left).reset( (me->_left).release() );
+      (next->_left)->_parent = next;
     }
  }
 
