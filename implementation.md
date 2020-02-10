@@ -9,7 +9,6 @@
 ## Function to be implemented
 
 - `bst`
-  - `erase`
   - `balance`
   - `emplace`
   - `copy ass`
@@ -24,6 +23,7 @@
     - 
     
       - `clear`
+      - `erase`
       - `dft ctor `	
       - `dtor`
       - `custom ctor` (op)
