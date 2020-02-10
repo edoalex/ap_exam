@@ -300,7 +300,6 @@ public:
 
 
  void erase(const kt& x){
-   /*
     iterator it = find(x);                                                                                                                         
 
     auto me = it._current;
@@ -324,25 +323,39 @@ public:
       //no left child, then only right child                                                        
     } else if (!me->_left) { //cut and paste right bow                                          
       auto tmp = me->_right.release();
-      if(!ave) {
+      std::cout << "I've just released node with key: " << (tmp->_element).first << std::endl;
+      if(ave == nullptr) {
 	head.reset(tmp);
 	head->_parent = nullptr;
       }
       else {
-	ave->_right.reset(tmp);
-	(ave->_right)->_parent = ave;
+	if((ave->_left).get() == me){
+	  ave->_left.reset(tmp);
+	  (ave->_left)->_parent = ave;
+	}
+	else{
+	  ave->_right.reset(tmp);
+	  (ave->_right)->_parent = ave;
+	}
       }
 	
       //no right child, then only left child                                     
     } else if (!me->_right) { //cut and paste left bow 
       auto tmp = me->_left.release();
-      if(!ave) {
+      std::cout << "I've just released node with key: " << (tmp->_element).first << std::endl;
+      if(ave == nullptr) {
 	head.reset(tmp);
 	head->_parent = nullptr;
       }
       else {
-	ave->_left.reset(tmp);
-	(ave->_left)->_parent = ave;
+	if((ave->_left).get() == me){
+	  ave->_left.reset(tmp);
+	  (ave->_left)->_parent = ave;
+	}
+	else{
+	  ave->_right.reset(tmp);
+	  (ave->_right)->_parent = ave;
+	}
       }
 	
       //both children present
@@ -384,7 +397,6 @@ public:
       to_stick->_parent = next;
       
     }
-   */
  }
 
 };
