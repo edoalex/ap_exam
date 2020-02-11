@@ -4,17 +4,6 @@
 - `bst::iterator::operator==`
 - `bst::iterator::operator!=`
 
-
-
-## Function to be implemented
-
-- `bst`
-  - `balance`
-  - `copy ass`
-  - `move ass`
-  - `copy ctor`
-  - `move ctor`
-
 ## Function already implemented
 
 - `bst`
@@ -22,10 +11,15 @@
     - 
     
       - `clear`
+      - `balance`
       - `erase`
       - `dft ctor `	
       - `dtor`
       - `custom ctor` (op)
+      - `copy ass`
+      - `copy ctor`
+      - `move ctor`
+      - `move ctor`
       - `insert`( reference )
       - `insert`( rvalue )
       - `find` (return it)
