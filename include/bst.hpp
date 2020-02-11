@@ -4,6 +4,7 @@
 #include<memory>
 #include<utility>
 #include<iostream>
+#include<vector>
 
 
 template <typename kt, typename vt, typename cmp = std::less<kt>>
@@ -25,6 +26,54 @@ class bst{
 		return (_op(x, y) == false && _op(y, x) == false) ? true : false;
 	}
 
+	void order(std::vector<std::pair<kt,vt>>& v){
+
+		if(v.size() == 1){
+			insert(v.at(0));
+			return;
+		}
+		else if(v.size() == 2){
+			insert(v.at(0));
+			insert(v.at(1));
+			return;
+		}
+	/*else if(v.size() == 0){
+		return;
+	}*/
+
+		std::vector<std::pair<kt,vt>> w, z;
+
+		for(long unsigned i = 0; i < v.size()/2; ++i){
+			w.push_back(v.at(i));
+		}
+
+		for(long unsigned j = v.size()/2+1; j < v.size(); ++j){
+			z.push_back(v.at(j));
+		}
+
+		insert(v.at(v.size()/2));
+
+		order(w);
+		order(z);
+
+		return;
+	}
+
+	void recursive_copy_tree(node_type * ptr){
+		node_type * left_child = (ptr->_left).get();
+		node_type * right_child = (ptr->_right).get();
+		insert(ptr->_element);
+		if(left_child != nullptr){
+			recursive_copy_tree(left_child);
+		}
+
+		if(right_child != nullptr){
+			recursive_copy_tree(right_child);
+		}
+
+		return;
+	}
+
 public:
 
 	using pair_type = std::pair<const kt, vt>;
@@ -36,7 +85,12 @@ public:
   //note that these constructors can go only in the header if they are default constructors!!
   bst() noexcept = default; //default ctor
   bst(cmp op): _op{op} {std::cout << "bst custom ctor" << std::endl;}
-  bst(const bst& B){std::cout << "bst custom copy ctor" << std::endl;}
+  
+  bst(const bst& B){
+  	std::cout << "bst custom copy ctor" << std::endl;
+  	head = std::make_unique<node_type>(B.head.get());
+  }
+
   bst(bst&& B){std::cout << "bst move ctor" << std::endl;} 
 
   //operator overloading:
@@ -46,71 +100,71 @@ public:
 
   ~bst() {std::cout << "bst dtor " << std::endl;}
   
-  std::pair<iterator, bool> insert(const pair_type& x){ //check if it can be optimized
-	//std::cout << "insert(const pair_type& x) called" << std::endl;
-  	if(head == nullptr){
-  		head.reset(new node_type{x, nullptr});
-  		return std::make_pair(iterator{head.get()}, true);
-  	}
+std::pair<iterator, bool> insert(const pair_type& x){ //check if it can be optimized
+	std::cout << "insert(const pair_type& x) called" << std::endl;
+	if(head == nullptr){
+		head.reset(new node_type{x, nullptr});
+		return std::make_pair(iterator{head.get()}, true);
+	}
 
-  	node_type * ptr = head.get();
+	node_type * ptr = head.get();
 
-  	while(op_eq(x.first, (ptr->_element).first) == false){
+	while(op_eq(x.first, (ptr->_element).first) == false){
 
-  		if(_op(x.first, (ptr->_element).first) == true){
+		if(_op(x.first, (ptr->_element).first) == true){
 
-  			if(ptr->_left == nullptr){
-  				(ptr->_left).reset(new node_type{x, ptr});
-  				return std::make_pair(iterator{(ptr->_left).get()}, true);
-  			}
+			if(ptr->_left == nullptr){
+				(ptr->_left).reset(new node_type{x, ptr});
+				return std::make_pair(iterator{(ptr->_left).get()}, true);
+			}
 
-  			ptr = (ptr->_left).get();
+			ptr = (ptr->_left).get();
 
-  		}else{
+		}else{
 
-  			if(ptr->_right == nullptr){
-  				(ptr->_right).reset(new node_type{x, ptr});
-  				return std::make_pair(iterator{(ptr->_right).get()}, true);
-  			}
+			if(ptr->_right == nullptr){
+				(ptr->_right).reset(new node_type{x, ptr});
+				return std::make_pair(iterator{(ptr->_right).get()}, true);
+			}
 
-  			ptr = (ptr->_right).get();
-  		}
-  	}
-  	return std::make_pair(iterator{nullptr}, false);
-  }
+			ptr = (ptr->_right).get();
+		}
+	}
+	return std::make_pair(iterator{nullptr}, false);
+}
 
-  std::pair<iterator, bool> insert(pair_type&& x){ //check if it can be optimized
-  //std::cout << "insert(pair_type&& x) called" << std::endl;
-  	if(!head){
-      head.reset(new node_type{std::move(x), nullptr}); // maybe nullprt = make_shared(nullptr)
-      return std::make_pair(iterator{head.get()}, true);
-  	}
+std::pair<iterator, bool> insert(pair_type&& x){ //check if it can be optimized
+	std::cout << "insert(pair_type&& x) called" << std::endl;
+	if(!head){
+	    head.reset(new node_type{std::move(x), nullptr}); // maybe nullprt = make_shared(nullptr)
+	    return std::make_pair(iterator{head.get()}, true);
+	}
 
-  node_type * ptr = head.get();
+	node_type * ptr = head.get();
 
-  while(op_eq(x.first, (ptr->_element).first) == false){
+	while(op_eq(x.first, (ptr->_element).first) == false){
 
-  	if(_op(x.first, (ptr->_element).first) == true){
+		if(_op(x.first, (ptr->_element).first) == true){
 
-  		if(ptr->_left == nullptr){
-  			(ptr->_left).reset(new node_type{std::move(x), ptr});
+			if(ptr->_left == nullptr){
+				(ptr->_left).reset(new node_type{std::move(x), ptr});
 
-  			return std::make_pair(iterator{(ptr->_left).get()}, true);
-  		}
-  		ptr = (ptr->_left).get();
-  	}else{
+				return std::make_pair(iterator{(ptr->_left).get()}, true);
+			}
+			ptr = (ptr->_left).get();
+		}else{
 
-  		if(ptr->_right == nullptr){
+			if(ptr->_right == nullptr){
 
-  			(ptr->_right).reset(new node_type{std::move(x), ptr});
-  			return std::make_pair(iterator{(ptr->_right).get()}, true);
-  		}
-  		ptr = (ptr->_right).get();
-  	}
+				(ptr->_right).reset(new node_type{std::move(x), ptr});
+				return std::make_pair(iterator{(ptr->_right).get()}, true);
+			}
+			ptr = (ptr->_right).get();
+		}
 
-  }
-  std::cout << "node not inserted, key: " << x.first << " is already present" << std::endl;
-  return std::make_pair(iterator{nullptr}, false);
+	}
+	std::cout << "node not inserted, key: " << x.first << " is already present" << std::endl;
+	return std::make_pair(iterator{nullptr}, false);
 }
 
 template<class... Types>
@@ -135,20 +189,20 @@ std::pair<iterator,bool> emplace(Types&&... args){
 	if(!head){ //the tree is empty
 		std::cout << "the head is empty" << std::endl;
 		auto a = buffer.release();
-     	head.reset(a);
-     	std::cout << "the head points to " << head.get() <<  std::endl 
-     			<< 	" parent pointer: " << (head.get())->_parent <<  std::endl 
-     			<< " left pointer: " << (head->_left).get() <<  std::endl 
-     			<< " right pointer: " << (head->_right).get() <<  std::endl;
+		head.reset(a);
+		std::cout << "the head points to " << head.get() <<  std::endl 
+		<< 	" parent pointer: " << (head.get())->_parent <<  std::endl 
+		<< " left pointer: " << (head->_left).get() <<  std::endl 
+		<< " right pointer: " << (head->_right).get() <<  std::endl;
 
-     	return std::make_pair(iterator{head.get()}, true);
-  	}
+		return std::make_pair(iterator{head.get()}, true);
+	}
   	//the tree is not empty
-  	node_type * ptr = head.get();
+	node_type * ptr = head.get();
 
 
 
-  	while(true){
+	while(true){
 
   		if(_op((possible_node->_element).first, (ptr->_element).first) == true){ //devo andare a sx
 
@@ -156,25 +210,25 @@ std::pair<iterator,bool> emplace(Types&&... args){
   				
   				(ptr->_left).reset(buffer.release());
 
-  				possible_node->_parent = ptr;
+  			possible_node->_parent = ptr;
 
-  				return std::make_pair(iterator{possible_node}, true);
-  			}
-  			ptr = (ptr->_left).get();
-  		}else{
-
-  			if(ptr->_right == nullptr){
-
-  				(ptr->_right).reset(buffer.release());
-
-  				possible_node->_parent = ptr;
-
-  				return std::make_pair(iterator{possible_node}, true);
-  			}
-  			ptr = (ptr->_right).get();
+  			return std::make_pair(iterator{possible_node}, true);
   		}
+  		ptr = (ptr->_left).get();
+  	}else{
 
+  		if(ptr->_right == nullptr){
+
+  			(ptr->_right).reset(buffer.release());
+
+  			possible_node->_parent = ptr;
+
+  			return std::make_pair(iterator{possible_node}, true);
+  		}
+  		ptr = (ptr->_right).get();
   	}
+
+  }
 }
 
 void clear(){
@@ -320,7 +374,29 @@ const_iterator find(const kt& x) const{
 	return const_iterator{tmp};
 }
 
-void balance(){}
+
+void balance(){
+
+	auto start = begin();
+	if(start._current == nullptr){
+		std::cout << "The tree is empty" << std::endl;
+		return;
+	}
+	auto stop = end();
+
+	std::vector<std::pair<kt,vt>> v;
+	
+	while(start != stop){
+		v.push_back(*start); //try *it++; also, maybe the reference is not good
+		++start;
+	}
+
+	clear();
+
+	order(v);
+
+	return;
+}
 
 vt& operator[](const kt& x){
 	auto tmp = find(x);
@@ -486,24 +562,43 @@ void erase(const kt& x){
 };
 
 
+
+
 template <typename kt, typename vt, typename cmp>
 template <typename pair_type>
 struct bst<kt, vt, cmp>::node{
 
 	pair_type _element;
 
-  node * _parent{}; //const removed when writing erase
-  std::unique_ptr<node> _left;
-  std::unique_ptr<node> _right;
+	node * _parent{}; //const removed when writing erase
+	std::unique_ptr<node> _left;
+	std::unique_ptr<node> _right;
 
 	//we didn't implement a default constructor that initiates all the values of the node to 0
 	//because we don't want to allow users to create multiple nodes with the same key
 	//That's why we implemented a default constructor that deletes itself when called
 
-  	node() = delete;
-    node(pair_type&& element, node * parent) noexcept : _element{std::move(element)}, _parent{parent} {
-    	std::cout << "key from old ctor = " << element.first << " value from old ctor = " << element.second << std::endl;
-    } //removed a const before node || do I need to write const node * parent?
+	node() = delete;
+
+	explicit node(node * ptr) : _element{ptr->_element}, _parent{ptr->_parent} {
+		std::cout << "explicit iterative ctor" << std::endl;
+		if((ptr->_left).get() != nullptr){
+			std::cout << "constructing the left child of node with key = " << _element.first << std::endl;
+			_left = std::make_unique<node>((ptr->_left).get());
+		}
+
+		if((ptr->_right).get() != nullptr){
+			std::cout << "constructing the right child of node with key = " << _element.first << std::endl;
+			_right = std::make_unique<node>((ptr->_right).get());
+		}
+	}
+
+
+
+	node(pair_type&& element, node * parent) noexcept : _element{std::move(element)}, _parent{parent} {
+		std::cout << "key from old ctor = " << element.first << " value from old ctor = " << element.second << std::endl;
+	} //removed a const before node || do I need to write const node * parent?
+	
 	node(const pair_type& element, node * parent) : _element{element}, _parent{parent} {} //custom ctor
 
 	node(kt&& k, vt&& v) noexcept : _element{std::make_pair<kt,vt>(std::move(k), std::move(v))}	{
@@ -512,7 +607,7 @@ struct bst<kt, vt, cmp>::node{
 	} 
 
     ~node() {std::cout << "node dtor with key " << (this->_element).first << std::endl;} //do we need to delete the raw pointer??
-   };
+};
 
 template<typename kt, typename vt, typename cmp>
 template<typename node_type, typename pair_type>
@@ -587,6 +682,7 @@ public:
 		++(*this);
 		return tmp;
 	}
+
 	friend bool operator==(const __iterator& a, const __iterator& b){
 		return a._current == b._current;
 	}
