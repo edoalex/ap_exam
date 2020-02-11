@@ -5,7 +5,7 @@
 #include<utility>
 #include<iostream>
 #include<vector>
-
+#include"ap_error.h"
 
 template <typename kt, typename vt, typename cmp = std::less<kt>>
 class bst{
@@ -59,55 +59,40 @@ class bst{
 		return;
 	}
 
-	/*void recursive_copy_tree(node_type * ptr){
-		node_type * left_child = (ptr->_left).get();
-		node_type * right_child = (ptr->_right).get();
-		insert(ptr->_element);
-		if(left_child != nullptr){
-			recursive_copy_tree(left_child);
-		}
-
-		if(right_child != nullptr){
-			recursive_copy_tree(right_child);
-		}
-
-		return;
-	}*/
-
 public:
 
 	using pair_type = std::pair<const kt, vt>;
-  //using pair_type = typename node_type::pair_type;
 	using iterator = __iterator<node_type, pair_type>;	
 	using const_iterator = __iterator<node_type, const pair_type>;
 
   //constructors and destructors:
-  //note that these constructors can go only in the header if they are default constructors!!
   bst() noexcept = default; //default ctor
+
   bst(cmp op): _op{op} {std::cout << "bst custom ctor" << std::endl;}
-  
+
   bst(const bst& B){
 
   	std::cout << "bst custom copy ctor" << std::endl;
-
+	if( (B.head).get() == nullptr) { return; }
   	head = std::make_unique<node_type>(B.head.get(), nullptr);
-  	
+ 	
   }
 
   bst(bst&& B){
 
   	std::cout << "bst custom move ctor" << std::endl;
-
   	head.reset(B.head.release());
 
   } 
 
   //operator overloading:
-  //do we need to put in the headers also the operator overloading? Probably yes, they are still functions
   bst& operator=(const bst& B){ //copy assignment
 
   	std::cout << "bst copy assignment" << std::endl;
-  	
+  	if( (B.head).get() == nullptr) {
+	  clear();
+	  return *this;
+	}
   	head.reset(new node_type{B.head.get(), nullptr});
 
   	return *this;
@@ -122,7 +107,7 @@ public:
   	return *this;
   } 
 
-  ~bst() {std::cout << "bst dtor " << std::endl;}
+  ~bst() noexcept {std::cout << "bst dtor " << std::endl;}
   
 std::pair<iterator, bool> insert(const pair_type& x){ //check if it can be optimized
 	std::cout << "insert(const pair_type& x) called" << std::endl;
@@ -193,15 +178,10 @@ std::pair<iterator, bool> insert(pair_type&& x){ //check if it can be optimized
 
 template<class... Types>
 std::pair<iterator,bool> emplace(Types&&... args){
-	//std::unique_ptr<node_type> buffer = std::make_unique<node_type>(std::forward<Types>(args)...);
-	//NEED TO BE ADDED A CONSTRUCTOR THAT RECEIVE ONLY THE VALUES OF KT AND VT?
-	//or we can initialize it with nullptr as a parent, and then can change it if we 
-	//find it can be inserted?
-	//with the following line instead:
-	std::cout << "inside emplace" << std::endl;
+  //std::cout << "inside emplace" << std::endl;
 	std::unique_ptr<node_type> buffer = std::make_unique<node_type>(std::forward<Types>(args)...);
 
-	std::cout << "key = "<< (buffer->_element).first << " value = "<< (buffer->_element).second << std::endl;
+	//	std::cout << "key = "<< (buffer->_element).first << " value = "<< (buffer->_element).second << std::endl;
 	auto possible_node = buffer.get();
 	auto it = find((possible_node->_element).first);
 	if(it._current != nullptr){
@@ -211,14 +191,9 @@ std::pair<iterator,bool> emplace(Types&&... args){
 	}
 	//the node needs to be inserted
 	if(!head){ //the tree is empty
-		std::cout << "the head is empty" << std::endl;
+	  	std::cout << "the head is empty" << std::endl;
 		auto a = buffer.release();
 		head.reset(a);
-		std::cout << "the head points to " << head.get() <<  std::endl 
-		<< 	" parent pointer: " << (head.get())->_parent <<  std::endl 
-		<< " left pointer: " << (head->_left).get() <<  std::endl 
-		<< " right pointer: " << (head->_right).get() <<  std::endl;
-
 		return std::make_pair(iterator{head.get()}, true);
 	}
   	//the tree is not empty
@@ -228,34 +203,34 @@ std::pair<iterator,bool> emplace(Types&&... args){
 
 	while(true){
 
-  		if(_op((possible_node->_element).first, (ptr->_element).first) == true){ //devo andare a sx
+	  if(_op((possible_node->_element).first, (ptr->_element).first) == true){ //devo andare a sx
 
-  			if(ptr->_left == nullptr){ //non c'è il figlio
+	    if(ptr->_left == nullptr){ //non c'è il figlio
   				
-  				(ptr->_left).reset(buffer.release());
+	      (ptr->_left).reset(buffer.release());
 
-  			possible_node->_parent = ptr;
+	      possible_node->_parent = ptr;
 
-  			return std::make_pair(iterator{possible_node}, true);
-  		}
-  		ptr = (ptr->_left).get();
-  	}else{
+	      return std::make_pair(iterator{possible_node}, true);
+	    }
+	    ptr = (ptr->_left).get();
+	  }else{
 
-  		if(ptr->_right == nullptr){
+	    if(ptr->_right == nullptr){
 
-  			(ptr->_right).reset(buffer.release());
+	      (ptr->_right).reset(buffer.release());
 
-  			possible_node->_parent = ptr;
+	      possible_node->_parent = ptr;
 
-  			return std::make_pair(iterator{possible_node}, true);
-  		}
-  		ptr = (ptr->_right).get();
-  	}
+	      return std::make_pair(iterator{possible_node}, true);
+	    }
+	    ptr = (ptr->_right).get();
+	  }
 
-  }
+	}
 }
 
-void clear(){
+void clear() noexcept {
 	head.reset(nullptr);
 }
 
@@ -602,7 +577,9 @@ struct bst<kt, vt, cmp>::node{
 	//because we don't want to allow users to create multiple nodes with the same key
 	//That's why we implemented a default constructor that deletes itself when called
 
-	node() = delete;
+  node() {
+    AP_ERROR(false) << "It is not allowed to create a node with no key provided" << std::endl;
+  }
 
 	explicit node(node * twin, node * to_stick) : _element{twin->_element}, _parent{to_stick} {
 
