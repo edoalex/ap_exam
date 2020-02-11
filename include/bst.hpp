@@ -59,7 +59,7 @@ class bst{
 		return;
 	}
 
-	void recursive_copy_tree(node_type * ptr){
+	/*void recursive_copy_tree(node_type * ptr){
 		node_type * left_child = (ptr->_left).get();
 		node_type * right_child = (ptr->_right).get();
 		insert(ptr->_element);
@@ -72,7 +72,7 @@ class bst{
 		}
 
 		return;
-	}
+	}*/
 
 public:
 
@@ -87,16 +87,40 @@ public:
   bst(cmp op): _op{op} {std::cout << "bst custom ctor" << std::endl;}
   
   bst(const bst& B){
+
   	std::cout << "bst custom copy ctor" << std::endl;
-  	head = std::make_unique<node_type>(B.head.get());
+
+  	head = std::make_unique<node_type>(B.head.get(), nullptr);
+  	
   }
 
-  bst(bst&& B){std::cout << "bst move ctor" << std::endl;} 
+  bst(bst&& B){
+
+  	std::cout << "bst custom move ctor" << std::endl;
+
+  	head.reset(B.head.release());
+
+  } 
 
   //operator overloading:
   //do we need to put in the headers also the operator overloading? Probably yes, they are still functions
-  bst& operator=(const bst& B){} //copy assignment
-  bst& operator=(bst&& B){} //move assignment
+  bst& operator=(const bst& B){ //copy assignment
+
+  	std::cout << "bst copy assignment" << std::endl;
+  	
+  	head.reset(new node_type{B.head.get(), nullptr});
+
+  	return *this;
+  }
+
+  bst& operator=(bst&& B){//move assignment
+
+  	std::cout << "bst move assignment" << std::endl;
+
+  	head.reset(B.head.release());
+
+  	return *this;
+  } 
 
   ~bst() {std::cout << "bst dtor " << std::endl;}
   
@@ -580,17 +604,26 @@ struct bst<kt, vt, cmp>::node{
 
 	node() = delete;
 
-	explicit node(node * ptr) : _element{ptr->_element}, _parent{ptr->_parent} {
+	explicit node(node * twin, node * to_stick) : _element{twin->_element}, _parent{to_stick} {
+
 		std::cout << "explicit iterative ctor" << std::endl;
-		if((ptr->_left).get() != nullptr){
+		
+		if((twin->_left).get() != nullptr){
+
 			std::cout << "constructing the left child of node with key = " << _element.first << std::endl;
-			_left = std::make_unique<node>((ptr->_left).get());
+			
+			_left = std::make_unique<node>((twin->_left).get(), this);
+		
 		}
 
-		if((ptr->_right).get() != nullptr){
+		if((twin->_right).get() != nullptr){
+			
 			std::cout << "constructing the right child of node with key = " << _element.first << std::endl;
-			_right = std::make_unique<node>((ptr->_right).get());
+			
+			_right = std::make_unique<node>((twin->_right).get(), this);
+		
 		}
+	
 	}
 
 
