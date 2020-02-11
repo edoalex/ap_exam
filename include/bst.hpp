@@ -87,16 +87,40 @@ public:
   bst(cmp op): _op{op} {std::cout << "bst custom ctor" << std::endl;}
   
   bst(const bst& B){
+
   	std::cout << "bst custom copy ctor" << std::endl;
+
   	head = std::make_unique<node_type>(B.head.get(), nullptr);
+  	
   }
 
-  bst(bst&& B){std::cout << "bst move ctor" << std::endl;} 
+  bst(bst&& B){
+
+  	std::cout << "bst custom move ctor" << std::endl;
+
+  	head.reset(B.head.release());
+
+  } 
 
   //operator overloading:
   //do we need to put in the headers also the operator overloading? Probably yes, they are still functions
-  bst& operator=(const bst& B){} //copy assignment
-  bst& operator=(bst&& B){} //move assignment
+  bst& operator=(const bst& B){ //copy assignment
+
+  	std::cout << "bst copy assignment" << std::endl;
+  	
+  	head.reset(new node_type{B.head.get(), nullptr});
+
+  	return *this;
+  }
+
+  bst& operator=(bst&& B){//move assignment
+
+  	std::cout << "bst move assignment" << std::endl;
+
+  	head.reset(B.head.release());
+
+  	return *this;
+  } 
 
   ~bst() {std::cout << "bst dtor " << std::endl;}
   

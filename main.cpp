@@ -1,5 +1,6 @@
 #include"bst.hpp"
 #include<iostream>
+#include<functional>
 
 int main(){
 	bst<int,int> tree{};
@@ -31,14 +32,23 @@ int main(){
 
 	//tree.balance();
 
-	bst<int,int> tree_copy{tree};
+	bst<int,int> tree_copy{std::move(tree)};
+
+	//tree_copy.insert({4,8});
+
+	//tree_copy.emplace(10,7);
+
+	//std::cout << tree_copy << std::endl;
+
+	//tree_copy = ;
 	
-	tree[5] = 50;
+	//tree[5] = 50;
+
 	//tree.erase();
+	std::cout << tree_copy << std::endl;
 
 	std::cout << tree << std::endl;
 
-	std::cout << tree_copy << std::endl;
 
 	//std::cout << tree << std::endl;
 
