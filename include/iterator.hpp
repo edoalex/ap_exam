@@ -1,19 +1,19 @@
-#ifndef __bst_iterator_hpp
-#define __bst_iterator_hpp
+#ifndef __iterator_hpp
+#define __iterator_hpp
 
 #include<iostream>
 #include<memory>
-#include"bst_class.hpp"
-#include"bst_node.hpp"
+#include"bst.hpp"
+#include"node.hpp"
 #include"ap_error.h"
 
-template<typename node_type, typename pair_t>
-class __iterator{//do we implement a class or a struct? He implemented a class also in the linked list
+template<typename kt, typename vt, typename cmp>
+template<typename node_type, typename pair_type>
+class bst<kt, vt, cmp>::__iterator{//do we implement a class or a struct? He implemented a class also in the linked list
 	
 	node_type * _current;
 
-	template <typename t1, typename t2, typename cmp>
-	friend class bst;
+	friend class bst<kt,vt,cmp>;
 	
 	explicit __iterator(node_type * x) : _current{x} {
 		//std::cout << "iterator custom ctor" << std::endl;
@@ -21,18 +21,18 @@ class __iterator{//do we implement a class or a struct? He implemented a class a
 
 public:
 
-	using reference = pair_t&;
-	using pointer = pair_t*;
+	using reference = pair_type&;
+	using pointer = pair_type*;
 	using difference_type = std::ptrdiff_t;
 	using iterator_category = std::forward_iterator_tag;
 
-	//pair_t& operator*() const noexcept;
+	//pair_type& operator*() const noexcept;
 	reference operator*() const noexcept{
 	  return _current->_element; // we return a reference to the element (pair: (k,v)) of the node to which the iterator is pointing to
 	}
 
 
-	//pair_t* operator->() const noexcept;
+	//pair_type* operator->() const noexcept;
 	pointer operator->() const noexcept{
 		return &(*(*this)); // we return the pointer to the element (pair: (k,v)) of the node to which the iterator is pointing to
 	}

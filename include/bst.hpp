@@ -1,11 +1,10 @@
 #ifndef __bst_hpp
 #define __bst_hpp
 
+#include<iostream>
 #include<memory>
 #include<utility>
-#include<iostream>
 #include<vector>
-#include"ap_error.h"
 
 template <typename kt, typename vt, typename cmp = std::less<kt>>
 class bst{
@@ -545,127 +544,7 @@ friend std::ostream& operator<<(std::ostream& os, const bst& x) {
   
 };
 
-
-
-
-
-template <typename kt, typename vt, typename cmp>
-template <typename pair_type>
-struct bst<kt, vt, cmp>::node{
-
-	pair_type _element;
-
-	node * _parent{}; //const removed when writing erase
-	std::unique_ptr<node> _left;
-	std::unique_ptr<node> _right;
-
-	//we didn't implement a default constructor that initiates all the values of the node to 0
-	//because we don't want to allow users to create multiple nodes with the same key
-	//That's why we implemented a default constructor that deletes itself when called
-
-  node() {
-    AP_ERROR(false) << "It is not allowed to create a node with no key provided" << std::endl;
-  }
-
-  explicit node(node * twin, node * to_stick) : _element{twin->_element}, _parent{to_stick} {
-
-    std::cout << "explicit iterative ctor" << std::endl;
-    if((twin->_left).get() != nullptr){
-      std::cout << "constructing the left child of node with key = " << _element.first << std::endl;
-      _left = std::make_unique<node>((twin->_left).get(), this);
-    }
-
-    if((twin->_right).get() != nullptr){
-      std::cout << "constructing the right child of node with key = " << _element.first << std::endl;
-      _right = std::make_unique<node>((twin->_right).get(), this);		
-    }	
-  }
-
-  node(pair_type&& element, node * parent) noexcept : _element{std::move(element)}, _parent{parent} {
-    std::cout << "key from old ctor = " << element.first << " value from old ctor = " << element.second << std::endl;
-  } //removed a const before node || do I need to write const node * parent?
-	
-  node(const pair_type& element, node * parent) : _element{element}, _parent{parent} {} //custom ctor
-
-  node(kt&& k, vt&& v) noexcept : _element{std::make_pair<kt,vt>(std::move(k), std::move(v))}	{
-    std::cout << "key from new ctor = " << k << " value from new ctor = " << v << std::endl;
-    //node(std::make_pair<kt,vt>(std::move(k),std::move(v)), nullptr);
-  } 
-
-  ~node() {std::cout << "node dtor with key " << (this->_element).first << std::endl;} //do we need to delete the raw pointer??
-};
-
-template<typename kt, typename vt, typename cmp>
-template<typename node_type, typename pair_type>
-class bst<kt, vt, cmp>::__iterator{//do we implement a class or a struct? He implemented a class also in the linked list
-	
-	node_type * _current;
-
-
-	friend class bst<kt,vt,cmp>;
-	
-	explicit __iterator(node_type * x) : _current{x} {
-		//std::cout << "iterator custom ctor" << std::endl;
-	}
-
-public:
-
-	using reference = pair_type&;
-	using pointer = pair_type*;
-	using difference_type = std::ptrdiff_t;
-	using iterator_category = std::forward_iterator_tag;
-
-	//pair_type& operator*() const noexcept;
-	reference operator*() const noexcept{
-	  return _current->_element; // we return a reference to the element (pair: (k,v)) of the node to which the iterator is pointing to
-	}
-
-
-	//pair_type* operator->() const noexcept;
-	pointer operator->() const noexcept{
-		return &(*(*this)); // we return the pointer to the element (pair: (k,v)) of the node to which the iterator is pointing to
-	}
-
-
-  __iterator& operator++(){
-    AP_ERROR( _current != nullptr ) << "It is not allowed to increment an iterator pointing to nullptr" << std::endl;
-    //std::cout<< "pre incremenent" << std::endl;
-    // if( non posso andare in basso dx )
-    if(_current->_right == nullptr){
-      // while( non posso andare alto dx )
-      while(_current->_parent != nullptr && ((_current->_parent)->_left).get() != _current){
-	// vai in alto sx
-	_current = _current->_parent;
-      }
-      _current = _current->_parent;
-      return *this;
-    }
-    else{
-      _current = (_current->_right).get();
-      // vai in basso sx finchè puoi
-      while(_current->_left != nullptr){
-	_current = (_current->_left).get();
-      }
-      return *this;
-    }
-  }
-
-	__iterator operator++(int){
-      AP_ERROR( _current != nullptr ) << "It is not allowed to increment an iterator pointing to nullptr" << std::endl;
-	  //std::cout<< "post incremenent" << std::endl;
-		__iterator tmp{_current};
-		++(*this);
-		return tmp;
-	}
-
-	friend bool operator==(const __iterator& a, const __iterator& b){
-		return a._current == b._current;
-	}
-
-	friend bool operator!=(const __iterator& a, const __iterator& b){
-		return !(a == b);
-	}
-
-};
+#include"node.hpp"
+#include"iterator.hpp"
 
 #endif

@@ -1,29 +1,18 @@
-#ifndef __bst_node_hpp
-#define __bst_node_hpp
+#ifndef __node_hpp
+#define __node_hpp
 
 #include<iostream>
 #include<memory>
 #include<utility>
-#include"bst_class.hpp"
-#include"bst_iterator.hpp"
+#include"bst.hpp"
+#include"iterator.hpp"
 #include"ap_error.h"
 
+template <typename kt, typename vt, typename cmp>
 template <typename pair_type>
-class node{
+struct bst<kt, vt, cmp>::node{
 
 	pair_type _element;
-	
-	template <typename t1, typename t2, typename cmp>
-	friend class bst;
-	
-	template<typename node_type, typename pair_t>
-	friend class __iterator;
-
-	template <typename t1, typename t2, typename cmp>
-	using key_type = typename bst::kt<t1,t2,cmp>;
-	
-	template <typename t1, typename t2, typename cmp>
-	using value_type = typename bst::vt<t1,t2,cmp>;
 
 	node * _parent{}; //const removed when writing erase
 	std::unique_ptr<node> _left;
@@ -57,13 +46,10 @@ class node{
 	
   node(const pair_type& element, node * parent) : _element{element}, _parent{parent} {} //custom ctor
 
-  template <typename t1, typename t2, typename cmp>
-  node(key_type<t1,t2,cmp>&& k, value_type<t1,t2,cmp>&& v) noexcept : _element{std::make_pair<key_type,value_type>(std::move(k), std::move(v))}	{
+  node(kt&& k, vt&& v) noexcept : _element{std::make_pair<kt,vt>(std::move(k), std::move(v))}	{
     std::cout << "key from new ctor = " << k << " value from new ctor = " << v << std::endl;
-    //node(std::make_pair<key_type,value_type>(std::move(k),std::move(v)), nullptr);
+    //node(std::make_pair<kt,vt>(std::move(k),std::move(v)), nullptr);
   } 
-
-	public:
 
   ~node() {std::cout << "node dtor with key " << (this->_element).first << std::endl;} //do we need to delete the raw pointer??
 };
