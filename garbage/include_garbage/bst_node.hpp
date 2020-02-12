@@ -1,0 +1,71 @@
+#ifndef __bst_node_hpp
+#define __bst_node_hpp
+
+#include<iostream>
+#include<memory>
+#include<utility>
+#include"bst_class.hpp"
+#include"bst_iterator.hpp"
+#include"ap_error.h"
+
+template <typename pair_type>
+class node{
+
+	pair_type _element;
+	
+	template <typename t1, typename t2, typename cmp>
+	friend class bst;
+	
+	template<typename node_type, typename pair_t>
+	friend class __iterator;
+
+	template <typename t1, typename t2, typename cmp>
+	using key_type = typename bst::kt<t1,t2,cmp>;
+	
+	template <typename t1, typename t2, typename cmp>
+	using value_type = typename bst::vt<t1,t2,cmp>;
+
+	node * _parent{}; //const removed when writing erase
+	std::unique_ptr<node> _left;
+	std::unique_ptr<node> _right;
+
+	//we didn't implement a default constructor that initiates all the values of the node to 0
+	//because we don't want to allow users to create multiple nodes with the same key
+	//That's why we implemented a default constructor that deletes itself when called
+
+  node() {
+    AP_ERROR(false) << "It is not allowed to create a node with no key provided" << std::endl;
+  }
+
+  explicit node(node * twin, node * to_stick) : _element{twin->_element}, _parent{to_stick} {
+
+    std::cout << "explicit iterative ctor" << std::endl;
+    if((twin->_left).get() != nullptr){
+      std::cout << "constructing the left child of node with key = " << _element.first << std::endl;
+      _left = std::make_unique<node>((twin->_left).get(), this);
+    }
+
+    if((twin->_right).get() != nullptr){
+      std::cout << "constructing the right child of node with key = " << _element.first << std::endl;
+      _right = std::make_unique<node>((twin->_right).get(), this);		
+    }	
+  }
+
+  node(pair_type&& element, node * parent) noexcept : _element{std::move(element)}, _parent{parent} {
+    std::cout << "key from old ctor = " << element.first << " value from old ctor = " << element.second << std::endl;
+  } //removed a const before node || do I need to write const node * parent?
+	
+  node(const pair_type& element, node * parent) : _element{element}, _parent{parent} {} //custom ctor
+
+  template <typename t1, typename t2, typename cmp>
+  node(key_type<t1,t2,cmp>&& k, value_type<t1,t2,cmp>&& v) noexcept : _element{std::make_pair<key_type,value_type>(std::move(k), std::move(v))}	{
+    std::cout << "key from new ctor = " << k << " value from new ctor = " << v << std::endl;
+    //node(std::make_pair<key_type,value_type>(std::move(k),std::move(v)), nullptr);
+  } 
+
+	public:
+
+  ~node() {std::cout << "node dtor with key " << (this->_element).first << std::endl;} //do we need to delete the raw pointer??
+};
+
+#endif
