@@ -41,7 +41,7 @@ struct bst<kt, vt, cmp>::node{
   }
 
   node(pair_type&& element, node * parent) noexcept : _element{std::move(element)}, _parent{parent} {
-    std::cout << "key from old ctor = " << element.first << " value from old ctor = " << element.second << std::endl;
+    // std::cout << "key from old ctor = " << element.first << " value from old ctor = " << element.second << std::endl;
   } //removed a const before node || do I need to write const node * parent?
 	
   node(const pair_type& element, node * parent) : _element{element}, _parent{parent} {} //custom ctor

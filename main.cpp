@@ -20,25 +20,27 @@ int main(){
     //throw std::runtime_error("Are there leaks?");
 	
 
-      tree.insert({8,3});
-      tree.insert({10,10});
-      tree.insert({12,12});
-      tree.insert({11,11});
-      tree.insert({16,15});
-      tree.insert({9,9});
-      tree.insert({0,1});
-      tree.insert({5,2});
-      tree.insert({7,1});
-      tree.insert({14,14});
-      tree.insert({13,13});
-      tree.insert({15,15});
+      tree.insert({0,3});
+      tree.insert({1,10});
+      tree.insert({2,12});
+      tree.insert({3,11});
+      tree.insert({4,15});
+      tree.insert({5,9});
+      tree.insert({6,1});
+      tree.insert({7,2});
+      tree.insert({8,1});
+      tree.insert({9,14});
+      tree.insert({10,13});
 
-      auto it = tree.find(15);
-
-      it->second = 0; 
+      std::cout << tree << std::endl;
       
+      auto a = 3;
+      tree[22] = 22;
+      tree[a] = a;
+
       std::cout << tree << std::endl;
 
+      
       
       // for(auto x : tree){ std::cout << x.first << std::endl; }
     

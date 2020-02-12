@@ -139,7 +139,9 @@ the pointer to the father can be a raw pointer
 Note: parent of the root: nullptr
 
 Iterators class must be implemented outside of the class bst! Because we have different templates (how many? 1; what is it? the node_type) if i duplicate the code as iterator and const iterator
+
 what are the members of an iterator? it's a generalized pointer: has a pointer to what is pointing to and overloading operators [and?]
+
 What sould the iterator point to? (A node??)
 
 class iterator:
@@ -154,9 +156,9 @@ class iterator{
 	using pointer = value_type*;
 	using iterator_category = std::forward_iterator_tag;
 	using difference_type = std::prtdiff_t;
-
+	
 	reference operator*()const{
-
+	
 	}
 
 
@@ -194,9 +196,9 @@ class _iterator{
 	using pointer = value_type*;
 	using iterator_category
 	using difference_type = std::prtdiff_t;
-
+	
 	reference operator*()const{
-
+	
 	}
 
 

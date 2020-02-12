@@ -36,9 +36,6 @@ class bst{
 			insert(v.at(1));
 			return;
 		}
-	/*else if(v.size() == 0){
-		return;
-	}*/
 
 		std::vector<std::pair<kt,vt>> w, z;
 
@@ -138,7 +135,8 @@ std::pair<iterator, bool> insert(const pair_type& x) { //check if it can be opti
 			ptr = (ptr->_right).get();
 		}
 	}
-	return std::make_pair(iterator{nullptr}, false); // since no node has been inserted, the iterator returned will point to nullptr
+	//std::cout << "node not inserted, key: " << x.first << " is already present" << std::endl;
+	return std::make_pair(iterator{ptr}, false); // since no node has been inserted, the iterator returned will point to nullptr
 }
 
 std::pair<iterator, bool> insert(pair_type&& x) noexcept { //check if it can be optimized
@@ -171,8 +169,8 @@ std::pair<iterator, bool> insert(pair_type&& x) noexcept { //check if it can be 
 		}
 
 	}
-	std::cout << "node not inserted, key: " << x.first << " is already present" << std::endl;
-	return std::make_pair(iterator{nullptr}, false);  // since no node has been inserted, the iterator returned will point to nullptr
+	//std::cout << "node not inserted, key: " << x.first << " is already present" << std::endl;
+	return std::make_pair(iterator{ptr}, false);  // since no node has been inserted, the iterator returned will point to nullptr
 }
 
 template<class... Types>
@@ -385,7 +383,7 @@ void balance() noexcept {
 	return;
 }
 
-vt& operator[](const kt& x) noexcept {
+  /*vt& operator[](const kt& x) noexcept {
 	auto tmp = find(x);
 	if(tmp._current == nullptr){
 		auto pair = insert(std::make_pair(x, vt{}));
@@ -403,6 +401,26 @@ vt& operator[](kt&& x) noexcept {
 	}
 	return (*tmp).second;
 }
+  */
+
+
+vt& operator[](const kt& x) noexcept {
+   auto tmp = insert(std::make_pair(x, vt{}));
+
+   // comment the next line, it's just for debugging
+   std::cout << ((tmp.second == true) ? ( "Pair inserted (with dft vt) since it wasn't there\n" ) : ( "Pair not inserted since it was already there\n" ));
+   
+   return (*(tmp.first)).second;
+}
+vt& operator[](kt&& x) noexcept {
+  auto tmp = insert(std::make_pair(std::move(x), vt{}));
+
+  // comment the next line, it's just for debugging
+  std::cout << ((tmp.second == true) ? ( "Pair inserted (with dft vt) since it wasn't there\n" ) : ( "Pair not inserted since it was already there\n" ));
+  
+  return (*(tmp.first)).second;
+}
+
 
 friend std::ostream& operator<<(std::ostream& os, const bst& x) {
 	auto it = x.cbegin();
