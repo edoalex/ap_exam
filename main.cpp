@@ -1,28 +1,27 @@
 #include"bst.hpp"
 #include<iostream>
+#include<vector>
 
 int main(){
 
   try {
    
     bst<int,int> tree{};
-    // tree.insert({1,2});
+    //tree.insert({1,2});
 
     //bst<int,int> tree_2{};
     //std::cout << tree << std::endl;
-    // tree_2 = tree;
+    //tree_2 = tree;
     //tree_2.insert({1,2});
+    //tree.emplace(std::make_pair<int,int>(9,5),nullptr);
     //tree.insert({0,2});
     //std::cout << tree << std::endl;
     tree.emplace(1,2);
-    std::cout << tree << std::endl;
     //throw std::runtime_error("Are there leaks?");
 	
-    /*
+
       tree.insert({8,3});
-      tree.insert({8,4});
       tree.insert({10,10});
-      tree.emplace(std::make_pair<int,int>(9,5),nullptr);
       tree.insert({12,12});
       tree.insert({11,11});
       tree.insert({16,15});
@@ -33,8 +32,16 @@ int main(){
       tree.insert({14,14});
       tree.insert({13,13});
       tree.insert({15,15});
-    */
-   
+    
+      std::cout << tree << std::endl;
+
+      tree[3] = 4;
+
+      std::cout << tree << std::endl;
+
+      
+      // for(auto x : tree){ std::cout << x.first << std::endl; }
+    
 
     //tree.balance();
 
