@@ -1,6 +1,6 @@
 #include"bst.hpp"
 #include<iostream>
-#include<vector>
+#include<functional>
 
 int main(){
 
@@ -16,7 +16,7 @@ int main(){
     //tree.emplace(std::make_pair<int,int>(9,5),nullptr);
     //tree.insert({0,2});
     //std::cout << tree << std::endl;
-    tree.emplace(1,2);
+    // tree.emplace(1,2);
     //throw std::runtime_error("Are there leaks?");
 	
 
@@ -32,11 +32,11 @@ int main(){
       tree.insert({14,14});
       tree.insert({13,13});
       tree.insert({15,15});
-    
-      std::cout << tree << std::endl;
 
-      tree[3] = 4;
+      auto it = tree.find(15);
 
+      it->second = 0; 
+      
       std::cout << tree << std::endl;
 
       
@@ -66,7 +66,6 @@ int main(){
     //std::cout << tree << std::endl;
 
   } catch (const std::exception& e) {
-    std::cout << "I'm in catch\n";
     std::cerr << e.what() << std::endl;
     return 1;
 
