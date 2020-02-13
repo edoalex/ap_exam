@@ -1,12 +1,26 @@
+/**
+ * @file node.hpp
+ * @author Edoardo Alessandroni 
+ * @author Alberto Luvisutto
+ * @author Andrea Mecchina 
+ * @date 13 February 2020
+ * @brief Header containing node struct implementation.
+ */
+
 #ifndef __node_hpp
 #define __node_hpp
 
-#include<iostream>
-#include<memory>
-#include<utility>
+#include<iostream> // << operator
+#include<memory> // unique pointers
+#include<utility> // pair
+#include"ap_error.h" // exceptions
 #include"bst.hpp"
 #include"iterator.hpp"
-#include"ap_error.h"
+
+/**
+ * @brief Templated implementation of a node struct.
+ * @tparam pair_type Type of the pair key and value.
+ */
 
 template <typename kt, typename vt, typename cmp>
 template <typename pair_type>

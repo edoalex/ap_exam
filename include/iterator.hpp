@@ -1,11 +1,26 @@
+/**
+ * @file iterator.hpp
+ * @author Edoardo Alessandroni 
+ * @author Alberto Luvisutto
+ * @author Andrea Mecchina 
+ * @date 13 February 2020
+ * @brief Header containing iterator class implementation.
+ */
+
 #ifndef __iterator_hpp
 #define __iterator_hpp
 
-#include<iostream>
-#include<memory>
+#include<iostream> // << operator
+#include<memory> // unique pointers
+#include"ap_error.h" // exceptions
 #include"bst.hpp"
 #include"node.hpp"
-#include"ap_error.h"
+
+/**
+ * @brief Templated implementation of a node struct.
+ * @tparam node_type Type of the node pointed by the iterator.
+ * @tparam pair_type Type of the const or non const pair.
+ */
 
 template<typename kt, typename vt, typename cmp>
 template<typename node_type, typename pair_type>

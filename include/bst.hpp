@@ -1,23 +1,53 @@
+/**
+ * @file bst.hpp
+ * @author Edoardo Alessandroni 
+ * @author Alberto Luvisutto
+ * @author Andrea Mecchina 
+ * @date 13 February 2020
+ * @brief Header containing bst class implementation.
+ */
+ 
 #ifndef __bst_hpp
 #define __bst_hpp
 
-#include<iostream>
-#include<memory>
-#include<utility>
-#include<vector>
+#include<iostream> // << operator
+#include<memory> // unique pointers
+#include<utility> // pair
+#include<vector> // vector class
+
+/**
+ * @brief Templated implementation of a binary search tree class.
+ * @tparam kt Type of node keys.
+ * @tparam vt Type of node values.
+ * @tparam cmp Type of the custom comparison operator between nodes. Default std::less<kt>.
+ */
 
 template <typename kt, typename vt, typename cmp = std::less<kt>>
 class bst{
 	
-	template<typename node_type, typename pair_type>
-	class __iterator;
+	/**
+	 * @brief Templated node struct with two children nodes and one parent node.
+	 */
 
 	template <typename pair_type>
 	struct node;
-
+	
+	/**
+	 * @brief Templated iterator class with a pointer to a node.
+	 */
+	
+	template<typename node_type, typename pair_type>
+	class __iterator;
+	
+	/**
+	 * @brief Comparison operator for the binary search tree.
+	 */
+	
 	cmp _op;
 	
 	using node_type = node<std::pair<const kt, vt>>;
+	
+	/** Root node of the binary search tree. */
 	
 	std::unique_ptr<node_type> head;
 
