@@ -6,6 +6,7 @@
  * @date 13 February 2020
  * @brief Header containing bst functions implementation.
  */
+ 
 #ifndef __bst_functions_hpp
 #define __bst_functions_hpp
 
@@ -16,7 +17,6 @@
 #include"bst.hpp"
 #include"node.hpp"
 #include"iterator.hpp"
-
 
 template <typename kt, typename vt, typename cmp>
 void bst<kt,vt,cmp>::order(std::vector<std::pair<kt,vt>>& v) noexcept {
@@ -49,8 +49,13 @@ void bst<kt,vt,cmp>::order(std::vector<std::pair<kt,vt>>& v) noexcept {
 }
 
 template <typename kt, typename vt, typename cmp>
+<<<<<<< HEAD
+std::pair<typename bst<kt,vt,cmp>::iterator, bool> bst<kt,vt,cmp>::insert(const pair_type& x) {
+	//std::cout << "insert(const pair_type& x) called" << std::endl;
+=======
 std::pair<typename bst<kt,vt,cmp>::iterator, bool> bst<kt,vt,cmp>::insert(const pair_type& x) { //check if it can be optimized
   //	std::cout << "insert(const pair_type& x) called" << std::endl;
+>>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 	if(head == nullptr){
 		head.reset(new node_type{x, nullptr});
 		return std::make_pair(iterator{head.get()}, true);
@@ -80,14 +85,19 @@ std::pair<typename bst<kt,vt,cmp>::iterator, bool> bst<kt,vt,cmp>::insert(const 
 		}
 	}
 	//std::cout << "node not inserted, key: " << x.first << " is already present" << std::endl;
-	return std::make_pair(iterator{ptr}, false); // since no node has been inserted, the iterator returned will point to nullptr
+	return std::make_pair(iterator{ptr}, false);
 }
 
 template <typename kt, typename vt, typename cmp>
+<<<<<<< HEAD
+std::pair<typename bst<kt,vt,cmp>::iterator, bool> bst<kt,vt,cmp>::insert(pair_type&& x) noexcept {
+	//std::cout << "insert(pair_type&& x) called" << std::endl;
+=======
 std::pair<typename bst<kt,vt,cmp>::iterator, bool> bst<kt,vt,cmp>::insert(pair_type&& x) noexcept { //check if it can be optimized
   //	std::cout << "insert(pair_type&& x) called" << std::endl;
+>>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 	if(!head){
-	    head.reset(new node_type{std::move(x), nullptr}); // maybe nullprt = make_shared(nullptr)
+	    head.reset(new node_type{std::move(x), nullptr});
 	    return std::make_pair(iterator{head.get()}, true);
 	}
 
@@ -115,7 +125,7 @@ std::pair<typename bst<kt,vt,cmp>::iterator, bool> bst<kt,vt,cmp>::insert(pair_t
 
 	}
 	//std::cout << "node not inserted, key: " << x.first << " is already present" << std::endl;
-	return std::make_pair(iterator{ptr}, false);  // since no node has been inserted, the iterator returned will point to nullptr
+	return std::make_pair(iterator{ptr}, false); 
 }
 
 template <typename kt, typename vt, typename cmp>
@@ -124,17 +134,21 @@ std::pair<typename bst<kt,vt,cmp>::iterator,bool> bst<kt,vt,cmp>::emplace(Types&
 	//std::cout << "inside emplace" << std::endl;
 	std::unique_ptr<node_type> buffer = std::make_unique<node_type>(std::forward<Types>(args)...);
 
-	//	std::cout << "key = "<< (buffer->_element).first << " value = "<< (buffer->_element).second << std::endl;
+	//std::cout << "key = "<< (buffer->_element).first << " value = " << (buffer->_element).second << std::endl;
 	auto possible_node = buffer.get();
 	auto it = find((possible_node->_element).first);
 	if(it._current != nullptr){
+<<<<<<< HEAD
+		//std::cout << "destructing the node" << std::endl;
+=======
 	  //	std::cout << "destructing the node" << std::endl;
+>>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 		buffer.reset();
-		return std::make_pair(iterator{nullptr}, false);
+		return std::make_pair(it, false);
 	}
 
 	//the node needs to be inserted
-	if(!head){ //the tree is empty
+	if(!head){
 		//std::cout << "the head is empty" << std::endl;
 		auto a = buffer.release();
 		head.reset(a);
@@ -144,9 +158,9 @@ std::pair<typename bst<kt,vt,cmp>::iterator,bool> bst<kt,vt,cmp>::emplace(Types&
 	//the tree is not empty
 	node_type * ptr = head.get();
 	while(true){
-		if(_op((possible_node->_element).first, (ptr->_element).first) == true){ //devo andare a sx
+		if(_op((possible_node->_element).first, (ptr->_element).first) == true){ //needs to go left
 			if(ptr->_left == nullptr){
-				//non c'è il figlio
+				//no left child
 				(ptr->_left).reset(buffer.release());
 				possible_node->_parent = ptr;
 				return std::make_pair(iterator{possible_node}, true);
@@ -171,38 +185,42 @@ std::pair<typename bst<kt,vt,cmp>::iterator,bool> bst<kt,vt,cmp>::emplace(Types&
 template <typename kt, typename vt, typename cmp>
 typename bst<kt,vt,cmp>::iterator bst<kt,vt,cmp>::find(const kt& x) noexcept {
 
-    // std::cout << "greetings from iterator find(...)" << std::endl;
+    //std::cout << "greetings from iterator find(...)" << std::endl;
 	if(!head){
-      // std::cout << "the tree is empty" << std::endl;
+      	//std::cout << "the tree is empty" << std::endl;
 		return end();
 	}
 	node_type * tmp = head.get();
 	while(op_eq(x,(tmp->_element).first) == false){
 		if(_op(x,(tmp->_element).first) == true){
 			if(tmp->_left == nullptr){
-	  // std::cout << "node with key " << x << " not found in the tree" << std::endl;
+	  			//std::cout << "node with key " << x << " not found in the tree" << std::endl;
 				return end();
 			}
 			tmp = (tmp->_left).get();
 		} else {
 			if(tmp->_right == nullptr){
-	  // std::cout << "node with key " << x << " not found in the tree" << std::endl;
+	  			//std::cout << "node with key " << x << " not found in the tree" << std::endl;
 				return end();
 			}
 			tmp = (tmp->_right).get();
 		}
 	}
 
-	  // std::cout << "node with key " << x << " found in the tree" << std::endl;
+	//std::cout << "node with key " << x << " found in the tree" << std::endl;
 	return iterator{tmp};
 }
 
 template <typename kt, typename vt, typename cmp>
 typename bst<kt,vt,cmp>::const_iterator bst<kt,vt,cmp>::find(const kt& x) const noexcept {
-  //	std::cout << "greetings from const_iterator find(...)" << std::endl;
+  	//std::cout << "greetings from const_iterator find(...)" << std::endl;
 
 	if(!head){
+<<<<<<< HEAD
+		//std::cout << "the tree is empty" << std::endl;
+=======
 	  //	std::cout << "the tree is empty" << std::endl;
+>>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 		return cend();
 	}
 
@@ -213,7 +231,11 @@ typename bst<kt,vt,cmp>::const_iterator bst<kt,vt,cmp>::find(const kt& x) const 
 		if(_op(x,(tmp->_element).first) == true){
 
 			if(tmp->_left == nullptr){
+<<<<<<< HEAD
+				//std::cout << "node with key " << x << " not found in the tree" << std::endl;
+=======
 			  //	std::cout << "node with key " << x << " not found in the tree" << std::endl;
+>>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 				return end();
 			}
 
@@ -222,7 +244,11 @@ typename bst<kt,vt,cmp>::const_iterator bst<kt,vt,cmp>::find(const kt& x) const 
 
 			if(tmp->_right == nullptr){
 
+<<<<<<< HEAD
+				//std::cout << "node with key " << x << " not found in the tree" << std::endl;
+=======
 			  //	std::cout << "node with key " << x << " not found in the tree" << std::endl;
+>>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 				return end();
 
 			}
@@ -230,7 +256,11 @@ typename bst<kt,vt,cmp>::const_iterator bst<kt,vt,cmp>::find(const kt& x) const 
 		}
 	}
 
+<<<<<<< HEAD
+	//std::cout << "node with key " << x << " found in the tree" << std::endl;
+=======
 	//	std::cout << "node with key " << x << " found in the tree" << std::endl;
+>>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 	return const_iterator{tmp};
 }
 
@@ -239,7 +269,11 @@ void bst<kt,vt,cmp>::balance() noexcept {
 
 	auto start = begin();
 	if(start._current == nullptr){
+<<<<<<< HEAD
+		//std::cout << "the tree is empty" << std::endl;
+=======
 	  //	std::cout << "The tree is empty" << std::endl;
+>>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 		return;
 	}
 	auto stop = end();
@@ -247,7 +281,7 @@ void bst<kt,vt,cmp>::balance() noexcept {
 	std::vector<std::pair<kt,vt>> v;
 	
 	while(start != stop){
-		v.push_back(*start); //try *it++; also, maybe the reference is not good
+		v.push_back(*start);
 		++start;
 	}
 
@@ -259,13 +293,17 @@ void bst<kt,vt,cmp>::balance() noexcept {
 }
 
 template <typename kt, typename vt, typename cmp>
-void bst<kt,vt,cmp>::erase(const kt& x) noexcept {//move
+void bst<kt,vt,cmp>::erase(const kt& x) noexcept {
 	iterator it = find(x);                                                                                                                         
 
 	auto me = it._current;
 
 	if(!me){
+<<<<<<< HEAD
+		//std::cout << "node with key = " << x << "not present in the tree" << std::endl;
+=======
 	  //	std::cout << "node with key = " << x << " not present in the tree" << std::endl;
+>>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 		return;
 	}
 
@@ -281,8 +319,8 @@ void bst<kt,vt,cmp>::erase(const kt& x) noexcept {//move
     	}
 
 
-    } else if ( (me->_left != nullptr) != (me->_right != nullptr) ) {  // just one child  
-      //cut and paste that bow                                          
+    } else if ( (me->_left != nullptr) != (me->_right != nullptr) ) {  //just one child  
+      	//cut and paste that bow                                          
     	node_type * tmp;
     	if( me->_right != nullptr ){
     		tmp = me->_right.release();
@@ -290,7 +328,7 @@ void bst<kt,vt,cmp>::erase(const kt& x) noexcept {//move
     	else{
     		tmp = me->_left.release();
     	}
-      // std::cout << "I've just released node with key: " << (tmp->_element).first << std::endl;
+      	//std::cout << "just released node with key: " << (tmp->_element).first << std::endl;
     	if( ave == nullptr ) {
     		head.reset(tmp);
     		head->_parent = nullptr;
@@ -306,14 +344,18 @@ void bst<kt,vt,cmp>::erase(const kt& x) noexcept {//move
     		}
     	}
 
-    } else { // I have both children 
+    } else { //I have both children 
 
     	auto next = (++it)._current;
+<<<<<<< HEAD
+    	//std::cout << "next key = " << (next->_element).first << std::endl;
+=======
 	//	std::cout << "next key = " << (next->_element).first << std::endl;
+>>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
     	auto next_parent = next->_parent;
     	//std::cout << "next_parent key = " << (next_parent->_element).first << std::endl;
 
-      // if first_right = next    ==    next_parent = me  (pathological case)
+      	//if first_right = next == next_parent = me  (pathological case)
     	if ( next_parent == me ){
     		auto tmp = (me->_left).release();
     		(me->_right).release();
@@ -335,31 +377,30 @@ void bst<kt,vt,cmp>::erase(const kt& x) noexcept {//move
     		return; 
     	}
 
-      // (non pathological case)
-      // step 1 of 3 (replace me with next)
+      	//(non pathological case)
+      	//step 1 of 3 (replace me with next)
     	(next_parent->_left).release();
-      // if I'm root
+      	//if I'm root
     	if( ave == nullptr ){
     		next->_parent = nullptr;
     		head.release();
     		head.reset(next);
-    	}else{ // if I'm not root
-    		// I'm right son
+    	}else{ //if I'm not root
+    		//I'm right son
     		if( (ave->_right).get() == me ){
     			(ave->_right).release();
     			(ave->_right).reset(next);
-    		// I'm left son
+    		//I'm left son
     		}else{
     			(ave->_left).release();
     			(ave->_left).reset(next);
     		}
     		next->_parent = ave;
-    		me->_parent = nullptr; // do we really need it? 
+    		me->_parent = nullptr;
     	}
     	
     	//step 2 of 3 (stick right prole of me)
     	auto to_stick = (me->_right).release();
-    	//(me->_right).release();
     	auto sub = next;
     	while( next->_right != nullptr) { 
     		next = (next->_right).get(); 
@@ -369,18 +410,20 @@ void bst<kt,vt,cmp>::erase(const kt& x) noexcept {//move
     	to_stick->_parent = next;
 
     	//step 3 of 3 (stick left prole of me)
-    	//auto prole = (me->_left).release()
-    	//(next->_left).reset(prole);
     	(sub->_left).reset( (me->_left).release() );
     	(sub->_left)->_parent = sub;
 
-    	//delete me using a unique pointer; we didn't want to change the whole algorithm and we didn't want to call the destuctor by hand
+    	//not to call the destuctor by hand
     	std::unique_ptr<node_type> deleter = nullptr;
     	deleter.reset(me);
     	deleter.reset();
     }
 }
 
+<<<<<<< HEAD
+#endif
+=======
 
 
 #endif
+>>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46

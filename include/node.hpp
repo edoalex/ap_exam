@@ -27,23 +27,49 @@ template <typename kt, typename vt, typename cmp>
 template <typename pair_type>
 struct bst<kt, vt, cmp>::node{
 
+	/** @brief Element of the node. */
+
 	pair_type _element;
 
-	node * _parent{}; //const removed when writing erase
+	/** @brief Parent of the node. */
+
+	node * _parent{};
+
+	/** @brief Left child of the node. */
+
 	std::unique_ptr<node> _left;
+	
+	/** @brief Right child of the node. */	
+	
 	std::unique_ptr<node> _right;
 
-	//we didn't implement a default constructor that initiates all the values of the node to 0
-	//because we don't want to allow users to create multiple nodes with the same key
-	//That's why we implemented a default constructor that deletes itself when called
+/**
+ * @brief Node default constructor.
+ * 
+ * An exception is thrown since it is not allowed
+ * to create a node without providing a key. 
+ */
 
   node() {
     AP_ERROR(false) << "It is not allowed to create a node with no key provided" << std::endl;
   }
+  
+/**
+ * @brief Custom node constructor.
+ * @param twin Pointer to the node to be copied.
+ * @param to_stick Pointer to the parent of the node to be constructed.
+ * 
+ * This constructor is only called iteratively by the
+ * tree custom copy constructor and copy assignment. 
+ */
 
-  explicit node(node * twin, node * to_stick) : _element{twin->_element}, _parent{to_stick} {
+  node(node * twin, node * to_stick) : _element{twin->_element}, _parent{to_stick} {
 
+<<<<<<< HEAD
+    //std::cout << "explicit iterative ctor" << std::endl;
+=======
     // std::cout << "explicit iterative ctor" << std::endl;
+>>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
     if((twin->_left).get() != nullptr){
       //std::cout << "constructing the left child of node with key = " << _element.first << std::endl;
       _left = std::make_unique<node>((twin->_left).get(), this);
@@ -55,18 +81,49 @@ struct bst<kt, vt, cmp>::node{
     }	
   }
 
+ /**
+  * @brief Node move constructor.
+  * @param element The data to be moved into the node.
+  * @param parent Pointer to the parent of the node to be constructed.
+  *
+  * The two unique pointers are by default initialised as nullpointers.
+  */
+
   node(pair_type&& element, node * parent) noexcept : _element{std::move(element)}, _parent{parent} {
     // std::cout << "key from old ctor = " << element.first << " value from old ctor = " << element.second << std::endl;
-  } //removed a const before node || do I need to write const node * parent?
+  }
 	
-  node(const pair_type& element, node * parent) : _element{element}, _parent{parent} {} //custom ctor
+ /**
+  * @brief Node copy constructor.
+  * @param element The data to be copied into the node.
+  * @param parent Pointer to the parent of the node to be constructed.
+  *
+  * The two unique pointers are by default initialised as nullpointers.
+  */	
+	
+  node(const pair_type& element, node * parent) : _element{element}, _parent{parent} {}
 
+ /**
+  * @brief Custom node constructor.
+  * @param k The key to be moved into the pair.
+  * @param v The value to be moved into the pair.
+  *
+  * This constructor is only called by the emplace function.
+  */	
+
+<<<<<<< HEAD
+  node(kt&& k, vt&& v) noexcept : _element{std::make_pair<kt,vt>(std::move(k), std::move(v))} {
+    //std::cout << "key from new ctor = " << k << " value from new ctor = " << v << std::endl;
+  } 
+
+=======
   node(kt&& k, vt&& v) noexcept : _element{std::make_pair<kt,vt>(std::move(k), std::move(v))}	{
     //  std::cout << "key from new ctor = " << k << " value from new ctor = " << v << std::endl;
     //node(std::make_pair<kt,vt>(std::move(k),std::move(v)), nullptr);
   } 
 
   //   ~node() {std::cout << "node dtor with key " << (this->_element).first << std::endl;} //do we need to delete the raw pointer??
+>>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 };
 
 #endif

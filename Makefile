@@ -1,6 +1,6 @@
 CXX = c++
 CXXFLAGS = -std=c++14 -Wall -Wextra -I include -O3
-DEP = include/bst.hpp include/bst_functions.hpp include/node.hpp include/iterator.hpp include/ap_error.h
+DEP = include/bst.hpp include/bst_functions.hpp include/node.hpp include/iterator.hpp include/ap_error.h main.cpp
 
 all: exe.x docs
 
