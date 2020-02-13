@@ -162,8 +162,7 @@ public:
 
 		return *this;
 	}
-
-<<<<<<< HEAD
+	
 	/**
 	 * @brief Inserts a new node in the binary search tree.
 	 * @param x The pair key and value to be inserted.
@@ -174,9 +173,6 @@ public:
 	 * were successful the bool is true, else false. The pair is copied into
 	 * the node.
 	 */
-=======
-  //~bst() noexcept {std::cout << "bst dtor " << std::endl;}
->>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 
 	std::pair<iterator, bool> insert(const pair_type& x);
 

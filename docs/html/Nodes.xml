@@ -53,11 +53,6 @@
               <Anchor>ac0e8f8be6be76d77809ba1d21e1be66a</Anchor>
              </Node>
              <Node>
-              <Name>~bst</Name>
-              <Path>da/ddd/classbst.html</Path>
-              <Anchor>aff5baa5e491c4d31077779df9cc5cbb6</Anchor>
-             </Node>
-             <Node>
               <Name>balance</Name>
               <Path>da/ddd/classbst.html</Path>
               <Anchor>a4ac74357616de45d5d3e7cbb9850854e</Anchor>
@@ -90,12 +85,12 @@
              <Node>
               <Name>emplace</Name>
               <Path>da/ddd/classbst.html</Path>
-              <Anchor>a03e09650b371d423315f26520d6e34a6</Anchor>
+              <Anchor>afcc3983e4d16eaa758aec0adb71759bb</Anchor>
              </Node>
              <Node>
               <Name>emplace</Name>
               <Path>da/ddd/classbst.html</Path>
-              <Anchor>afcc3983e4d16eaa758aec0adb71759bb</Anchor>
+              <Anchor>a03e09650b371d423315f26520d6e34a6</Anchor>
              </Node>
              <Node>
               <Name>end</Name>
@@ -165,6 +160,28 @@
           <Name>Class Index</Name>
           <Path>classes.html</Path>
          </Node>
+         <Node>
+          <Name>Class Members</Name>
+          <Path>functions.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>All</Name>
+            <Path>functions.html</Path>
+           </Node>
+           <Node>
+            <Name>Functions</Name>
+            <Path>functions_func.html</Path>
+           </Node>
+           <Node>
+            <Name>Typedefs</Name>
+            <Path>functions_type.html</Path>
+           </Node>
+           <Node>
+            <Name>Related Functions</Name>
+            <Path>functions_rela.html</Path>
+           </Node>
+          </Subnodes>
+         </Node>
         </Subnodes>
        </Node>
        <Node>
@@ -223,11 +240,6 @@
                   <Anchor>ac0e8f8be6be76d77809ba1d21e1be66a</Anchor>
                  </Node>
                  <Node>
-                  <Name>~bst</Name>
-                  <Path>da/ddd/classbst.html</Path>
-                  <Anchor>aff5baa5e491c4d31077779df9cc5cbb6</Anchor>
-                 </Node>
-                 <Node>
                   <Name>balance</Name>
                   <Path>da/ddd/classbst.html</Path>
                   <Anchor>a4ac74357616de45d5d3e7cbb9850854e</Anchor>
@@ -260,12 +272,12 @@
                  <Node>
                   <Name>emplace</Name>
                   <Path>da/ddd/classbst.html</Path>
-                  <Anchor>a03e09650b371d423315f26520d6e34a6</Anchor>
+                  <Anchor>afcc3983e4d16eaa758aec0adb71759bb</Anchor>
                  </Node>
                  <Node>
                   <Name>emplace</Name>
                   <Path>da/ddd/classbst.html</Path>
-                  <Anchor>afcc3983e4d16eaa758aec0adb71759bb</Anchor>
+                  <Anchor>a03e09650b371d423315f26520d6e34a6</Anchor>
                  </Node>
                  <Node>
                   <Name>end</Name>

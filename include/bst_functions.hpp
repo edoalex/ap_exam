@@ -49,13 +49,8 @@ void bst<kt,vt,cmp>::order(std::vector<std::pair<kt,vt>>& v) noexcept {
 }
 
 template <typename kt, typename vt, typename cmp>
-<<<<<<< HEAD
 std::pair<typename bst<kt,vt,cmp>::iterator, bool> bst<kt,vt,cmp>::insert(const pair_type& x) {
 	//std::cout << "insert(const pair_type& x) called" << std::endl;
-=======
-std::pair<typename bst<kt,vt,cmp>::iterator, bool> bst<kt,vt,cmp>::insert(const pair_type& x) { //check if it can be optimized
-  //	std::cout << "insert(const pair_type& x) called" << std::endl;
->>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 	if(head == nullptr){
 		head.reset(new node_type{x, nullptr});
 		return std::make_pair(iterator{head.get()}, true);
@@ -89,13 +84,8 @@ std::pair<typename bst<kt,vt,cmp>::iterator, bool> bst<kt,vt,cmp>::insert(const 
 }
 
 template <typename kt, typename vt, typename cmp>
-<<<<<<< HEAD
 std::pair<typename bst<kt,vt,cmp>::iterator, bool> bst<kt,vt,cmp>::insert(pair_type&& x) noexcept {
 	//std::cout << "insert(pair_type&& x) called" << std::endl;
-=======
-std::pair<typename bst<kt,vt,cmp>::iterator, bool> bst<kt,vt,cmp>::insert(pair_type&& x) noexcept { //check if it can be optimized
-  //	std::cout << "insert(pair_type&& x) called" << std::endl;
->>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 	if(!head){
 	    head.reset(new node_type{std::move(x), nullptr});
 	    return std::make_pair(iterator{head.get()}, true);
@@ -138,11 +128,7 @@ std::pair<typename bst<kt,vt,cmp>::iterator,bool> bst<kt,vt,cmp>::emplace(Types&
 	auto possible_node = buffer.get();
 	auto it = find((possible_node->_element).first);
 	if(it._current != nullptr){
-<<<<<<< HEAD
 		//std::cout << "destructing the node" << std::endl;
-=======
-	  //	std::cout << "destructing the node" << std::endl;
->>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 		buffer.reset();
 		return std::make_pair(it, false);
 	}
@@ -216,11 +202,7 @@ typename bst<kt,vt,cmp>::const_iterator bst<kt,vt,cmp>::find(const kt& x) const 
   	//std::cout << "greetings from const_iterator find(...)" << std::endl;
 
 	if(!head){
-<<<<<<< HEAD
 		//std::cout << "the tree is empty" << std::endl;
-=======
-	  //	std::cout << "the tree is empty" << std::endl;
->>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 		return cend();
 	}
 
@@ -231,11 +213,7 @@ typename bst<kt,vt,cmp>::const_iterator bst<kt,vt,cmp>::find(const kt& x) const 
 		if(_op(x,(tmp->_element).first) == true){
 
 			if(tmp->_left == nullptr){
-<<<<<<< HEAD
 				//std::cout << "node with key " << x << " not found in the tree" << std::endl;
-=======
-			  //	std::cout << "node with key " << x << " not found in the tree" << std::endl;
->>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 				return end();
 			}
 
@@ -244,11 +222,7 @@ typename bst<kt,vt,cmp>::const_iterator bst<kt,vt,cmp>::find(const kt& x) const 
 
 			if(tmp->_right == nullptr){
 
-<<<<<<< HEAD
 				//std::cout << "node with key " << x << " not found in the tree" << std::endl;
-=======
-			  //	std::cout << "node with key " << x << " not found in the tree" << std::endl;
->>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 				return end();
 
 			}
@@ -256,11 +230,7 @@ typename bst<kt,vt,cmp>::const_iterator bst<kt,vt,cmp>::find(const kt& x) const 
 		}
 	}
 
-<<<<<<< HEAD
 	//std::cout << "node with key " << x << " found in the tree" << std::endl;
-=======
-	//	std::cout << "node with key " << x << " found in the tree" << std::endl;
->>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 	return const_iterator{tmp};
 }
 
@@ -269,11 +239,7 @@ void bst<kt,vt,cmp>::balance() noexcept {
 
 	auto start = begin();
 	if(start._current == nullptr){
-<<<<<<< HEAD
 		//std::cout << "the tree is empty" << std::endl;
-=======
-	  //	std::cout << "The tree is empty" << std::endl;
->>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 		return;
 	}
 	auto stop = end();
@@ -299,11 +265,7 @@ void bst<kt,vt,cmp>::erase(const kt& x) noexcept {
 	auto me = it._current;
 
 	if(!me){
-<<<<<<< HEAD
 		//std::cout << "node with key = " << x << "not present in the tree" << std::endl;
-=======
-	  //	std::cout << "node with key = " << x << " not present in the tree" << std::endl;
->>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 		return;
 	}
 
@@ -347,11 +309,7 @@ void bst<kt,vt,cmp>::erase(const kt& x) noexcept {
     } else { //I have both children 
 
     	auto next = (++it)._current;
-<<<<<<< HEAD
     	//std::cout << "next key = " << (next->_element).first << std::endl;
-=======
-	//	std::cout << "next key = " << (next->_element).first << std::endl;
->>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
     	auto next_parent = next->_parent;
     	//std::cout << "next_parent key = " << (next_parent->_element).first << std::endl;
 
@@ -420,10 +378,4 @@ void bst<kt,vt,cmp>::erase(const kt& x) noexcept {
     }
 }
 
-<<<<<<< HEAD
 #endif
-=======
-
-
-#endif
->>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46

@@ -65,11 +65,7 @@ struct bst<kt, vt, cmp>::node{
 
   node(node * twin, node * to_stick) : _element{twin->_element}, _parent{to_stick} {
 
-<<<<<<< HEAD
     //std::cout << "explicit iterative ctor" << std::endl;
-=======
-    // std::cout << "explicit iterative ctor" << std::endl;
->>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
     if((twin->_left).get() != nullptr){
       //std::cout << "constructing the left child of node with key = " << _element.first << std::endl;
       _left = std::make_unique<node>((twin->_left).get(), this);
@@ -110,20 +106,10 @@ struct bst<kt, vt, cmp>::node{
   *
   * This constructor is only called by the emplace function.
   */	
-
-<<<<<<< HEAD
+  
   node(kt&& k, vt&& v) noexcept : _element{std::make_pair<kt,vt>(std::move(k), std::move(v))} {
     //std::cout << "key from new ctor = " << k << " value from new ctor = " << v << std::endl;
   } 
-
-=======
-  node(kt&& k, vt&& v) noexcept : _element{std::make_pair<kt,vt>(std::move(k), std::move(v))}	{
-    //  std::cout << "key from new ctor = " << k << " value from new ctor = " << v << std::endl;
-    //node(std::make_pair<kt,vt>(std::move(k),std::move(v)), nullptr);
-  } 
-
-  //   ~node() {std::cout << "node dtor with key " << (this->_element).first << std::endl;} //do we need to delete the raw pointer??
->>>>>>> d1e2f206c7a37692a88ab3d31046e131065cdf46
 };
 
 #endif
