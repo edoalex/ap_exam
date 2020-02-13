@@ -1,0 +1,125 @@
+\hypertarget{classbst}{}\doxysection{bst$<$ kt, vt, cmp $>$ Class Template Reference}
+\label{classbst}\index{bst$<$ kt, vt, cmp $>$@{bst$<$ kt, vt, cmp $>$}}
+
+
+Templated implementation of a binary search tree class.  
+
+
+
+
+{\ttfamily \#include $<$bst.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classbst_a7b11cca2a3b4394915600194f741ab16}\label{classbst_a7b11cca2a3b4394915600194f741ab16}} 
+using {\bfseries pair\+\_\+type} = std\+::pair$<$ const kt, vt $>$
+\item 
+\mbox{\Hypertarget{classbst_a429b0445783ff6486882db5dee900ce0}\label{classbst_a429b0445783ff6486882db5dee900ce0}} 
+using {\bfseries iterator} = \+\_\+\+\_\+iterator$<$ node\+\_\+type, pair\+\_\+type $>$
+\item 
+\mbox{\Hypertarget{classbst_a72485696d999bf489c6156f6327a2163}\label{classbst_a72485696d999bf489c6156f6327a2163}} 
+using {\bfseries const\+\_\+iterator} = \+\_\+\+\_\+iterator$<$ node\+\_\+type, const pair\+\_\+type $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classbst_a8d0c20c3ace61d4ffde5ab90fbe3226b}\label{classbst_a8d0c20c3ace61d4ffde5ab90fbe3226b}} 
+{\bfseries bst} (cmp op)
+\item 
+\mbox{\Hypertarget{classbst_a2f94afc86338e90d9110b713383ab492}\label{classbst_a2f94afc86338e90d9110b713383ab492}} 
+{\bfseries bst} (const \mbox{\hyperlink{classbst}{bst}} \&B)
+\item 
+\mbox{\Hypertarget{classbst_ac0e8f8be6be76d77809ba1d21e1be66a}\label{classbst_ac0e8f8be6be76d77809ba1d21e1be66a}} 
+{\bfseries bst} (\mbox{\hyperlink{classbst}{bst}} \&\&B) noexcept
+\item 
+\mbox{\Hypertarget{classbst_a962fce8c5811b3bab57d298b6752481f}\label{classbst_a962fce8c5811b3bab57d298b6752481f}} 
+\mbox{\hyperlink{classbst}{bst}} \& {\bfseries operator=} (const \mbox{\hyperlink{classbst}{bst}} \&B)
+\item 
+\mbox{\Hypertarget{classbst_a3e595b50a147f3c6fe64f1b1514c539d}\label{classbst_a3e595b50a147f3c6fe64f1b1514c539d}} 
+\mbox{\hyperlink{classbst}{bst}} \& {\bfseries operator=} (\mbox{\hyperlink{classbst}{bst}} \&\&B) noexcept
+\item 
+\mbox{\Hypertarget{classbst_aaaeffdb4fae1103a3f6185c74ce43281}\label{classbst_aaaeffdb4fae1103a3f6185c74ce43281}} 
+std\+::pair$<$ iterator, bool $>$ {\bfseries insert} (const pair\+\_\+type \&x)
+\item 
+\mbox{\Hypertarget{classbst_aafe95673b19139abd52e242e5d72b66d}\label{classbst_aafe95673b19139abd52e242e5d72b66d}} 
+std\+::pair$<$ iterator, bool $>$ {\bfseries insert} (pair\+\_\+type \&\&x) noexcept
+\item 
+\mbox{\Hypertarget{classbst_a03e09650b371d423315f26520d6e34a6}\label{classbst_a03e09650b371d423315f26520d6e34a6}} 
+{\footnotesize template$<$class... Types$>$ }\\std\+::pair$<$ iterator, bool $>$ {\bfseries emplace} (Types \&\&... args)
+\item 
+\mbox{\Hypertarget{classbst_a368b8f209f5158d55374a7cdbd110962}\label{classbst_a368b8f209f5158d55374a7cdbd110962}} 
+void {\bfseries clear} () noexcept
+\item 
+\mbox{\Hypertarget{classbst_a74c68495fd963c501084d129d4c0f5b1}\label{classbst_a74c68495fd963c501084d129d4c0f5b1}} 
+iterator {\bfseries begin} () noexcept
+\item 
+\mbox{\Hypertarget{classbst_a8631fb03856c2cd4602fc7446502195c}\label{classbst_a8631fb03856c2cd4602fc7446502195c}} 
+const\+\_\+iterator {\bfseries begin} () const noexcept
+\item 
+\mbox{\Hypertarget{classbst_a74e78aa7f879a5df0b933651174de42b}\label{classbst_a74e78aa7f879a5df0b933651174de42b}} 
+const\+\_\+iterator {\bfseries cbegin} () const noexcept
+\item 
+\mbox{\Hypertarget{classbst_aed3a831efc810b5084cb0c9f4adeb16a}\label{classbst_aed3a831efc810b5084cb0c9f4adeb16a}} 
+iterator {\bfseries end} () noexcept
+\item 
+\mbox{\Hypertarget{classbst_aa9fa40cf0781035f180aa56d15f0e2d1}\label{classbst_aa9fa40cf0781035f180aa56d15f0e2d1}} 
+const\+\_\+iterator {\bfseries end} () const noexcept
+\item 
+\mbox{\Hypertarget{classbst_a2f78931b69f0a121823b60393f1b9745}\label{classbst_a2f78931b69f0a121823b60393f1b9745}} 
+const\+\_\+iterator {\bfseries cend} () const noexcept
+\item 
+\mbox{\Hypertarget{classbst_a6c2bdb4e40b2a6871840af57f42765f8}\label{classbst_a6c2bdb4e40b2a6871840af57f42765f8}} 
+iterator {\bfseries find} (const kt \&x) noexcept
+\item 
+\mbox{\Hypertarget{classbst_a2971e3ad8b28cf5bdf08128eee48d26d}\label{classbst_a2971e3ad8b28cf5bdf08128eee48d26d}} 
+const\+\_\+iterator {\bfseries find} (const kt \&x) const noexcept
+\item 
+\mbox{\Hypertarget{classbst_a4ac74357616de45d5d3e7cbb9850854e}\label{classbst_a4ac74357616de45d5d3e7cbb9850854e}} 
+void {\bfseries balance} () noexcept
+\item 
+\mbox{\Hypertarget{classbst_ae9b1b8ff05ece0ac05e8dfca244e556e}\label{classbst_ae9b1b8ff05ece0ac05e8dfca244e556e}} 
+vt \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (const kt \&x) noexcept
+\item 
+\mbox{\Hypertarget{classbst_a024d828ac753881e50cd7cc93a47a3cc}\label{classbst_a024d828ac753881e50cd7cc93a47a3cc}} 
+vt \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (kt \&\&x) noexcept
+\item 
+\mbox{\Hypertarget{classbst_af5ed588b2c686b3b53a2b5466a617f73}\label{classbst_af5ed588b2c686b3b53a2b5466a617f73}} 
+void {\bfseries erase} (const kt \&x) noexcept
+\item 
+\mbox{\Hypertarget{classbst_afcc3983e4d16eaa758aec0adb71759bb}\label{classbst_afcc3983e4d16eaa758aec0adb71759bb}} 
+{\footnotesize template$<$class... Types$>$ }\\std\+::pair$<$ typename \mbox{\hyperlink{classbst}{bst}}$<$ kt, vt, cmp $>$\+::iterator, bool $>$ {\bfseries emplace} (Types \&\&... args)
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classbst_ae4b7d69364fca0855f74abdcad674ebf}\label{classbst_ae4b7d69364fca0855f74abdcad674ebf}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const \mbox{\hyperlink{classbst}{bst}} \&x)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$\newline
+class bst$<$ kt, vt, cmp $>$}
+
+Templated implementation of a binary search tree class. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em kt} & Type of node keys. \\
+\hline
+{\em vt} & Type of node values. \\
+\hline
+{\em cmp} & Type of the custom comparison operator between nodes. Default std\+::less$<$kt$>$. \\
+\hline
+\end{DoxyTemplParams}
+
+
+Definition at line 26 of file bst.\+hpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{bst_8hpp}{bst.\+hpp}}\item 
+include/\mbox{\hyperlink{bst__functions_8hpp}{bst\+\_\+functions.\+hpp}}\end{DoxyCompactItemize}

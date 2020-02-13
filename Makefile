@@ -1,8 +1,17 @@
 CXX = c++
 CXXFLAGS = -std=c++14 -Wall -Wextra -I include/
+DEP = include/bst.hpp include/bst_functions.hpp include/node.hpp include/iterator.hpp include/ap_error.h
 
-SRC = src/bst.cpp main.cpp
-OBJ = $(SRC:.cpp=.o)
+all: exe.x docs
 
-all:
-	 c++ main.cpp -o exe.x -std=c++14 -I include -Wall -Wextra -g
+exe.x: $(DEP)
+	$(CXX) main.cpp -o $@ $(CXXFLAGS)
+
+docs: $(DEP)
+	doxygen
+
+clean:
+	@rm -f *~ */*~ exe.x
+
+
+.PHONY: clean all format

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+  <Token>
+    <TokenIdentifier>
+      <Name>bst</Name>
+      <APILanguage>c</APILanguage>
+      <Type>tmplt</Type>
+      <Scope>bst</Scope>
+    </TokenIdentifier>
+    <Path>da/ddd/classbst.html</Path>
+    <Abstract>Templated implementation of a binary search tree class.</Abstract>
+    <DeclaredIn>bst.hpp</DeclaredIn>
+  </Token>
+</Tokens>
