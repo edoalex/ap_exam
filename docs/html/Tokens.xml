@@ -8,7 +8,7 @@
       <Scope>bst</Scope>
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
-    <Abstract>Templated implementation of a binary search tree class.</Abstract>
+    <Abstract>Templated implementation of a binary search tree class. </Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
 </Tokens>

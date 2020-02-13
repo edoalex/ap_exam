@@ -50,7 +50,7 @@ void bst<kt,vt,cmp>::order(std::vector<std::pair<kt,vt>>& v) noexcept {
 
 template <typename kt, typename vt, typename cmp>
 std::pair<typename bst<kt,vt,cmp>::iterator, bool> bst<kt,vt,cmp>::insert(const pair_type& x) { //check if it can be optimized
-	std::cout << "insert(const pair_type& x) called" << std::endl;
+  //	std::cout << "insert(const pair_type& x) called" << std::endl;
 	if(head == nullptr){
 		head.reset(new node_type{x, nullptr});
 		return std::make_pair(iterator{head.get()}, true);
@@ -85,7 +85,7 @@ std::pair<typename bst<kt,vt,cmp>::iterator, bool> bst<kt,vt,cmp>::insert(const 
 
 template <typename kt, typename vt, typename cmp>
 std::pair<typename bst<kt,vt,cmp>::iterator, bool> bst<kt,vt,cmp>::insert(pair_type&& x) noexcept { //check if it can be optimized
-	std::cout << "insert(pair_type&& x) called" << std::endl;
+  //	std::cout << "insert(pair_type&& x) called" << std::endl;
 	if(!head){
 	    head.reset(new node_type{std::move(x), nullptr}); // maybe nullprt = make_shared(nullptr)
 	    return std::make_pair(iterator{head.get()}, true);
@@ -128,7 +128,7 @@ std::pair<typename bst<kt,vt,cmp>::iterator,bool> bst<kt,vt,cmp>::emplace(Types&
 	auto possible_node = buffer.get();
 	auto it = find((possible_node->_element).first);
 	if(it._current != nullptr){
-		std::cout << "destructing the node" << std::endl;
+	  //	std::cout << "destructing the node" << std::endl;
 		buffer.reset();
 		return std::make_pair(iterator{nullptr}, false);
 	}
@@ -202,7 +202,7 @@ typename bst<kt,vt,cmp>::const_iterator bst<kt,vt,cmp>::find(const kt& x) const 
   //	std::cout << "greetings from const_iterator find(...)" << std::endl;
 
 	if(!head){
-		std::cout << "the tree is empty" << std::endl;
+	  //	std::cout << "the tree is empty" << std::endl;
 		return cend();
 	}
 
@@ -213,7 +213,7 @@ typename bst<kt,vt,cmp>::const_iterator bst<kt,vt,cmp>::find(const kt& x) const 
 		if(_op(x,(tmp->_element).first) == true){
 
 			if(tmp->_left == nullptr){
-				std::cout << "node with key " << x << " not found in the tree" << std::endl;
+			  //	std::cout << "node with key " << x << " not found in the tree" << std::endl;
 				return end();
 			}
 
@@ -222,7 +222,7 @@ typename bst<kt,vt,cmp>::const_iterator bst<kt,vt,cmp>::find(const kt& x) const 
 
 			if(tmp->_right == nullptr){
 
-				std::cout << "node with key " << x << " not found in the tree" << std::endl;
+			  //	std::cout << "node with key " << x << " not found in the tree" << std::endl;
 				return end();
 
 			}
@@ -230,7 +230,7 @@ typename bst<kt,vt,cmp>::const_iterator bst<kt,vt,cmp>::find(const kt& x) const 
 		}
 	}
 
-	std::cout << "node with key " << x << " found in the tree" << std::endl;
+	//	std::cout << "node with key " << x << " found in the tree" << std::endl;
 	return const_iterator{tmp};
 }
 
@@ -239,7 +239,7 @@ void bst<kt,vt,cmp>::balance() noexcept {
 
 	auto start = begin();
 	if(start._current == nullptr){
-		std::cout << "The tree is empty" << std::endl;
+	  //	std::cout << "The tree is empty" << std::endl;
 		return;
 	}
 	auto stop = end();
@@ -265,7 +265,7 @@ void bst<kt,vt,cmp>::erase(const kt& x) noexcept {//move
 	auto me = it._current;
 
 	if(!me){
-		std::cout << "node with key = " << x << " not present in the tree" << std::endl;
+	  //	std::cout << "node with key = " << x << " not present in the tree" << std::endl;
 		return;
 	}
 
@@ -309,9 +309,9 @@ void bst<kt,vt,cmp>::erase(const kt& x) noexcept {//move
     } else { // I have both children 
 
     	auto next = (++it)._current;
-    	std::cout << "next key = " << (next->_element).first << std::endl;
+	//	std::cout << "next key = " << (next->_element).first << std::endl;
     	auto next_parent = next->_parent;
-    	std::cout << "next_parent key = " << (next_parent->_element).first << std::endl;
+    	//std::cout << "next_parent key = " << (next_parent->_element).first << std::endl;
 
       // if first_right = next    ==    next_parent = me  (pathological case)
     	if ( next_parent == me ){

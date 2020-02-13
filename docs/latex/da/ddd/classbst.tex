@@ -1,4 +1,4 @@
-\hypertarget{classbst}{}\doxysection{bst$<$ kt, vt, cmp $>$ Class Template Reference}
+\hypertarget{classbst}{}\section{bst$<$ kt, vt, cmp $>$ Class Template Reference}
 \label{classbst}\index{bst$<$ kt, vt, cmp $>$@{bst$<$ kt, vt, cmp $>$}}
 
 
@@ -9,7 +9,7 @@ Templated implementation of a binary search tree class.
 
 {\ttfamily \#include $<$bst.\+hpp$>$}
 
-\doxysubsection*{Public Types}
+\subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classbst_a7b11cca2a3b4394915600194f741ab16}\label{classbst_a7b11cca2a3b4394915600194f741ab16}} 
@@ -21,23 +21,23 @@ using {\bfseries iterator} = \+\_\+\+\_\+iterator$<$ node\+\_\+type, pair\+\_\+t
 \mbox{\Hypertarget{classbst_a72485696d999bf489c6156f6327a2163}\label{classbst_a72485696d999bf489c6156f6327a2163}} 
 using {\bfseries const\+\_\+iterator} = \+\_\+\+\_\+iterator$<$ node\+\_\+type, const pair\+\_\+type $>$
 \end{DoxyCompactItemize}
-\doxysubsection*{Public Member Functions}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classbst_a8d0c20c3ace61d4ffde5ab90fbe3226b}\label{classbst_a8d0c20c3ace61d4ffde5ab90fbe3226b}} 
 {\bfseries bst} (cmp op)
 \item 
 \mbox{\Hypertarget{classbst_a2f94afc86338e90d9110b713383ab492}\label{classbst_a2f94afc86338e90d9110b713383ab492}} 
-{\bfseries bst} (const \mbox{\hyperlink{classbst}{bst}} \&B)
+{\bfseries bst} (const \hyperlink{classbst}{bst} \&B)
 \item 
 \mbox{\Hypertarget{classbst_ac0e8f8be6be76d77809ba1d21e1be66a}\label{classbst_ac0e8f8be6be76d77809ba1d21e1be66a}} 
-{\bfseries bst} (\mbox{\hyperlink{classbst}{bst}} \&\&B) noexcept
+{\bfseries bst} (\hyperlink{classbst}{bst} \&\&B) noexcept
 \item 
 \mbox{\Hypertarget{classbst_a962fce8c5811b3bab57d298b6752481f}\label{classbst_a962fce8c5811b3bab57d298b6752481f}} 
-\mbox{\hyperlink{classbst}{bst}} \& {\bfseries operator=} (const \mbox{\hyperlink{classbst}{bst}} \&B)
+\hyperlink{classbst}{bst} \& {\bfseries operator=} (const \hyperlink{classbst}{bst} \&B)
 \item 
 \mbox{\Hypertarget{classbst_a3e595b50a147f3c6fe64f1b1514c539d}\label{classbst_a3e595b50a147f3c6fe64f1b1514c539d}} 
-\mbox{\hyperlink{classbst}{bst}} \& {\bfseries operator=} (\mbox{\hyperlink{classbst}{bst}} \&\&B) noexcept
+\hyperlink{classbst}{bst} \& {\bfseries operator=} (\hyperlink{classbst}{bst} \&\&B) noexcept
 \item 
 \mbox{\Hypertarget{classbst_aaaeffdb4fae1103a3f6185c74ce43281}\label{classbst_aaaeffdb4fae1103a3f6185c74ce43281}} 
 std\+::pair$<$ iterator, bool $>$ {\bfseries insert} (const pair\+\_\+type \&x)
@@ -88,17 +88,17 @@ vt \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (kt \&\&x) noexcept
 void {\bfseries erase} (const kt \&x) noexcept
 \item 
 \mbox{\Hypertarget{classbst_afcc3983e4d16eaa758aec0adb71759bb}\label{classbst_afcc3983e4d16eaa758aec0adb71759bb}} 
-{\footnotesize template$<$class... Types$>$ }\\std\+::pair$<$ typename \mbox{\hyperlink{classbst}{bst}}$<$ kt, vt, cmp $>$\+::iterator, bool $>$ {\bfseries emplace} (Types \&\&... args)
+{\footnotesize template$<$class... Types$>$ }\\std\+::pair$<$ typename \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::iterator, bool $>$ {\bfseries emplace} (Types \&\&... args)
 \end{DoxyCompactItemize}
-\doxysubsection*{Friends}
+\subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classbst_ae4b7d69364fca0855f74abdcad674ebf}\label{classbst_ae4b7d69364fca0855f74abdcad674ebf}} 
-std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const \mbox{\hyperlink{classbst}{bst}} \&x)
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classbst}{bst} \&x)
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\subsection{Detailed Description}
 \subsubsection*{template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$\newline
 class bst$<$ kt, vt, cmp $>$}
 
@@ -121,5 +121,5 @@ Definition at line 26 of file bst.\+hpp.
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-include/\mbox{\hyperlink{bst_8hpp}{bst.\+hpp}}\item 
-include/\mbox{\hyperlink{bst__functions_8hpp}{bst\+\_\+functions.\+hpp}}\end{DoxyCompactItemize}
+include/\hyperlink{bst_8hpp}{bst.\+hpp}\item 
+include/\hyperlink{bst__functions_8hpp}{bst\+\_\+functions.\+hpp}\end{DoxyCompactItemize}

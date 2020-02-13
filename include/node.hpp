@@ -43,14 +43,14 @@ struct bst<kt, vt, cmp>::node{
 
   explicit node(node * twin, node * to_stick) : _element{twin->_element}, _parent{to_stick} {
 
-    std::cout << "explicit iterative ctor" << std::endl;
+    // std::cout << "explicit iterative ctor" << std::endl;
     if((twin->_left).get() != nullptr){
-      std::cout << "constructing the left child of node with key = " << _element.first << std::endl;
+      //std::cout << "constructing the left child of node with key = " << _element.first << std::endl;
       _left = std::make_unique<node>((twin->_left).get(), this);
     }
 
     if((twin->_right).get() != nullptr){
-      std::cout << "constructing the right child of node with key = " << _element.first << std::endl;
+      //std::cout << "constructing the right child of node with key = " << _element.first << std::endl;
       _right = std::make_unique<node>((twin->_right).get(), this);		
     }	
   }
@@ -62,11 +62,11 @@ struct bst<kt, vt, cmp>::node{
   node(const pair_type& element, node * parent) : _element{element}, _parent{parent} {} //custom ctor
 
   node(kt&& k, vt&& v) noexcept : _element{std::make_pair<kt,vt>(std::move(k), std::move(v))}	{
-    std::cout << "key from new ctor = " << k << " value from new ctor = " << v << std::endl;
+    //  std::cout << "key from new ctor = " << k << " value from new ctor = " << v << std::endl;
     //node(std::make_pair<kt,vt>(std::move(k),std::move(v)), nullptr);
   } 
 
-  ~node() {std::cout << "node dtor with key " << (this->_element).first << std::endl;} //do we need to delete the raw pointer??
+  //   ~node() {std::cout << "node dtor with key " << (this->_element).first << std::endl;} //do we need to delete the raw pointer??
 };
 
 #endif

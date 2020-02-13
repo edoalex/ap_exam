@@ -65,12 +65,12 @@
              <Node>
               <Name>begin</Name>
               <Path>da/ddd/classbst.html</Path>
-              <Anchor>a8631fb03856c2cd4602fc7446502195c</Anchor>
+              <Anchor>a74c68495fd963c501084d129d4c0f5b1</Anchor>
              </Node>
              <Node>
               <Name>begin</Name>
               <Path>da/ddd/classbst.html</Path>
-              <Anchor>a74c68495fd963c501084d129d4c0f5b1</Anchor>
+              <Anchor>a8631fb03856c2cd4602fc7446502195c</Anchor>
              </Node>
              <Node>
               <Name>cbegin</Name>
@@ -100,12 +100,12 @@
              <Node>
               <Name>end</Name>
               <Path>da/ddd/classbst.html</Path>
-              <Anchor>aa9fa40cf0781035f180aa56d15f0e2d1</Anchor>
+              <Anchor>aed3a831efc810b5084cb0c9f4adeb16a</Anchor>
              </Node>
              <Node>
               <Name>end</Name>
               <Path>da/ddd/classbst.html</Path>
-              <Anchor>aed3a831efc810b5084cb0c9f4adeb16a</Anchor>
+              <Anchor>aa9fa40cf0781035f180aa56d15f0e2d1</Anchor>
              </Node>
              <Node>
               <Name>erase</Name>
@@ -115,12 +115,12 @@
              <Node>
               <Name>find</Name>
               <Path>da/ddd/classbst.html</Path>
-              <Anchor>a2971e3ad8b28cf5bdf08128eee48d26d</Anchor>
+              <Anchor>a6c2bdb4e40b2a6871840af57f42765f8</Anchor>
              </Node>
              <Node>
               <Name>find</Name>
               <Path>da/ddd/classbst.html</Path>
-              <Anchor>a6c2bdb4e40b2a6871840af57f42765f8</Anchor>
+              <Anchor>a2971e3ad8b28cf5bdf08128eee48d26d</Anchor>
              </Node>
              <Node>
               <Name>insert</Name>
@@ -135,12 +135,12 @@
              <Node>
               <Name>operator=</Name>
               <Path>da/ddd/classbst.html</Path>
-              <Anchor>a3e595b50a147f3c6fe64f1b1514c539d</Anchor>
+              <Anchor>a962fce8c5811b3bab57d298b6752481f</Anchor>
              </Node>
              <Node>
               <Name>operator=</Name>
               <Path>da/ddd/classbst.html</Path>
-              <Anchor>a962fce8c5811b3bab57d298b6752481f</Anchor>
+              <Anchor>a3e595b50a147f3c6fe64f1b1514c539d</Anchor>
              </Node>
              <Node>
               <Name>operator[]</Name>
@@ -169,7 +169,7 @@
        </Node>
        <Node>
         <Name>Files</Name>
-        <Path>files.html</Path>
+        <Path></Path>
         <Subnodes>
          <Node>
           <Name>File List</Name>
@@ -235,12 +235,12 @@
                  <Node>
                   <Name>begin</Name>
                   <Path>da/ddd/classbst.html</Path>
-                  <Anchor>a8631fb03856c2cd4602fc7446502195c</Anchor>
+                  <Anchor>a74c68495fd963c501084d129d4c0f5b1</Anchor>
                  </Node>
                  <Node>
                   <Name>begin</Name>
                   <Path>da/ddd/classbst.html</Path>
-                  <Anchor>a74c68495fd963c501084d129d4c0f5b1</Anchor>
+                  <Anchor>a8631fb03856c2cd4602fc7446502195c</Anchor>
                  </Node>
                  <Node>
                   <Name>cbegin</Name>
@@ -270,12 +270,12 @@
                  <Node>
                   <Name>end</Name>
                   <Path>da/ddd/classbst.html</Path>
-                  <Anchor>aa9fa40cf0781035f180aa56d15f0e2d1</Anchor>
+                  <Anchor>aed3a831efc810b5084cb0c9f4adeb16a</Anchor>
                  </Node>
                  <Node>
                   <Name>end</Name>
                   <Path>da/ddd/classbst.html</Path>
-                  <Anchor>aed3a831efc810b5084cb0c9f4adeb16a</Anchor>
+                  <Anchor>aa9fa40cf0781035f180aa56d15f0e2d1</Anchor>
                  </Node>
                  <Node>
                   <Name>erase</Name>
@@ -285,12 +285,12 @@
                  <Node>
                   <Name>find</Name>
                   <Path>da/ddd/classbst.html</Path>
-                  <Anchor>a2971e3ad8b28cf5bdf08128eee48d26d</Anchor>
+                  <Anchor>a6c2bdb4e40b2a6871840af57f42765f8</Anchor>
                  </Node>
                  <Node>
                   <Name>find</Name>
                   <Path>da/ddd/classbst.html</Path>
-                  <Anchor>a6c2bdb4e40b2a6871840af57f42765f8</Anchor>
+                  <Anchor>a2971e3ad8b28cf5bdf08128eee48d26d</Anchor>
                  </Node>
                  <Node>
                   <Name>insert</Name>
@@ -305,12 +305,12 @@
                  <Node>
                   <Name>operator=</Name>
                   <Path>da/ddd/classbst.html</Path>
-                  <Anchor>a3e595b50a147f3c6fe64f1b1514c539d</Anchor>
+                  <Anchor>a962fce8c5811b3bab57d298b6752481f</Anchor>
                  </Node>
                  <Node>
                   <Name>operator=</Name>
                   <Path>da/ddd/classbst.html</Path>
-                  <Anchor>a962fce8c5811b3bab57d298b6752481f</Anchor>
+                  <Anchor>a3e595b50a147f3c6fe64f1b1514c539d</Anchor>
                  </Node>
                  <Node>
                   <Name>operator[]</Name>

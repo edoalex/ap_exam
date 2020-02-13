@@ -105,7 +105,7 @@ public:
 		return *this;
 	} 
 
-	~bst() noexcept {std::cout << "bst dtor " << std::endl;}
+  //~bst() noexcept {std::cout << "bst dtor " << std::endl;}
 
 std::pair<iterator, bool> insert(const pair_type& x);
 
