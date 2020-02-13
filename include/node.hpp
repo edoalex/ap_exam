@@ -16,6 +16,7 @@
 #include"ap_error.h" // exceptions
 #include"bst.hpp"
 #include"iterator.hpp"
+#include"bst_functions.hpp"
 
 /**
  * @brief Templated implementation of a node struct.
