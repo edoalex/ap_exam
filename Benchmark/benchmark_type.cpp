@@ -1,8 +1,6 @@
 #include"bst.hpp"
 #include<iostream>
 #include<chrono>
-#include<map>
-#include<unordered_map>
 #include<random>
 #include<algorithm>
 #include<vector>
