@@ -10,9 +10,9 @@
 // auto t0 = std::chrono::high_resolution_clock::now();
 // auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(t1-t0);
 
-#define n_step 10000
+#define n_step 5000
 #define max_n  1000000
-#define sample_size 100
+#define sample_size 200
 
 /*
 template<typename S>
