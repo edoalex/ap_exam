@@ -7,22 +7,9 @@
 #include<algorithm>
 #include<vector>
 
-// auto t0 = std::chrono::high_resolution_clock::now();
-// auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(t1-t0);
-
 #define n_step 5000
 #define max_n  1000000
 #define sample_size 200
-
-/*
-template<typename S>
-auto select_random(const S &s, size_t n) {
-  auto it = std::begin(s);
-  // 'advance' the iterator n times
-  std::advance(it,n);
-  return it;
-}
-*/
 
 void compare_map(){
 
@@ -46,7 +33,6 @@ void compare_map(){
     // add x_step elements to containers
     for(int j{0}; j<n_step; ++j){
       auto ins = v[ j+i ];
-      //std::cout << "I'm inserting key " << ins << std::endl;
       tree.insert({ins, ins});
       unbal_tree.insert({ins, ins});
       mp[ins];
@@ -70,7 +56,7 @@ void compare_map(){
     t1 = std::chrono::high_resolution_clock::now();
     elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(t1-t0);
     std::cout << elapsed.count()/sample_size << "\t";
-    //std::cout << "Non-balanced tree takes \t" << elapsed.count()/10 << "\tns\n";
+    //std::cout << "Non-balanced tree takes \t" << elapsed.count()/sample_size << "\tns\n";
     
     // measure tree
     t0 = std::chrono::high_resolution_clock::now();
@@ -82,7 +68,7 @@ void compare_map(){
     t1 = std::chrono::high_resolution_clock::now();
     elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(t1-t0);
     std::cout << elapsed.count()/sample_size << "\t";
-    //std::cout << "Balanced tree takes \t\t" << elapsed.count()/10 << "\tns\n";
+    //std::cout << "Balanced tree takes \t\t" << elapsed.count()/sample_size << "\tns\n";
 
     // measure mp
     t0 = std::chrono::high_resolution_clock::now();
@@ -94,7 +80,7 @@ void compare_map(){
     t1 = std::chrono::high_resolution_clock::now();
     elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(t1-t0);
     std::cout << elapsed.count()/sample_size << "\t";
-    //std::cout << "Ordered map takes \t\t" << elapsed.count()/10 << "\tns\n";
+    //std::cout << "Ordered map takes \t\t" << elapsed.count()/sample_size << "\tns\n";
 
     // measure unord_mp
     t0 = std::chrono::high_resolution_clock::now();
@@ -106,7 +92,7 @@ void compare_map(){
     t1 = std::chrono::high_resolution_clock::now();
     elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(t1-t0);
     std::cout << elapsed.count()/sample_size << "\t\n";
-    //std::cout << "Unordered map takes \t\t" << elapsed.count()/10 << "\tns\n\n";
+    //std::cout << "Unordered map takes \t\t" << elapsed.count()/sample_size << "\tns\n\n";
       
   }
 }
@@ -118,7 +104,7 @@ int main(){
   try {
 
     compare_map();
-
+    
   } catch (const std::exception& e) {
     std::cerr << e.what() << std::endl;
     return 1;
