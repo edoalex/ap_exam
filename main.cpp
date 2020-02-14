@@ -7,65 +7,54 @@ int main(){
   try {
    
     bst<int,int> tree{};
-    //tree.insert({1,2});
-
-    //bst<int,int> tree_2{};
-    //std::cout << tree << std::endl;
-    //tree_2 = tree;
-    //tree_2.insert({1,2});
-    //tree.emplace(std::make_pair<int,int>(9,5),nullptr);
-    //tree.insert({0,2});
-    //std::cout << tree << std::endl;
-    // tree.emplace(1,2);
-    //throw std::runtime_error("Are there leaks?");
-	
-
-      tree.insert({0,3});
-      tree.insert({1,10});
-      tree.insert({2,12});
-      tree.insert({3,11});
-      tree.insert({4,15});
-      tree.insert({5,9});
-      tree.insert({6,1});
-      tree.insert({7,2});
-      tree.insert({8,1});
-      tree.insert({9,14});
-      tree.insert({10,13});
-
-      std::cout << tree << std::endl;
-      
-      auto a = 3;
-      tree[22] = 22;
-      tree[a] = a;
-
-      std::cout << tree << std::endl;
-
-      
-      
-      // for(auto x : tree){ std::cout << x.first << std::endl; }
     
+    tree.insert({0,0});
+    std::pair<int,int> node = {1,1};
+    tree.insert( node );
 
-    //tree.balance();
+    bst<int,int> tree_m = std::move(tree);
+    bst<int,int> tree_c = tree_m;
 
-    //	bst<int,int> tree_copy{std::move(tree)};
+    tree_c.insert({2,2});
+    tree_m.insert({3,3});
+    tree.insert({4,4});
+    
+    std::cout << "tree:\n" << tree << std::endl;
+    std::cout << "tree_m:\n"<< tree_m << std::endl;
+    std::cout << "tree_c:\n"<< tree_c << std::endl;
 
-    //tree_copy.insert({4,8});
+    tree = tree_c;
 
-    //tree_copy.emplace(10,7);
+    tree.emplace(5,5);
+    tree.emplace(6,6);
 
-    //std::cout << tree_copy << std::endl;
+    tree[5] = 555;
+    auto key = 6;
+    tree[key] = 66;
+    tree.erase(2);
 
-    //tree_copy = ;
-	
-    //tree[5] = 50;
+    tree_m.clear();
+    tree_m = std::move(tree_c);
+    std::cout << "\n\ntree:\n" << tree << std::endl;
+    std::cout << "tree_m:\n"<< tree_m << std::endl;
+    std::cout << "tree_c:\n"<< tree_c << std::endl;
 
-    //tree.erase();
-    //	std::cout << tree_copy << std::endl;
+    for(auto i=0; i<10; ++i){
+      tree.insert({i,i});
+    }
+    
+    tree[10] = 10;
+    tree.balance();
 
-    // std::cout << tree << std::endl;
-
-
-    //std::cout << tree << std::endl;
+    auto it = tree.find(4);
+    auto sentinel = tree.end();
+    
+    while( it != sentinel ){
+      std::cout << "key: " << it->first
+		<< "\tvalue: " << (*it).second
+		<< std::endl;
+      ++it;
+    }
 
   } catch (const std::exception& e) {
     std::cerr << e.what() << std::endl;
