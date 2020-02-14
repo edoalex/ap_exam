@@ -14,8 +14,9 @@
 void compare_map(){
 
   std::vector<int> v;
-  for(unsigned int i{0}; i<max_n; i++)
+  for(unsigned int i{0}; i<max_n; i++){
     v.push_back(i);
+  }
   std::random_shuffle(std::begin(v), std::end(v));
   
   bst<int,int> tree{};
@@ -30,7 +31,7 @@ void compare_map(){
   
   for(int i{0}; i<max_n; i += n_step){
 
-    // add x_step elements to containers
+    // add n_step elements to containers
     for(int j{0}; j<n_step; ++j){
       auto ins = v[ j+i ];
       tree.insert({ins, ins});
@@ -43,7 +44,7 @@ void compare_map(){
     // balance the tree
     tree.balance();
     
-    // measure finding `sample` random elements 
+    // measure finding `sample_size` random elements 
     std::random_shuffle(std::begin(keys), std::end(keys));
 
     // measure unbal_tree
