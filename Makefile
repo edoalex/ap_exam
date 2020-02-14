@@ -8,7 +8,7 @@ exe.x: $(DEP)
 	$(CXX) main.cpp -o $@ $(CXXFLAGS)
 
 docs: $(DEP)
-	doxygen
+	doxygen docs/Doxyfile
 
 clean:
 	@rm -f *~ */*~ exe.x

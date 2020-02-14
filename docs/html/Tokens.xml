@@ -8,7 +8,7 @@
       <Scope>bst</Scope>
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
-    <Abstract>Templated implementation of a binary search tree class. </Abstract>
+    <Abstract>Templated implementation of a binary search tree class.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -50,7 +50,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>aad9ff859f9b3d8896e4cd9bf14143777</Anchor>
-    <Abstract>Default constructor for binary search tree. </Abstract>
+    <Abstract>Default constructor for binary search tree.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -62,7 +62,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>a8d0c20c3ace61d4ffde5ab90fbe3226b</Anchor>
-    <Abstract>Custom constructor for binary search tree. </Abstract>
+    <Abstract>Custom constructor for binary search tree.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -74,7 +74,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>a2f94afc86338e90d9110b713383ab492</Anchor>
-    <Abstract>Copy constructor for binary search tree. </Abstract>
+    <Abstract>Copy constructor for binary search tree.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -86,7 +86,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>ac0e8f8be6be76d77809ba1d21e1be66a</Anchor>
-    <Abstract>Move constructor for binary search tree. </Abstract>
+    <Abstract>Move constructor for binary search tree.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -98,7 +98,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>a962fce8c5811b3bab57d298b6752481f</Anchor>
-    <Abstract>Copy assignment for binary search tree. </Abstract>
+    <Abstract>Copy assignment for binary search tree.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -110,7 +110,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>a3e595b50a147f3c6fe64f1b1514c539d</Anchor>
-    <Abstract>Move assignment for binary search tree. </Abstract>
+    <Abstract>Move assignment for binary search tree.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -122,7 +122,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>aaaeffdb4fae1103a3f6185c74ce43281</Anchor>
-    <Abstract>Inserts a new node in the binary search tree. </Abstract>
+    <Abstract>Inserts a new node in the binary search tree.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -134,7 +134,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>aafe95673b19139abd52e242e5d72b66d</Anchor>
-    <Abstract>Inserts a new node in the binary search tree. </Abstract>
+    <Abstract>Inserts a new node in the binary search tree.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -146,7 +146,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>a03e09650b371d423315f26520d6e34a6</Anchor>
-    <Abstract>Inserts a new node in the binary search tree. </Abstract>
+    <Abstract>Inserts a new node in the binary search tree.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -158,7 +158,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>a368b8f209f5158d55374a7cdbd110962</Anchor>
-    <Abstract>Clears the tree freeing the memory of the taken by nodes. </Abstract>
+    <Abstract>Clears the tree freeing the memory of the taken by nodes.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -170,7 +170,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>a74c68495fd963c501084d129d4c0f5b1</Anchor>
-    <Abstract>Used to begin an iteration on the binary search tree. </Abstract>
+    <Abstract>Used to begin an iteration on the binary search tree.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -182,7 +182,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>a8631fb03856c2cd4602fc7446502195c</Anchor>
-    <Abstract>Used to begin an iteration on the binary search tree. </Abstract>
+    <Abstract>Used to begin an iteration on the binary search tree.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -194,7 +194,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>a74e78aa7f879a5df0b933651174de42b</Anchor>
-    <Abstract>Used to begin an iteration on the binary search tree. </Abstract>
+    <Abstract>Used to begin an iteration on the binary search tree.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -206,7 +206,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>aed3a831efc810b5084cb0c9f4adeb16a</Anchor>
-    <Abstract>Used to finish an iteration on the binary search tree. </Abstract>
+    <Abstract>Used to finish an iteration on the binary search tree.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -218,7 +218,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>aa9fa40cf0781035f180aa56d15f0e2d1</Anchor>
-    <Abstract>Used to finish an iteration on the binary search tree. </Abstract>
+    <Abstract>Used to finish an iteration on the binary search tree.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -230,7 +230,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>a2f78931b69f0a121823b60393f1b9745</Anchor>
-    <Abstract>Used to begin an iteration on the binary search tree. </Abstract>
+    <Abstract>Used to begin an iteration on the binary search tree.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -242,7 +242,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>a6c2bdb4e40b2a6871840af57f42765f8</Anchor>
-    <Abstract>Used to find a node inside the tree. </Abstract>
+    <Abstract>Used to find a node inside the tree.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -254,7 +254,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>a2971e3ad8b28cf5bdf08128eee48d26d</Anchor>
-    <Abstract>Used to find a node inside the tree. </Abstract>
+    <Abstract>Used to find a node inside the tree.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -266,7 +266,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>a4ac74357616de45d5d3e7cbb9850854e</Anchor>
-    <Abstract>Balances the tree. </Abstract>
+    <Abstract>Balances the tree.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -278,7 +278,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>ae9b1b8ff05ece0ac05e8dfca244e556e</Anchor>
-    <Abstract>Operator [] overloading to access a node value in the tree or insert a new one. </Abstract>
+    <Abstract>Operator [] overloading to access a node value in the tree or insert a new one.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -290,7 +290,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>a024d828ac753881e50cd7cc93a47a3cc</Anchor>
-    <Abstract>Operator [] overloading to access a node value in the tree or insert a new one. </Abstract>
+    <Abstract>Operator [] overloading to access a node value in the tree or insert a new one.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -302,7 +302,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>af5ed588b2c686b3b53a2b5466a617f73</Anchor>
-    <Abstract>Removes a node from the tree if present. </Abstract>
+    <Abstract>Removes a node from the tree if present.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -324,7 +324,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>ad42afa310b7d0a4b4da251cd8bba6897</Anchor>
-    <Abstract>Checks if the keys are equal or not. </Abstract>
+    <Abstract>Checks if the keys are equal or not.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -336,7 +336,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>a0dfe021194e7c01cefe01fabad7fc976</Anchor>
-    <Abstract>Auxiliary function needed by balance. </Abstract>
+    <Abstract>Auxiliary function needed by balance.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -348,7 +348,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>a39242fbf17fe707259965efc41555a61</Anchor>
-    <Abstract>Comparison operator for the binary search tree. </Abstract>
+    <Abstract>Comparison operator for the binary search tree.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -369,7 +369,7 @@
     </TokenIdentifier>
     <Path>da/ddd/classbst.html</Path>
     <Anchor>ae4b7d69364fca0855f74abdcad674ebf</Anchor>
-    <Abstract>Operator &lt;&lt; overloading to print the tree according to the keys order. </Abstract>
+    <Abstract>Operator &lt;&lt; overloading to print the tree according to the keys order.</Abstract>
     <DeclaredIn>bst.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -380,7 +380,7 @@
       <Scope>bst::__iterator</Scope>
     </TokenIdentifier>
     <Path>d5/d7d/classbst_1_1____iterator.html</Path>
-    <Abstract>Templated iterator class with a pointer to a node. </Abstract>
+    <Abstract>Templated iterator class with a pointer to a node.</Abstract>
     <DeclaredIn>iterator.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -432,7 +432,7 @@
     </TokenIdentifier>
     <Path>d5/d7d/classbst_1_1____iterator.html</Path>
     <Anchor>aa4e7abcc2bb06e8778e3912803b96433</Anchor>
-    <Abstract>Operator * overloading to access the data of a node. </Abstract>
+    <Abstract>Operator * overloading to access the data of a node.</Abstract>
     <DeclaredIn>iterator.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -444,7 +444,7 @@
     </TokenIdentifier>
     <Path>d5/d7d/classbst_1_1____iterator.html</Path>
     <Anchor>a2a8b7a79b927e8e02b3247188c867e6d</Anchor>
-    <Abstract>Operator -&gt; overloading to access the data of a node. </Abstract>
+    <Abstract>Operator -&gt; overloading to access the data of a node.</Abstract>
     <DeclaredIn>iterator.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -456,7 +456,7 @@
     </TokenIdentifier>
     <Path>d5/d7d/classbst_1_1____iterator.html</Path>
     <Anchor>a0551167f26a1769faa27afd7018eeb03</Anchor>
-    <Abstract>Operator ++it overloading to move the iterator to the next node. </Abstract>
+    <Abstract>Operator ++it overloading to move the iterator to the next node.</Abstract>
     <DeclaredIn>iterator.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -468,7 +468,7 @@
     </TokenIdentifier>
     <Path>d5/d7d/classbst_1_1____iterator.html</Path>
     <Anchor>a0a43380fa33e82342236ef747a5e72e2</Anchor>
-    <Abstract>Operator it++ overloading to move the iterator to the next node. </Abstract>
+    <Abstract>Operator it++ overloading to move the iterator to the next node.</Abstract>
     <DeclaredIn>iterator.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -480,7 +480,7 @@
     </TokenIdentifier>
     <Path>d5/d7d/classbst_1_1____iterator.html</Path>
     <Anchor>a0fabfd3d99d7c15da13123229a4cbede</Anchor>
-    <Abstract>Iterator custom constructor. </Abstract>
+    <Abstract>Iterator custom constructor.</Abstract>
     <DeclaredIn>iterator.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -492,7 +492,7 @@
     </TokenIdentifier>
     <Path>d5/d7d/classbst_1_1____iterator.html</Path>
     <Anchor>a57365ae11a6b960739d460f6ab62674e</Anchor>
-    <Abstract>Pointer to a node. </Abstract>
+    <Abstract>Pointer to a node.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -513,7 +513,7 @@
     </TokenIdentifier>
     <Path>d5/d7d/classbst_1_1____iterator.html</Path>
     <Anchor>a2e5014cb825532053115734598e16318</Anchor>
-    <Abstract>Operator == overloading to check if the iterators are equal. </Abstract>
+    <Abstract>Operator == overloading to check if the iterators are equal.</Abstract>
     <DeclaredIn>iterator.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -525,7 +525,7 @@
     </TokenIdentifier>
     <Path>d5/d7d/classbst_1_1____iterator.html</Path>
     <Anchor>add0144e7693bde5e4b509b5fd8dc5c96</Anchor>
-    <Abstract>Operator != overloading to check if the iterators are unequal. </Abstract>
+    <Abstract>Operator != overloading to check if the iterators are unequal.</Abstract>
     <DeclaredIn>iterator.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -536,7 +536,7 @@
       <Scope>bst::node</Scope>
     </TokenIdentifier>
     <Path>d8/d99/structbst_1_1node.html</Path>
-    <Abstract>Templated node struct with two children nodes and one parent node. </Abstract>
+    <Abstract>Templated node struct with two children nodes and one parent node.</Abstract>
     <DeclaredIn>node.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -548,7 +548,7 @@
     </TokenIdentifier>
     <Path>d8/d99/structbst_1_1node.html</Path>
     <Anchor>a79aa79c3ff256126de5fdc848ec88b45</Anchor>
-    <Abstract>Node default constructor. </Abstract>
+    <Abstract>Node default constructor.</Abstract>
     <DeclaredIn>node.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -560,7 +560,7 @@
     </TokenIdentifier>
     <Path>d8/d99/structbst_1_1node.html</Path>
     <Anchor>a87b48a3770bbaa16830f8bbb635edd38</Anchor>
-    <Abstract>Custom node constructor. </Abstract>
+    <Abstract>Custom node constructor.</Abstract>
     <DeclaredIn>node.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -572,7 +572,7 @@
     </TokenIdentifier>
     <Path>d8/d99/structbst_1_1node.html</Path>
     <Anchor>afb49ebb92c139b1a3fdaf71048b0dc1a</Anchor>
-    <Abstract>Node move constructor. </Abstract>
+    <Abstract>Node move constructor.</Abstract>
     <DeclaredIn>node.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -584,7 +584,7 @@
     </TokenIdentifier>
     <Path>d8/d99/structbst_1_1node.html</Path>
     <Anchor>a9970c480ef885a64710303bc9e3e6558</Anchor>
-    <Abstract>Node copy constructor. </Abstract>
+    <Abstract>Node copy constructor.</Abstract>
     <DeclaredIn>node.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -596,7 +596,7 @@
     </TokenIdentifier>
     <Path>d8/d99/structbst_1_1node.html</Path>
     <Anchor>a16fb9a6092d387f08864f4c75ca312bb</Anchor>
-    <Abstract>Custom node constructor. </Abstract>
+    <Abstract>Custom node constructor.</Abstract>
     <DeclaredIn>node.hpp</DeclaredIn>
   </Token>
   <Token>
@@ -608,7 +608,7 @@
     </TokenIdentifier>
     <Path>d8/d99/structbst_1_1node.html</Path>
     <Anchor>ad85af5ac81f4ac83c546c16913887845</Anchor>
-    <Abstract>Element of the node. </Abstract>
+    <Abstract>Element of the node.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -619,7 +619,7 @@
     </TokenIdentifier>
     <Path>d8/d99/structbst_1_1node.html</Path>
     <Anchor>a96c0f20c8efbf9e17ec29c150acdc0ed</Anchor>
-    <Abstract>Parent of the node. </Abstract>
+    <Abstract>Parent of the node.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -630,7 +630,7 @@
     </TokenIdentifier>
     <Path>d8/d99/structbst_1_1node.html</Path>
     <Anchor>a72462a1f1920ab43215629445b3fc106</Anchor>
-    <Abstract>Left child of the node. </Abstract>
+    <Abstract>Left child of the node.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -641,6 +641,6 @@
     </TokenIdentifier>
     <Path>d8/d99/structbst_1_1node.html</Path>
     <Anchor>ac891c352566694de0faf0ee19b392f91</Anchor>
-    <Abstract>Right child of the node. </Abstract>
+    <Abstract>Right child of the node.</Abstract>
   </Token>
 </Tokens>
