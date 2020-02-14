@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['operator_3d',['operator=',['../da/ddd/classbst.html#a962fce8c5811b3bab57d298b6752481f',1,'bst::operator=(const bst &amp;B)'],['../da/ddd/classbst.html#a3e595b50a147f3c6fe64f1b1514c539d',1,'bst::operator=(bst &amp;&amp;B) noexcept']]],
-  ['operator_5b_5d',['operator[]',['../da/ddd/classbst.html#ae9b1b8ff05ece0ac05e8dfca244e556e',1,'bst::operator[](const kt &amp;x) noexcept'],['../da/ddd/classbst.html#a024d828ac753881e50cd7cc93a47a3cc',1,'bst::operator[](kt &amp;&amp;x) noexcept']]]
+  ['insert',['insert',['../da/ddd/classbst.html#aaaeffdb4fae1103a3f6185c74ce43281',1,'bst::insert(const pair_type &amp;x)'],['../da/ddd/classbst.html#aafe95673b19139abd52e242e5d72b66d',1,'bst::insert(pair_type &amp;&amp;x) noexcept']]]
 ];

@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['emplace',['emplace',['../da/ddd/classbst.html#a03e09650b371d423315f26520d6e34a6',1,'bst']]],
-  ['end',['end',['../da/ddd/classbst.html#aed3a831efc810b5084cb0c9f4adeb16a',1,'bst::end() noexcept'],['../da/ddd/classbst.html#aa9fa40cf0781035f180aa56d15f0e2d1',1,'bst::end() const noexcept']]],
-  ['erase',['erase',['../da/ddd/classbst.html#af5ed588b2c686b3b53a2b5466a617f73',1,'bst']]]
+  ['cbegin',['cbegin',['../da/ddd/classbst.html#a74e78aa7f879a5df0b933651174de42b',1,'bst']]],
+  ['cend',['cend',['../da/ddd/classbst.html#a2f78931b69f0a121823b60393f1b9745',1,'bst']]],
+  ['clear',['clear',['../da/ddd/classbst.html#a368b8f209f5158d55374a7cdbd110962',1,'bst']]],
+  ['const_5fiterator',['const_iterator',['../da/ddd/classbst.html#a72485696d999bf489c6156f6327a2163',1,'bst']]]
 ];

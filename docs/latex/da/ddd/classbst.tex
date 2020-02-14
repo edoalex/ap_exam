@@ -9,14 +9,21 @@ Templated implementation of a binary search tree class.
 
 {\ttfamily \#include $<$bst.\+hpp$>$}
 
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classbst_1_1____iterator}{\+\_\+\+\_\+iterator}
+\begin{DoxyCompactList}\small\item\em Templated iterator class with a pointer to a node. \end{DoxyCompactList}\item 
+struct \hyperlink{structbst_1_1node}{node}
+\begin{DoxyCompactList}\small\item\em Templated node struct with two children nodes and one parent node. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
 using \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} = std\+::pair$<$ const kt, vt $>$
 \item 
-using \hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator} = \+\_\+\+\_\+iterator$<$ node\+\_\+type, \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} $>$
+using \hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator} = \hyperlink{classbst_1_1____iterator}{\+\_\+\+\_\+iterator}$<$ \hyperlink{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}{node\+\_\+type}, \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} $>$
 \item 
-using \hyperlink{classbst_a72485696d999bf489c6156f6327a2163}{const\+\_\+iterator} = \+\_\+\+\_\+iterator$<$ node\+\_\+type, const \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} $>$
+using \hyperlink{classbst_a72485696d999bf489c6156f6327a2163}{const\+\_\+iterator} = \hyperlink{classbst_1_1____iterator}{\+\_\+\+\_\+iterator}$<$ \hyperlink{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}{node\+\_\+type}, const \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} $>$
 \end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -70,6 +77,26 @@ void \hyperlink{classbst_af5ed588b2c686b3b53a2b5466a617f73}{erase} (const kt \&x
 \mbox{\Hypertarget{classbst_afcc3983e4d16eaa758aec0adb71759bb}\label{classbst_afcc3983e4d16eaa758aec0adb71759bb}} 
 {\footnotesize template$<$class... Types$>$ }\\std\+::pair$<$ typename \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator}, bool $>$ {\bfseries emplace} (Types \&\&... args)
 \end{DoxyCompactItemize}
+\subsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}{node\+\_\+type} = \hyperlink{structbst_1_1node}{node}$<$ std\+::pair$<$ const kt, vt $>$ $>$
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classbst_ad42afa310b7d0a4b4da251cd8bba6897}{op\+\_\+eq} (const kt \&x, const kt \&y) const noexcept
+\begin{DoxyCompactList}\small\item\em Checks if the keys are equal or not. \end{DoxyCompactList}\item 
+void \hyperlink{classbst_a0dfe021194e7c01cefe01fabad7fc976}{order} (std\+::vector$<$ std\+::pair$<$ kt, vt $>$$>$ \&v) noexcept
+\begin{DoxyCompactList}\small\item\em Auxiliary function needed by balance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classbst_a39242fbf17fe707259965efc41555a61}\label{classbst_a39242fbf17fe707259965efc41555a61}} 
+cmp \hyperlink{classbst_a39242fbf17fe707259965efc41555a61}{\+\_\+op}
+\begin{DoxyCompactList}\small\item\em Comparison operator for the binary search tree. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \hyperlink{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}{node\+\_\+type} $>$ \hyperlink{classbst_ad8177ec5ab205278efdae5ce94d613ba}{head}
+\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -104,7 +131,7 @@ Definition at line 26 of file bst.\+hpp.
 \index{const\+\_\+iterator@{const\+\_\+iterator}!bst@{bst}}
 \subsubsection{\texorpdfstring{const\+\_\+iterator}{const\_iterator}}
 {\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
-using \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{classbst_a72485696d999bf489c6156f6327a2163}{const\+\_\+iterator} =  \+\_\+\+\_\+iterator$<$node\+\_\+type, const \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type}$>$}
+using \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{classbst_a72485696d999bf489c6156f6327a2163}{const\+\_\+iterator} =  \hyperlink{classbst_1_1____iterator}{\+\_\+\+\_\+iterator}$<$\hyperlink{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}{node\+\_\+type}, const \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type}$>$}
 
 Alias to make names shorter and intuitive. 
 
@@ -115,11 +142,22 @@ Definition at line 88 of file bst.\+hpp.
 \index{iterator@{iterator}!bst@{bst}}
 \subsubsection{\texorpdfstring{iterator}{iterator}}
 {\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
-using \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator} =  \+\_\+\+\_\+iterator$<$node\+\_\+type, \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type}$>$}
+using \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator} =  \hyperlink{classbst_1_1____iterator}{\+\_\+\+\_\+iterator}$<$\hyperlink{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}{node\+\_\+type}, \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type}$>$}
 
 Alias to make names shorter and intuitive. 
 
 Definition at line 84 of file bst.\+hpp.
+
+\mbox{\Hypertarget{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}\label{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}} 
+\index{bst@{bst}!node\+\_\+type@{node\+\_\+type}}
+\index{node\+\_\+type@{node\+\_\+type}!bst@{bst}}
+\subsubsection{\texorpdfstring{node\+\_\+type}{node\_type}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+using \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}{node\+\_\+type} =  \hyperlink{structbst_1_1node}{node}$<$std\+::pair$<$const kt, vt$>$ $>$\hspace{0.3cm}{\ttfamily [private]}}
+
+Alias to make names shorter and intuitive. 
+
+Definition at line 48 of file bst.\+hpp.
 
 \mbox{\Hypertarget{classbst_a7b11cca2a3b4394915600194f741ab16}\label{classbst_a7b11cca2a3b4394915600194f741ab16}} 
 \index{bst@{bst}!pair\+\_\+type@{pair\+\_\+type}}
@@ -174,6 +212,10 @@ Copy constructor for binary search tree.
 The method performs a deep copy of the tree calling a custom constructor of the node. 
 
 Definition at line 113 of file bst.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::head.
 
 \mbox{\Hypertarget{classbst_ac0e8f8be6be76d77809ba1d21e1be66a}\label{classbst_ac0e8f8be6be76d77809ba1d21e1be66a}} 
 \index{bst@{bst}!bst@{bst}}
@@ -235,6 +277,10 @@ iterator An iterator to the leftmost node of the tree.
 
 Definition at line 218 of file bst.\+hpp.
 
+
+
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+left.
+
 \mbox{\Hypertarget{classbst_a8631fb03856c2cd4602fc7446502195c}\label{classbst_a8631fb03856c2cd4602fc7446502195c}} 
 \index{bst@{bst}!begin@{begin}}
 \index{begin@{begin}!bst@{bst}}
@@ -253,6 +299,10 @@ const\+\_\+iterator A constant iterator to the leftmost node of the tree.
 
 Definition at line 233 of file bst.\+hpp.
 
+
+
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+left.
+
 \mbox{\Hypertarget{classbst_a74e78aa7f879a5df0b933651174de42b}\label{classbst_a74e78aa7f879a5df0b933651174de42b}} 
 \index{bst@{bst}!cbegin@{cbegin}}
 \index{cbegin@{cbegin}!bst@{bst}}
@@ -270,6 +320,10 @@ const\+\_\+iterator A constant iterator to the leftmost node of the tree.
 Implemented to assure the user of returning a constant iterator. 
 
 Definition at line 250 of file bst.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+left.
 
 \mbox{\Hypertarget{classbst_a2f78931b69f0a121823b60393f1b9745}\label{classbst_a2f78931b69f0a121823b60393f1b9745}} 
 \index{bst@{bst}!cend@{cend}}
@@ -291,7 +345,7 @@ Definition at line 299 of file bst.\+hpp.
 
 
 
-References bst$<$ kt, vt, cmp $>$\+::balance(), and bst$<$ kt, vt, cmp $>$\+::find().
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+right, bst$<$ kt, vt, cmp $>$\+::balance(), and bst$<$ kt, vt, cmp $>$\+::find().
 
 \mbox{\Hypertarget{classbst_a03e09650b371d423315f26520d6e34a6}\label{classbst_a03e09650b371d423315f26520d6e34a6}} 
 \index{bst@{bst}!emplace@{emplace}}
@@ -340,6 +394,10 @@ iterator A iterator to one past the rightmost node of the tree.
 
 Definition at line 265 of file bst.\+hpp.
 
+
+
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+right.
+
 \mbox{\Hypertarget{classbst_aa9fa40cf0781035f180aa56d15f0e2d1}\label{classbst_aa9fa40cf0781035f180aa56d15f0e2d1}} 
 \index{bst@{bst}!end@{end}}
 \index{end@{end}!bst@{bst}}
@@ -357,6 +415,10 @@ iterator A constant iterator to one past the rightmost node of the tree.
 
 
 Definition at line 281 of file bst.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+right.
 
 \mbox{\Hypertarget{classbst_af5ed588b2c686b3b53a2b5466a617f73}\label{classbst_af5ed588b2c686b3b53a2b5466a617f73}} 
 \index{bst@{bst}!erase@{erase}}
@@ -377,6 +439,10 @@ Removes a node from the tree if present.
 After removing a node the ordering of the tree is preserved. 
 
 Definition at line 262 of file bst\+\_\+functions.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::\+\_\+\+\_\+iterator$<$ node\+\_\+type, pair\+\_\+type $>$\+::\+\_\+current, bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+left, bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+parent, and bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+right.
 
 \mbox{\Hypertarget{classbst_a6c2bdb4e40b2a6871840af57f42765f8}\label{classbst_a6c2bdb4e40b2a6871840af57f42765f8}} 
 \index{bst@{bst}!find@{find}}
@@ -400,6 +466,10 @@ iterator An iterator to the node if found, else to \hyperlink{classbst_aed3a831e
 
 
 Definition at line 172 of file bst\+\_\+functions.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+element, bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+left, and bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+right.
 
 
 
@@ -427,6 +497,10 @@ const\+\_\+iterator A constant iterator to the node if found, else to \hyperlink
 
 
 Definition at line 201 of file bst\+\_\+functions.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+element, bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+left, and bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+right.
 
 \mbox{\Hypertarget{classbst_aaaeffdb4fae1103a3f6185c74ce43281}\label{classbst_aaaeffdb4fae1103a3f6185c74ce43281}} 
 \index{bst@{bst}!insert@{insert}}
@@ -480,7 +554,36 @@ Definition at line 87 of file bst\+\_\+functions.\+hpp.
 
 
 
-References bst$<$ kt, vt, cmp $>$\+::emplace().
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+parent, and bst$<$ kt, vt, cmp $>$\+::emplace().
+
+\mbox{\Hypertarget{classbst_ad42afa310b7d0a4b4da251cd8bba6897}\label{classbst_ad42afa310b7d0a4b4da251cd8bba6897}} 
+\index{bst@{bst}!op\+\_\+eq@{op\+\_\+eq}}
+\index{op\+\_\+eq@{op\+\_\+eq}!bst@{bst}}
+\subsubsection{\texorpdfstring{op\+\_\+eq()}{op\_eq()}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+bool \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::op\+\_\+eq (\begin{DoxyParamCaption}\item[{const kt \&}]{x,  }\item[{const kt \&}]{y }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}, {\ttfamily [noexcept]}}
+
+
+
+Checks if the keys are equal or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The first key to be compared. \\
+\hline
+{\em y} & The second key to be compared. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the two keys are equal, else false. 
+\end{DoxyReturn}
+
+
+Definition at line 61 of file bst.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::\+\_\+op, and bst$<$ kt, vt, cmp $>$\+::order().
 
 \mbox{\Hypertarget{classbst_a962fce8c5811b3bab57d298b6752481f}\label{classbst_a962fce8c5811b3bab57d298b6752481f}} 
 \index{bst@{bst}!operator=@{operator=}}
@@ -507,7 +610,7 @@ Definition at line 139 of file bst.\+hpp.
 
 
 
-References bst$<$ kt, vt, cmp $>$\+::clear().
+References bst$<$ kt, vt, cmp $>$\+::clear(), and bst$<$ kt, vt, cmp $>$\+::head.
 
 \mbox{\Hypertarget{classbst_a3e595b50a147f3c6fe64f1b1514c539d}\label{classbst_a3e595b50a147f3c6fe64f1b1514c539d}} 
 \index{bst@{bst}!operator=@{operator=}}
@@ -590,6 +693,30 @@ Definition at line 360 of file bst.\+hpp.
 
 References bst$<$ kt, vt, cmp $>$\+::insert().
 
+\mbox{\Hypertarget{classbst_a0dfe021194e7c01cefe01fabad7fc976}\label{classbst_a0dfe021194e7c01cefe01fabad7fc976}} 
+\index{bst@{bst}!order@{order}}
+\index{order@{order}!bst@{bst}}
+\subsubsection{\texorpdfstring{order()}{order()}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp $>$ \\
+void \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::order (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::pair$<$ kt, vt $>$$>$ \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [noexcept]}}
+
+
+
+Auxiliary function needed by balance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & A vector of pairs in ascending order.\\
+\hline
+\end{DoxyParams}
+Iterative function inserting in the tree the central element and subdivides the vector in two halves, then it calls itself on these two halves. 
+
+Definition at line 22 of file bst\+\_\+functions.\+hpp.
+
+
+
+Referenced by bst$<$ kt, vt, cmp $>$\+::op\+\_\+eq().
+
 
 
 \subsection{Friends And Related Function Documentation}
@@ -617,6 +744,24 @@ std\+::ostream\& The output stream to which strings have been appended.
 It calls \hyperlink{classbst_a74e78aa7f879a5df0b933651174de42b}{cbegin()} and \hyperlink{classbst_a2f78931b69f0a121823b60393f1b9745}{cend()} to be sure the tree is unchanged by the iterators. 
 
 Definition at line 377 of file bst.\+hpp.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classbst_ad8177ec5ab205278efdae5ce94d613ba}\label{classbst_ad8177ec5ab205278efdae5ce94d613ba}} 
+\index{bst@{bst}!head@{head}}
+\index{head@{head}!bst@{bst}}
+\subsubsection{\texorpdfstring{head}{head}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+std\+::unique\+\_\+ptr$<$\hyperlink{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}{node\+\_\+type}$>$ \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::head\hspace{0.3cm}{\ttfamily [private]}}
+
+Root node of the binary search tree. 
+
+Definition at line 52 of file bst.\+hpp.
+
+
+
+Referenced by bst$<$ kt, vt, cmp $>$\+::bst(), and bst$<$ kt, vt, cmp $>$\+::operator=().
 
 
 

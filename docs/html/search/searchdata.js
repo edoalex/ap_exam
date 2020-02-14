@@ -1,11 +1,12 @@
 var indexSectionsWithContent =
 {
-  0: "bcefinop",
-  1: "b",
+  0: "_bcdefhinopr",
+  1: "_bn",
   2: "bin",
-  3: "bcefio",
-  4: "cip",
-  5: "o"
+  3: "_bcefino",
+  4: "_h",
+  5: "cdinpr",
+  6: "bo"
 };
 
 var indexSectionNames =
@@ -14,8 +15,9 @@ var indexSectionNames =
   1: "classes",
   2: "files",
   3: "functions",
-  4: "typedefs",
-  5: "related"
+  4: "variables",
+  5: "typedefs",
+  6: "related"
 };
 
 var indexSectionLabels =
@@ -24,7 +26,8 @@ var indexSectionLabels =
   1: "Classes",
   2: "Files",
   3: "Functions",
-  4: "Typedefs",
-  5: "Friends"
+  4: "Variables",
+  5: "Typedefs",
+  6: "Friends"
 };
 
