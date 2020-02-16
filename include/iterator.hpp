@@ -99,7 +99,7 @@ public:
    	 	} else {
      	 
      		_current = (_current->_right).get();
-      		//go down left while you can
+      		//go down left until you can
       		while(_current->_left != nullptr){
 				_current = (_current->_left).get();
       		}
@@ -125,7 +125,7 @@ public:
 	 * @brief Operator == overloading to check if the iterators are equal.
 	 * @param a First iterator to be compared.
 	 * @param b Second iterator to be compared.
-	 * @return bool Returns true if the iterators points to the same node, else false.
+	 * @return bool Returns true if the iterators points to the same node, false otherwise.
 	 */
 
 	friend bool operator==(const __iterator& a, const __iterator& b){
@@ -136,7 +136,7 @@ public:
 	 * @brief Operator != overloading to check if the iterators are unequal.
 	 * @param a First iterator to be compared.
 	 * @param b Second iterator to be compared.
-	 * @return bool Returns true if the iterators don't point to the same node, else false.
+	 * @return bool Returns true if the iterators don't point to the same node, false otherwise.
 	 */
 	 
 	friend bool operator!=(const __iterator& a, const __iterator& b){

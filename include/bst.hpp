@@ -19,7 +19,7 @@
  * @brief Templated implementation of a binary search tree class.
  * @tparam kt Type of node keys.
  * @tparam vt Type of node values.
- * @tparam cmp Type of the custom comparison operator between nodes. Default std::less<kt>.
+ * @tparam cmp Type of the custom comparison operator between keys. Default std::less<kt>.
  */
 
 template <typename kt, typename vt, typename cmp = std::less<kt>>

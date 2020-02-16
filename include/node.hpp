@@ -55,7 +55,7 @@ struct bst<kt, vt, cmp>::node{
   }
   
 /**
- * @brief Custom node constructor.
+ * @brief Iterative custom node constructor.
  * @param twin Pointer to the node to be copied.
  * @param to_stick Pointer to the parent of the node to be constructed.
  * 
