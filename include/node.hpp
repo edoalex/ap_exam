@@ -15,8 +15,6 @@
 #include<utility> // pair
 #include"ap_error.h" // exceptions
 #include"bst.hpp"
-#include"iterator.hpp"
-#include"bst_functions.hpp"
 
 /**
  * @brief Templated implementation of a node struct.
@@ -27,7 +25,7 @@ template <typename kt, typename vt, typename cmp>
 template <typename pair_type>
 struct bst<kt, vt, cmp>::node{
 
-	/** @brief Element of the node. */
+	/** @brief Element of the node. fi*/
 
 	pair_type _element;
 

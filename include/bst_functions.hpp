@@ -21,26 +21,26 @@
 template <typename kt, typename vt, typename cmp>
 void bst<kt,vt,cmp>::order(std::vector<std::pair<kt,vt>>& v) noexcept {
 	if(v.size() == 1){
-		insert(v.at(0));
+		insert(v[0]);
 		return;
 	}
 	else if(v.size() == 2){
-		insert(v.at(0));
-		insert(v.at(1));
+		insert(v[0]);
+		insert(v[1]);
 		return;
 	}
 
 	std::vector<std::pair<kt,vt>> w, z;
 
 	for(long unsigned i = 0; i < v.size()/2; ++i){
-		w.push_back(v.at(i));
+		w.push_back(v[i]);
 	}
 
 	for(long unsigned j = v.size()/2+1; j < v.size(); ++j){
-		z.push_back(v.at(j));
+		z.push_back(v[j]);
 	}
 
-	insert(v.at(v.size()/2));
+	insert(v[v.size()/2]);
 
 	order(w);
 	order(z);
@@ -313,7 +313,7 @@ void bst<kt,vt,cmp>::erase(const kt& x) noexcept {
     	auto next_parent = next->_parent;
     	//std::cout << "next_parent key = " << (next_parent->_element).first << std::endl;
 
-      	//if first_right = next == next_parent = me  (pathological case)
+      	//if first_right = next, which means, next_parent = me  (pathological case)
     	if ( next_parent == me ){
     		auto tmp = (me->_left).release();
     		(me->_right).release();
@@ -371,7 +371,7 @@ void bst<kt,vt,cmp>::erase(const kt& x) noexcept {
     	(sub->_left).reset( (me->_left).release() );
     	(sub->_left)->_parent = sub;
 
-    	//not to call the destuctor by hand
+    	//in order not to call the destuctor by hand
     	std::unique_ptr<node_type> deleter = nullptr;
     	deleter.reset(me);
     	deleter.reset();

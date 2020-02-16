@@ -55,7 +55,7 @@ class bst{
 	 * @brief Checks if the keys are equal or not.
 	 * @param x The first key to be compared.
 	 * @param y The second key to be compared.
-	 * @return True if the two keys are equal, else false.
+	 * @return True if the two keys are equal, false otherwise.
 	 */
 
 	bool op_eq(const kt& x,const kt& y) const noexcept {
@@ -66,7 +66,7 @@ class bst{
 	 * @brief Auxiliary function needed by balance.
 	 * @param v A vector of pairs in ascending order.
 	 *
-	 * Iterative function inserting in the tree the central 
+	 * Iterative function which inserts in the tree the median 
 	 * element and subdivides the vector in two halves, then
 	 * it calls itself on these two halves.
 	 */

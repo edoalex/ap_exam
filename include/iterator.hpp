@@ -15,7 +15,6 @@
 #include"ap_error.h" // exceptions
 #include"bst.hpp"
 #include"node.hpp"
-#include"bst_functions.hpp"
 
 /**
  * @brief Templated implementation of an iterator class.
