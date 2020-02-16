@@ -18,7 +18,7 @@
 #include"bst_functions.hpp"
 
 /**
- * @brief Templated implementation of a node struct.
+ * @brief Templated implementation of an iterator class.
  * @tparam node_type Type of the node pointed by the iterator.
  * @tparam pair_type Type of the const or non const pair.
  */
