@@ -1,0 +1,180 @@
+\hypertarget{structbst_1_1node}{}\section{bst$<$ kt, vt, cmp $>$\+:\+:node$<$ pair\+\_\+type $>$ Struct Template Reference}
+\label{structbst_1_1node}\index{bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$@{bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$}}
+
+
+Templated node struct with two children nodes and one parent node.  
+
+
+
+
+{\ttfamily \#include $<$node.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structbst_1_1node_a79aa79c3ff256126de5fdc848ec88b45}{node} ()
+\begin{DoxyCompactList}\small\item\em Node default constructor. \end{DoxyCompactList}\item 
+\hyperlink{structbst_1_1node_a87b48a3770bbaa16830f8bbb635edd38}{node} (\hyperlink{structbst_1_1node}{node} $\ast$twin, \hyperlink{structbst_1_1node}{node} $\ast$to\+\_\+stick)
+\begin{DoxyCompactList}\small\item\em Iterative custom node constructor. \end{DoxyCompactList}\item 
+\hyperlink{structbst_1_1node_afb49ebb92c139b1a3fdaf71048b0dc1a}{node} (\hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} \&\&element, \hyperlink{structbst_1_1node}{node} $\ast$parent) noexcept
+\begin{DoxyCompactList}\small\item\em Node move constructor. \end{DoxyCompactList}\item 
+\hyperlink{structbst_1_1node_a9970c480ef885a64710303bc9e3e6558}{node} (const \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} \&element, \hyperlink{structbst_1_1node}{node} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Node copy constructor. \end{DoxyCompactList}\item 
+\hyperlink{structbst_1_1node_a16fb9a6092d387f08864f4c75ca312bb}{node} (kt \&\&k, vt \&\&v) noexcept
+\begin{DoxyCompactList}\small\item\em Custom node constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structbst_1_1node_ad85af5ac81f4ac83c546c16913887845}\label{structbst_1_1node_ad85af5ac81f4ac83c546c16913887845}} 
+\hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} \hyperlink{structbst_1_1node_ad85af5ac81f4ac83c546c16913887845}{\+\_\+element}
+\begin{DoxyCompactList}\small\item\em Element of the node. fi. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structbst_1_1node_a96c0f20c8efbf9e17ec29c150acdc0ed}\label{structbst_1_1node_a96c0f20c8efbf9e17ec29c150acdc0ed}} 
+\hyperlink{structbst_1_1node}{node} $\ast$ \hyperlink{structbst_1_1node_a96c0f20c8efbf9e17ec29c150acdc0ed}{\+\_\+parent} \{\}
+\begin{DoxyCompactList}\small\item\em Parent of the node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structbst_1_1node_a72462a1f1920ab43215629445b3fc106}\label{structbst_1_1node_a72462a1f1920ab43215629445b3fc106}} 
+std\+::unique\+\_\+ptr$<$ \hyperlink{structbst_1_1node}{node} $>$ \hyperlink{structbst_1_1node_a72462a1f1920ab43215629445b3fc106}{\+\_\+left}
+\begin{DoxyCompactList}\small\item\em Left child of the node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structbst_1_1node_ac891c352566694de0faf0ee19b392f91}\label{structbst_1_1node_ac891c352566694de0faf0ee19b392f91}} 
+std\+::unique\+\_\+ptr$<$ \hyperlink{structbst_1_1node}{node} $>$ \hyperlink{structbst_1_1node_ac891c352566694de0faf0ee19b392f91}{\+\_\+right}
+\begin{DoxyCompactList}\small\item\em Right child of the node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$\newline
+template$<$typename pair\+\_\+type$>$\newline
+struct bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$}
+
+Templated node struct with two children nodes and one parent node. 
+
+Templated implementation of a node struct.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em pair\+\_\+type} & Type of the pair key and value. \\
+\hline
+\end{DoxyTemplParams}
+
+
+Definition at line 33 of file bst.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structbst_1_1node_a79aa79c3ff256126de5fdc848ec88b45}\label{structbst_1_1node_a79aa79c3ff256126de5fdc848ec88b45}} 
+\index{bst\+::node@{bst\+::node}!node@{node}}
+\index{node@{node}!bst\+::node@{bst\+::node}}
+\subsubsection{\texorpdfstring{node()}{node()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+template$<$typename pair\+\_\+type $>$ \\
+\hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{structbst_1_1node}{node}$<$ \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} $>$\+::\hyperlink{structbst_1_1node}{node} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Node default constructor. 
+
+An exception is thrown since it is not allowed to create a node without providing a key. 
+
+Definition at line 51 of file node.\+hpp.
+
+\mbox{\Hypertarget{structbst_1_1node_a87b48a3770bbaa16830f8bbb635edd38}\label{structbst_1_1node_a87b48a3770bbaa16830f8bbb635edd38}} 
+\index{bst\+::node@{bst\+::node}!node@{node}}
+\index{node@{node}!bst\+::node@{bst\+::node}}
+\subsubsection{\texorpdfstring{node()}{node()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+template$<$typename pair\+\_\+type $>$ \\
+\hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{structbst_1_1node}{node}$<$ \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} $>$\+::\hyperlink{structbst_1_1node}{node} (\begin{DoxyParamCaption}\item[{\hyperlink{structbst_1_1node}{node}$<$ \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} $>$ $\ast$}]{twin,  }\item[{\hyperlink{structbst_1_1node}{node}$<$ \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} $>$ $\ast$}]{to\+\_\+stick }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Iterative custom node constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em twin} & Pointer to the node to be copied. \\
+\hline
+{\em to\+\_\+stick} & Pointer to the parent of the node to be constructed.\\
+\hline
+\end{DoxyParams}
+This constructor is only called iteratively by the tree custom copy constructor and copy assignment. 
+
+Definition at line 64 of file node.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+element.
+
+\mbox{\Hypertarget{structbst_1_1node_afb49ebb92c139b1a3fdaf71048b0dc1a}\label{structbst_1_1node_afb49ebb92c139b1a3fdaf71048b0dc1a}} 
+\index{bst\+::node@{bst\+::node}!node@{node}}
+\index{node@{node}!bst\+::node@{bst\+::node}}
+\subsubsection{\texorpdfstring{node()}{node()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+template$<$typename pair\+\_\+type $>$ \\
+\hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{structbst_1_1node}{node}$<$ \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} $>$\+::\hyperlink{structbst_1_1node}{node} (\begin{DoxyParamCaption}\item[{\hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} \&\&}]{element,  }\item[{\hyperlink{structbst_1_1node}{node}$<$ \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} $>$ $\ast$}]{parent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Node move constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em element} & The data to be moved into the node. \\
+\hline
+{\em parent} & Pointer to the parent of the node to be constructed.\\
+\hline
+\end{DoxyParams}
+The two unique pointers are by default initialised as nullpointers. 
+
+Definition at line 86 of file node.\+hpp.
+
+\mbox{\Hypertarget{structbst_1_1node_a9970c480ef885a64710303bc9e3e6558}\label{structbst_1_1node_a9970c480ef885a64710303bc9e3e6558}} 
+\index{bst\+::node@{bst\+::node}!node@{node}}
+\index{node@{node}!bst\+::node@{bst\+::node}}
+\subsubsection{\texorpdfstring{node()}{node()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+template$<$typename pair\+\_\+type $>$ \\
+\hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{structbst_1_1node}{node}$<$ \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} $>$\+::\hyperlink{structbst_1_1node}{node} (\begin{DoxyParamCaption}\item[{const \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} \&}]{element,  }\item[{\hyperlink{structbst_1_1node}{node}$<$ \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} $>$ $\ast$}]{parent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Node copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em element} & The data to be copied into the node. \\
+\hline
+{\em parent} & Pointer to the parent of the node to be constructed.\\
+\hline
+\end{DoxyParams}
+The two unique pointers are by default initialised as nullpointers. 
+
+Definition at line 98 of file node.\+hpp.
+
+\mbox{\Hypertarget{structbst_1_1node_a16fb9a6092d387f08864f4c75ca312bb}\label{structbst_1_1node_a16fb9a6092d387f08864f4c75ca312bb}} 
+\index{bst\+::node@{bst\+::node}!node@{node}}
+\index{node@{node}!bst\+::node@{bst\+::node}}
+\subsubsection{\texorpdfstring{node()}{node()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+template$<$typename pair\+\_\+type $>$ \\
+\hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{structbst_1_1node}{node}$<$ \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} $>$\+::\hyperlink{structbst_1_1node}{node} (\begin{DoxyParamCaption}\item[{kt \&\&}]{k,  }\item[{vt \&\&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Custom node constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & The key to be moved into the pair. \\
+\hline
+{\em v} & The value to be moved into the pair.\\
+\hline
+\end{DoxyParams}
+This constructor is only called by the emplace function. 
+
+Definition at line 108 of file node.\+hpp.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{bst_8hpp}{bst.\+hpp}\item 
+include/\hyperlink{node_8hpp}{node.\+hpp}\end{DoxyCompactItemize}

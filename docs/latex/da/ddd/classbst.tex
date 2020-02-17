@@ -1,0 +1,771 @@
+\hypertarget{classbst}{}\section{bst$<$ kt, vt, cmp $>$ Class Template Reference}
+\label{classbst}\index{bst$<$ kt, vt, cmp $>$@{bst$<$ kt, vt, cmp $>$}}
+
+
+Templated implementation of a binary search tree class.  
+
+
+
+
+{\ttfamily \#include $<$bst.\+hpp$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classbst_1_1____iterator}{\+\_\+\+\_\+iterator}
+\begin{DoxyCompactList}\small\item\em Templated iterator class with a pointer to a node. \end{DoxyCompactList}\item 
+struct \hyperlink{structbst_1_1node}{node}
+\begin{DoxyCompactList}\small\item\em Templated node struct with two children nodes and one parent node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} = std\+::pair$<$ const kt, vt $>$
+\item 
+using \hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator} = \hyperlink{classbst_1_1____iterator}{\+\_\+\+\_\+iterator}$<$ \hyperlink{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}{node\+\_\+type}, \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} $>$
+\item 
+using \hyperlink{classbst_a72485696d999bf489c6156f6327a2163}{const\+\_\+iterator} = \hyperlink{classbst_1_1____iterator}{\+\_\+\+\_\+iterator}$<$ \hyperlink{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}{node\+\_\+type}, const \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} $>$
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classbst_aad9ff859f9b3d8896e4cd9bf14143777}\label{classbst_aad9ff859f9b3d8896e4cd9bf14143777}} 
+\hyperlink{classbst_aad9ff859f9b3d8896e4cd9bf14143777}{bst} () noexcept=default
+\begin{DoxyCompactList}\small\item\em Default constructor for binary search tree. \end{DoxyCompactList}\item 
+\hyperlink{classbst_a8d0c20c3ace61d4ffde5ab90fbe3226b}{bst} (cmp op)
+\begin{DoxyCompactList}\small\item\em Custom constructor for binary search tree. \end{DoxyCompactList}\item 
+\hyperlink{classbst_a2f94afc86338e90d9110b713383ab492}{bst} (const \hyperlink{classbst}{bst} \&B)
+\begin{DoxyCompactList}\small\item\em Copy constructor for binary search tree. \end{DoxyCompactList}\item 
+\hyperlink{classbst_ac0e8f8be6be76d77809ba1d21e1be66a}{bst} (\hyperlink{classbst}{bst} \&\&B) noexcept
+\begin{DoxyCompactList}\small\item\em Move constructor for binary search tree. \end{DoxyCompactList}\item 
+\hyperlink{classbst}{bst} \& \hyperlink{classbst_a962fce8c5811b3bab57d298b6752481f}{operator=} (const \hyperlink{classbst}{bst} \&B)
+\begin{DoxyCompactList}\small\item\em Copy assignment for binary search tree. \end{DoxyCompactList}\item 
+\hyperlink{classbst}{bst} \& \hyperlink{classbst_a3e595b50a147f3c6fe64f1b1514c539d}{operator=} (\hyperlink{classbst}{bst} \&\&B) noexcept
+\begin{DoxyCompactList}\small\item\em Move assignment for binary search tree. \end{DoxyCompactList}\item 
+std\+::pair$<$ \hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator}, bool $>$ \hyperlink{classbst_aaaeffdb4fae1103a3f6185c74ce43281}{insert} (const \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} \&x)
+\begin{DoxyCompactList}\small\item\em Inserts a new node in the binary search tree. \end{DoxyCompactList}\item 
+std\+::pair$<$ \hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator}, bool $>$ \hyperlink{classbst_aafe95673b19139abd52e242e5d72b66d}{insert} (\hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} \&\&x) noexcept
+\begin{DoxyCompactList}\small\item\em Inserts a new node in the binary search tree. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class... Types$>$ }\\std\+::pair$<$ \hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator}, bool $>$ \hyperlink{classbst_a03e09650b371d423315f26520d6e34a6}{emplace} (Types \&\&... args)
+\begin{DoxyCompactList}\small\item\em Inserts a new node in the binary search tree. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classbst_a368b8f209f5158d55374a7cdbd110962}\label{classbst_a368b8f209f5158d55374a7cdbd110962}} 
+void \hyperlink{classbst_a368b8f209f5158d55374a7cdbd110962}{clear} () noexcept
+\begin{DoxyCompactList}\small\item\em Clears the tree freeing the memory taken by nodes. \end{DoxyCompactList}\item 
+\hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator} \hyperlink{classbst_a74c68495fd963c501084d129d4c0f5b1}{begin} () noexcept
+\begin{DoxyCompactList}\small\item\em Used to begin an iteration on the binary search tree. \end{DoxyCompactList}\item 
+\hyperlink{classbst_a72485696d999bf489c6156f6327a2163}{const\+\_\+iterator} \hyperlink{classbst_a8631fb03856c2cd4602fc7446502195c}{begin} () const noexcept
+\begin{DoxyCompactList}\small\item\em Used to begin an iteration on the binary search tree. \end{DoxyCompactList}\item 
+\hyperlink{classbst_a72485696d999bf489c6156f6327a2163}{const\+\_\+iterator} \hyperlink{classbst_a74e78aa7f879a5df0b933651174de42b}{cbegin} () const noexcept
+\begin{DoxyCompactList}\small\item\em Used to begin an iteration on the binary search tree. \end{DoxyCompactList}\item 
+\hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator} \hyperlink{classbst_aed3a831efc810b5084cb0c9f4adeb16a}{end} () noexcept
+\begin{DoxyCompactList}\small\item\em Used to finish an iteration on the binary search tree. \end{DoxyCompactList}\item 
+\hyperlink{classbst_a72485696d999bf489c6156f6327a2163}{const\+\_\+iterator} \hyperlink{classbst_aa9fa40cf0781035f180aa56d15f0e2d1}{end} () const noexcept
+\begin{DoxyCompactList}\small\item\em Used to finish an iteration on the binary search tree. \end{DoxyCompactList}\item 
+\hyperlink{classbst_a72485696d999bf489c6156f6327a2163}{const\+\_\+iterator} \hyperlink{classbst_a2f78931b69f0a121823b60393f1b9745}{cend} () const noexcept
+\begin{DoxyCompactList}\small\item\em Used to begin an iteration on the binary search tree. \end{DoxyCompactList}\item 
+\hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator} \hyperlink{classbst_a6c2bdb4e40b2a6871840af57f42765f8}{find} (const kt \&x) noexcept
+\begin{DoxyCompactList}\small\item\em Used to find a node inside the tree. \end{DoxyCompactList}\item 
+\hyperlink{classbst_a72485696d999bf489c6156f6327a2163}{const\+\_\+iterator} \hyperlink{classbst_a2971e3ad8b28cf5bdf08128eee48d26d}{find} (const kt \&x) const noexcept
+\begin{DoxyCompactList}\small\item\em Used to find a node inside the tree. \end{DoxyCompactList}\item 
+void \hyperlink{classbst_a4ac74357616de45d5d3e7cbb9850854e}{balance} () noexcept
+\begin{DoxyCompactList}\small\item\em Balances the tree. \end{DoxyCompactList}\item 
+vt \& \hyperlink{classbst_ab1a1eec5b236a7fbd9c6da8d65786b10}{operator\mbox{[}$\,$\mbox{]}} (const kt \&x)
+\begin{DoxyCompactList}\small\item\em Operator \mbox{[}\mbox{]} overloading to access a node value in the tree or insert a new one. \end{DoxyCompactList}\item 
+vt \& \hyperlink{classbst_a024d828ac753881e50cd7cc93a47a3cc}{operator\mbox{[}$\,$\mbox{]}} (kt \&\&x) noexcept
+\begin{DoxyCompactList}\small\item\em Operator \mbox{[}\mbox{]} overloading to access a node value in the tree or insert a new one. \end{DoxyCompactList}\item 
+void \hyperlink{classbst_af5ed588b2c686b3b53a2b5466a617f73}{erase} (const kt \&x) noexcept
+\begin{DoxyCompactList}\small\item\em Removes a node from the tree if present. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classbst_afcc3983e4d16eaa758aec0adb71759bb}\label{classbst_afcc3983e4d16eaa758aec0adb71759bb}} 
+{\footnotesize template$<$class... Types$>$ }\\std\+::pair$<$ typename \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator}, bool $>$ {\bfseries emplace} (Types \&\&... args)
+\end{DoxyCompactItemize}
+\subsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}{node\+\_\+type} = \hyperlink{structbst_1_1node}{node}$<$ std\+::pair$<$ const kt, vt $>$ $>$
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classbst_ad42afa310b7d0a4b4da251cd8bba6897}{op\+\_\+eq} (const kt \&x, const kt \&y) const noexcept
+\begin{DoxyCompactList}\small\item\em Checks if the keys are equal or not. \end{DoxyCompactList}\item 
+void \hyperlink{classbst_a0dfe021194e7c01cefe01fabad7fc976}{order} (std\+::vector$<$ std\+::pair$<$ kt, vt $>$$>$ \&v) noexcept
+\begin{DoxyCompactList}\small\item\em Auxiliary function needed by balance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classbst_a39242fbf17fe707259965efc41555a61}\label{classbst_a39242fbf17fe707259965efc41555a61}} 
+cmp \hyperlink{classbst_a39242fbf17fe707259965efc41555a61}{\+\_\+op}
+\begin{DoxyCompactList}\small\item\em Comparison operator for the binary search tree. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \hyperlink{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}{node\+\_\+type} $>$ \hyperlink{classbst_ad8177ec5ab205278efdae5ce94d613ba}{head}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \hyperlink{classbst_ae4b7d69364fca0855f74abdcad674ebf}{operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classbst}{bst} \&x)
+\begin{DoxyCompactList}\small\item\em Operator $<$$<$ overloading to print the tree according to the keys order. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$\newline
+class bst$<$ kt, vt, cmp $>$}
+
+Templated implementation of a binary search tree class. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em kt} & Type of node keys. \\
+\hline
+{\em vt} & Type of node values. \\
+\hline
+{\em cmp} & Type of the custom comparison operator between keys. Default std\+::less$<$kt$>$. \\
+\hline
+\end{DoxyTemplParams}
+
+
+Definition at line 26 of file bst.\+hpp.
+
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classbst_a72485696d999bf489c6156f6327a2163}\label{classbst_a72485696d999bf489c6156f6327a2163}} 
+\index{bst@{bst}!const\+\_\+iterator@{const\+\_\+iterator}}
+\index{const\+\_\+iterator@{const\+\_\+iterator}!bst@{bst}}
+\subsubsection{\texorpdfstring{const\+\_\+iterator}{const\_iterator}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+using \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{classbst_a72485696d999bf489c6156f6327a2163}{const\+\_\+iterator} =  \hyperlink{classbst_1_1____iterator}{\+\_\+\+\_\+iterator}$<$\hyperlink{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}{node\+\_\+type}, const \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type}$>$}
+
+Alias to make names shorter and intuitive. 
+
+Definition at line 88 of file bst.\+hpp.
+
+\mbox{\Hypertarget{classbst_a429b0445783ff6486882db5dee900ce0}\label{classbst_a429b0445783ff6486882db5dee900ce0}} 
+\index{bst@{bst}!iterator@{iterator}}
+\index{iterator@{iterator}!bst@{bst}}
+\subsubsection{\texorpdfstring{iterator}{iterator}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+using \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator} =  \hyperlink{classbst_1_1____iterator}{\+\_\+\+\_\+iterator}$<$\hyperlink{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}{node\+\_\+type}, \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type}$>$}
+
+Alias to make names shorter and intuitive. 
+
+Definition at line 84 of file bst.\+hpp.
+
+\mbox{\Hypertarget{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}\label{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}} 
+\index{bst@{bst}!node\+\_\+type@{node\+\_\+type}}
+\index{node\+\_\+type@{node\+\_\+type}!bst@{bst}}
+\subsubsection{\texorpdfstring{node\+\_\+type}{node\_type}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+using \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}{node\+\_\+type} =  \hyperlink{structbst_1_1node}{node}$<$std\+::pair$<$const kt, vt$>$ $>$\hspace{0.3cm}{\ttfamily [private]}}
+
+Alias to make names shorter and intuitive. 
+
+Definition at line 48 of file bst.\+hpp.
+
+\mbox{\Hypertarget{classbst_a7b11cca2a3b4394915600194f741ab16}\label{classbst_a7b11cca2a3b4394915600194f741ab16}} 
+\index{bst@{bst}!pair\+\_\+type@{pair\+\_\+type}}
+\index{pair\+\_\+type@{pair\+\_\+type}!bst@{bst}}
+\subsubsection{\texorpdfstring{pair\+\_\+type}{pair\_type}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+using \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} =  std\+::pair$<$const kt, vt$>$}
+
+Alias to make names shorter and intuitive. 
+
+Definition at line 80 of file bst.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbst_a8d0c20c3ace61d4ffde5ab90fbe3226b}\label{classbst_a8d0c20c3ace61d4ffde5ab90fbe3226b}} 
+\index{bst@{bst}!bst@{bst}}
+\index{bst@{bst}!bst@{bst}}
+\subsubsection{\texorpdfstring{bst()}{bst()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+\hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{classbst}{bst} (\begin{DoxyParamCaption}\item[{cmp}]{op }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Custom constructor for binary search tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & Comparison operator between nodes. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 101 of file bst.\+hpp.
+
+\mbox{\Hypertarget{classbst_a2f94afc86338e90d9110b713383ab492}\label{classbst_a2f94afc86338e90d9110b713383ab492}} 
+\index{bst@{bst}!bst@{bst}}
+\index{bst@{bst}!bst@{bst}}
+\subsubsection{\texorpdfstring{bst()}{bst()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+\hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{classbst}{bst} (\begin{DoxyParamCaption}\item[{const \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$ \&}]{B }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy constructor for binary search tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em B} & The binary search tree to be copied into a new one.\\
+\hline
+\end{DoxyParams}
+The method performs a deep copy of the tree calling a custom constructor of the node. 
+
+Definition at line 113 of file bst.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::head.
+
+\mbox{\Hypertarget{classbst_ac0e8f8be6be76d77809ba1d21e1be66a}\label{classbst_ac0e8f8be6be76d77809ba1d21e1be66a}} 
+\index{bst@{bst}!bst@{bst}}
+\index{bst@{bst}!bst@{bst}}
+\subsubsection{\texorpdfstring{bst()}{bst()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+\hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{classbst}{bst} (\begin{DoxyParamCaption}\item[{\hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$ \&\&}]{B }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Move constructor for binary search tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em B} & The binary search tree to be moved into a new one. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 126 of file bst.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classbst_a4ac74357616de45d5d3e7cbb9850854e}\label{classbst_a4ac74357616de45d5d3e7cbb9850854e}} 
+\index{bst@{bst}!balance@{balance}}
+\index{balance@{balance}!bst@{bst}}
+\subsubsection{\texorpdfstring{balance()}{balance()}}
+{\footnotesize\ttfamily template$<$typename kt , typename vt , typename cmp $>$ \\
+void \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::balance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Balances the tree. 
+
+Creates a sorted vector of pairs key and value, clears the tree and passes the vector to the previously defined private function order. 
+
+Definition at line 237 of file bst\+\_\+functions.\+hpp.
+
+
+
+Referenced by bst$<$ kt, vt, cmp $>$\+::cend().
+
+\mbox{\Hypertarget{classbst_a74c68495fd963c501084d129d4c0f5b1}\label{classbst_a74c68495fd963c501084d129d4c0f5b1}} 
+\index{bst@{bst}!begin@{begin}}
+\index{begin@{begin}!bst@{bst}}
+\subsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+\hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator} \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Used to begin an iteration on the binary search tree. 
+
+\begin{DoxyReturn}{Returns}
+iterator An iterator to the leftmost node of the tree. 
+\end{DoxyReturn}
+
+
+Definition at line 218 of file bst.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+left.
+
+\mbox{\Hypertarget{classbst_a8631fb03856c2cd4602fc7446502195c}\label{classbst_a8631fb03856c2cd4602fc7446502195c}} 
+\index{bst@{bst}!begin@{begin}}
+\index{begin@{begin}!bst@{bst}}
+\subsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+\hyperlink{classbst_a72485696d999bf489c6156f6327a2163}{const\+\_\+iterator} \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Used to begin an iteration on the binary search tree. 
+
+\begin{DoxyReturn}{Returns}
+const\+\_\+iterator A constant iterator to the leftmost node of the tree. 
+\end{DoxyReturn}
+
+
+Definition at line 233 of file bst.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+left.
+
+\mbox{\Hypertarget{classbst_a74e78aa7f879a5df0b933651174de42b}\label{classbst_a74e78aa7f879a5df0b933651174de42b}} 
+\index{bst@{bst}!cbegin@{cbegin}}
+\index{cbegin@{cbegin}!bst@{bst}}
+\subsubsection{\texorpdfstring{cbegin()}{cbegin()}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+\hyperlink{classbst_a72485696d999bf489c6156f6327a2163}{const\+\_\+iterator} \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::cbegin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Used to begin an iteration on the binary search tree. 
+
+\begin{DoxyReturn}{Returns}
+const\+\_\+iterator A constant iterator to the leftmost node of the tree.
+\end{DoxyReturn}
+Implemented to assure the user of returning a constant iterator. 
+
+Definition at line 250 of file bst.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+left.
+
+\mbox{\Hypertarget{classbst_a2f78931b69f0a121823b60393f1b9745}\label{classbst_a2f78931b69f0a121823b60393f1b9745}} 
+\index{bst@{bst}!cend@{cend}}
+\index{cend@{cend}!bst@{bst}}
+\subsubsection{\texorpdfstring{cend()}{cend()}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+\hyperlink{classbst_a72485696d999bf489c6156f6327a2163}{const\+\_\+iterator} \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::cend (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Used to begin an iteration on the binary search tree. 
+
+\begin{DoxyReturn}{Returns}
+const\+\_\+iterator A constant iterator to one past the rightmost node of the tree.
+\end{DoxyReturn}
+Implemented to assure the user of returning a constant iterator. 
+
+Definition at line 299 of file bst.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+right, bst$<$ kt, vt, cmp $>$\+::balance(), and bst$<$ kt, vt, cmp $>$\+::find().
+
+\mbox{\Hypertarget{classbst_a03e09650b371d423315f26520d6e34a6}\label{classbst_a03e09650b371d423315f26520d6e34a6}} 
+\index{bst@{bst}!emplace@{emplace}}
+\index{emplace@{emplace}!bst@{bst}}
+\subsubsection{\texorpdfstring{emplace()}{emplace()}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+template$<$class... Types$>$ \\
+std\+::pair$<$\hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator},bool$>$ \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::emplace (\begin{DoxyParamCaption}\item[{Types \&\&...}]{args }\end{DoxyParamCaption})}
+
+
+
+Inserts a new node in the binary search tree. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Types} & Types of the variable number of parameters. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Variable number of parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::pair$<$iterator, bool$>$ A pair of an iterator and a bool.
+\end{DoxyReturn}
+A node is created. If the key is already present in the tree, the node is destroyed, else it\textquotesingle{}s inserted. 
+
+Referenced by bst$<$ kt, vt, cmp $>$\+::insert(), and bst$<$ kt, vt, cmp $>$\+::operator=().
+
+\mbox{\Hypertarget{classbst_aed3a831efc810b5084cb0c9f4adeb16a}\label{classbst_aed3a831efc810b5084cb0c9f4adeb16a}} 
+\index{bst@{bst}!end@{end}}
+\index{end@{end}!bst@{bst}}
+\subsubsection{\texorpdfstring{end()}{end()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+\hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator} \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Used to finish an iteration on the binary search tree. 
+
+\begin{DoxyReturn}{Returns}
+iterator An iterator to one past the rightmost node of the tree. 
+\end{DoxyReturn}
+
+
+Definition at line 265 of file bst.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+right.
+
+\mbox{\Hypertarget{classbst_aa9fa40cf0781035f180aa56d15f0e2d1}\label{classbst_aa9fa40cf0781035f180aa56d15f0e2d1}} 
+\index{bst@{bst}!end@{end}}
+\index{end@{end}!bst@{bst}}
+\subsubsection{\texorpdfstring{end()}{end()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+\hyperlink{classbst_a72485696d999bf489c6156f6327a2163}{const\+\_\+iterator} \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Used to finish an iteration on the binary search tree. 
+
+\begin{DoxyReturn}{Returns}
+iterator A constant iterator to one past the rightmost node of the tree. 
+\end{DoxyReturn}
+
+
+Definition at line 281 of file bst.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+right.
+
+\mbox{\Hypertarget{classbst_af5ed588b2c686b3b53a2b5466a617f73}\label{classbst_af5ed588b2c686b3b53a2b5466a617f73}} 
+\index{bst@{bst}!erase@{erase}}
+\index{erase@{erase}!bst@{bst}}
+\subsubsection{\texorpdfstring{erase()}{erase()}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt , typename cmp $>$ \\
+void \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::erase (\begin{DoxyParamCaption}\item[{const kt \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Removes a node from the tree if present. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The key of the node to be removed.\\
+\hline
+\end{DoxyParams}
+After removing a node the ordering of the tree is preserved. 
+
+Definition at line 261 of file bst\+\_\+functions.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::\+\_\+\+\_\+iterator$<$ node\+\_\+type, pair\+\_\+type $>$\+::\+\_\+current, bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+left, bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+parent, and bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+right.
+
+\mbox{\Hypertarget{classbst_a6c2bdb4e40b2a6871840af57f42765f8}\label{classbst_a6c2bdb4e40b2a6871840af57f42765f8}} 
+\index{bst@{bst}!find@{find}}
+\index{find@{find}!bst@{bst}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt , typename cmp $>$ \\
+\hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator} \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::find (\begin{DoxyParamCaption}\item[{const kt \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Used to find a node inside the tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The key of the node to be found. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+iterator An iterator to the node if found, else to \hyperlink{classbst_aed3a831efc810b5084cb0c9f4adeb16a}{end()}. 
+\end{DoxyReturn}
+
+
+Definition at line 171 of file bst\+\_\+functions.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+element, bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+left, and bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+right.
+
+
+
+Referenced by bst$<$ kt, vt, cmp $>$\+::cend().
+
+\mbox{\Hypertarget{classbst_a2971e3ad8b28cf5bdf08128eee48d26d}\label{classbst_a2971e3ad8b28cf5bdf08128eee48d26d}} 
+\index{bst@{bst}!find@{find}}
+\index{find@{find}!bst@{bst}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt , typename cmp $>$ \\
+\hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{classbst_a72485696d999bf489c6156f6327a2163}{const\+\_\+iterator} \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::find (\begin{DoxyParamCaption}\item[{const kt \&}]{x }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Used to find a node inside the tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The key of the node to be found. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const\+\_\+iterator A constant iterator to the node if found, else to \hyperlink{classbst_aed3a831efc810b5084cb0c9f4adeb16a}{end()}. 
+\end{DoxyReturn}
+
+
+Definition at line 200 of file bst\+\_\+functions.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+element, bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+left, and bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+right.
+
+\mbox{\Hypertarget{classbst_aaaeffdb4fae1103a3f6185c74ce43281}\label{classbst_aaaeffdb4fae1103a3f6185c74ce43281}} 
+\index{bst@{bst}!insert@{insert}}
+\index{insert@{insert}!bst@{bst}}
+\subsubsection{\texorpdfstring{insert()}{insert()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename kt , typename vt , typename cmp $>$ \\
+std\+::pair$<$ typename \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator}, bool $>$ \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::insert (\begin{DoxyParamCaption}\item[{const \hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} \&}]{x }\end{DoxyParamCaption})}
+
+
+
+Inserts a new node in the binary search tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The pair key and value to be inserted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::pair$<$iterator, bool$>$ A pair of an iterator and a bool.
+\end{DoxyReturn}
+The iterator of the pair points to the inserted node or the previously existent node with the same key if one is present. If the insertion were successful the bool is true, else false. The pair is copied into the node. 
+
+Definition at line 52 of file bst\+\_\+functions.\+hpp.
+
+
+
+Referenced by bst$<$ kt, vt, cmp $>$\+::operator=(), and bst$<$ kt, vt, cmp $>$\+::operator\mbox{[}$\,$\mbox{]}().
+
+\mbox{\Hypertarget{classbst_aafe95673b19139abd52e242e5d72b66d}\label{classbst_aafe95673b19139abd52e242e5d72b66d}} 
+\index{bst@{bst}!insert@{insert}}
+\index{insert@{insert}!bst@{bst}}
+\subsubsection{\texorpdfstring{insert()}{insert()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename kt , typename vt , typename cmp $>$ \\
+std\+::pair$<$ typename \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::\hyperlink{classbst_a429b0445783ff6486882db5dee900ce0}{iterator}, bool $>$ \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::insert (\begin{DoxyParamCaption}\item[{\hyperlink{classbst_a7b11cca2a3b4394915600194f741ab16}{pair\+\_\+type} \&\&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Inserts a new node in the binary search tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The pair key and value to be inserted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::pair$<$iterator, bool$>$ A pair of an iterator and a bool.
+\end{DoxyReturn}
+The iterator of the pair points to the inserted node or the previously existent node with the same key if one is present. If the insertion were successful the bool is true, else false. The pair is moved into the node. 
+
+Definition at line 87 of file bst\+\_\+functions.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::node$<$ pair\+\_\+type $>$\+::\+\_\+parent, and bst$<$ kt, vt, cmp $>$\+::emplace().
+
+\mbox{\Hypertarget{classbst_ad42afa310b7d0a4b4da251cd8bba6897}\label{classbst_ad42afa310b7d0a4b4da251cd8bba6897}} 
+\index{bst@{bst}!op\+\_\+eq@{op\+\_\+eq}}
+\index{op\+\_\+eq@{op\+\_\+eq}!bst@{bst}}
+\subsubsection{\texorpdfstring{op\+\_\+eq()}{op\_eq()}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+bool \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::op\+\_\+eq (\begin{DoxyParamCaption}\item[{const kt \&}]{x,  }\item[{const kt \&}]{y }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}, {\ttfamily [noexcept]}}
+
+
+
+Checks if the keys are equal or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The first key to be compared. \\
+\hline
+{\em y} & The second key to be compared. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the two keys are equal, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 61 of file bst.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::\+\_\+op, and bst$<$ kt, vt, cmp $>$\+::order().
+
+\mbox{\Hypertarget{classbst_a962fce8c5811b3bab57d298b6752481f}\label{classbst_a962fce8c5811b3bab57d298b6752481f}} 
+\index{bst@{bst}!operator=@{operator=}}
+\index{operator=@{operator=}!bst@{bst}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+\hyperlink{classbst}{bst}\& \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$ \&}]{B }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy assignment for binary search tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em B} & The binary search tree to be copied into an existing one. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bst\& The modified existing tree. 
+\end{DoxyReturn}
+
+
+Definition at line 139 of file bst.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::clear(), and bst$<$ kt, vt, cmp $>$\+::head.
+
+\mbox{\Hypertarget{classbst_a3e595b50a147f3c6fe64f1b1514c539d}\label{classbst_a3e595b50a147f3c6fe64f1b1514c539d}} 
+\index{bst@{bst}!operator=@{operator=}}
+\index{operator=@{operator=}!bst@{bst}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+\hyperlink{classbst}{bst}\& \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::operator= (\begin{DoxyParamCaption}\item[{\hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$ \&\&}]{B }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Move assignment for binary search tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em B} & The binary search tree to be moved into an existing one. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bst\& The modified existing tree. 
+\end{DoxyReturn}
+
+
+Definition at line 157 of file bst.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::emplace(), and bst$<$ kt, vt, cmp $>$\+::insert().
+
+\mbox{\Hypertarget{classbst_ab1a1eec5b236a7fbd9c6da8d65786b10}\label{classbst_ab1a1eec5b236a7fbd9c6da8d65786b10}} 
+\index{bst@{bst}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!bst@{bst}}
+\subsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+vt\& \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const kt \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Operator \mbox{[}\mbox{]} overloading to access a node value in the tree or insert a new one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The key of the node whose value should be accessed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vt\& A reference to the value of the accessed node.
+\end{DoxyReturn}
+It calls the copy implementation of the insert function. 
+
+Definition at line 344 of file bst.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::insert().
+
+\mbox{\Hypertarget{classbst_a024d828ac753881e50cd7cc93a47a3cc}\label{classbst_a024d828ac753881e50cd7cc93a47a3cc}} 
+\index{bst@{bst}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!bst@{bst}}
+\subsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+vt\& \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{kt \&\&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Operator \mbox{[}\mbox{]} overloading to access a node value in the tree or insert a new one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The key of the node whose value should be accessed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vt\& A reference to the value of the accessed node.
+\end{DoxyReturn}
+It calls the move implementation of the insert function. 
+
+Definition at line 360 of file bst.\+hpp.
+
+
+
+References bst$<$ kt, vt, cmp $>$\+::insert().
+
+\mbox{\Hypertarget{classbst_a0dfe021194e7c01cefe01fabad7fc976}\label{classbst_a0dfe021194e7c01cefe01fabad7fc976}} 
+\index{bst@{bst}!order@{order}}
+\index{order@{order}!bst@{bst}}
+\subsubsection{\texorpdfstring{order()}{order()}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp $>$ \\
+void \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::order (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::pair$<$ kt, vt $>$$>$ \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [noexcept]}}
+
+
+
+Auxiliary function needed by balance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & A vector of pairs in ascending order.\\
+\hline
+\end{DoxyParams}
+Iterative function which inserts in the tree the median element and subdivides the vector in two halves, then it calls itself on these two halves. 
+
+Definition at line 22 of file bst\+\_\+functions.\+hpp.
+
+
+
+Referenced by bst$<$ kt, vt, cmp $>$\+::op\+\_\+eq().
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classbst_ae4b7d69364fca0855f74abdcad674ebf}\label{classbst_ae4b7d69364fca0855f74abdcad674ebf}} 
+\index{bst@{bst}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!bst@{bst}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$ \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Operator $<$$<$ overloading to print the tree according to the keys order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & The output stream to which the strings to be printed are appended. \\
+\hline
+{\em x} & The tree to be printed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::ostream\& The output stream to which strings have been appended.
+\end{DoxyReturn}
+It calls \hyperlink{classbst_a74e78aa7f879a5df0b933651174de42b}{cbegin()} and \hyperlink{classbst_a2f78931b69f0a121823b60393f1b9745}{cend()} to be sure the tree is unchanged by the iterators. 
+
+Definition at line 377 of file bst.\+hpp.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classbst_ad8177ec5ab205278efdae5ce94d613ba}\label{classbst_ad8177ec5ab205278efdae5ce94d613ba}} 
+\index{bst@{bst}!head@{head}}
+\index{head@{head}!bst@{bst}}
+\subsubsection{\texorpdfstring{head}{head}}
+{\footnotesize\ttfamily template$<$typename kt, typename vt, typename cmp = std\+::less$<$kt$>$$>$ \\
+std\+::unique\+\_\+ptr$<$\hyperlink{classbst_a062eb2a1ac54802dbc4f0f74ae2afd01}{node\+\_\+type}$>$ \hyperlink{classbst}{bst}$<$ kt, vt, cmp $>$\+::head\hspace{0.3cm}{\ttfamily [private]}}
+
+Root node of the binary search tree. 
+
+Definition at line 52 of file bst.\+hpp.
+
+
+
+Referenced by bst$<$ kt, vt, cmp $>$\+::bst(), and bst$<$ kt, vt, cmp $>$\+::operator=().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{bst_8hpp}{bst.\+hpp}\item 
+include/\hyperlink{bst__functions_8hpp}{bst\+\_\+functions.\+hpp}\end{DoxyCompactItemize}

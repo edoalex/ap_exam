@@ -136,8 +136,7 @@ std::pair<typename bst<kt,vt,cmp>::iterator,bool> bst<kt,vt,cmp>::emplace(Types&
 	//the node needs to be inserted
 	if(!head){
 		//std::cout << "the head is empty" << std::endl;
-		auto a = buffer.release();
-		head.reset(a);
+		head.reset(buffer.release());
 		return std::make_pair(iterator{head.get()}, true);
 	}
 
@@ -338,19 +337,20 @@ void bst<kt,vt,cmp>::erase(const kt& x) noexcept {
       	//(non pathological case)
       	//step 1 of 3 (replace me with next)
     	(next_parent->_left).release();
+    	std::unique_ptr<node_type> saver = nullptr;
       	//if I'm root
     	if( ave == nullptr ){
     		next->_parent = nullptr;
-    		head.release();
+    		saver.reset(head.release());
     		head.reset(next);
     	}else{ //if I'm not root
     		//I'm right son
     		if( (ave->_right).get() == me ){
-    			(ave->_right).release();
+    			saver.reset((ave->_right).release());
     			(ave->_right).reset(next);
     		//I'm left son
     		}else{
-    			(ave->_left).release();
+    			saver.reset((ave->_left).release());
     			(ave->_left).reset(next);
     		}
     		next->_parent = ave;
@@ -371,10 +371,8 @@ void bst<kt,vt,cmp>::erase(const kt& x) noexcept {
     	(sub->_left).reset( (me->_left).release() );
     	(sub->_left)->_parent = sub;
 
-    	//in order not to call the destuctor by hand
-    	std::unique_ptr<node_type> deleter = nullptr;
-    	deleter.reset(me);
-    	deleter.reset();
+    	//the node to be erased (me) is eliminated
+    	saver.reset();
     }
 }
 

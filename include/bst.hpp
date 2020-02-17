@@ -203,7 +203,7 @@ public:
 	std::pair<iterator,bool> emplace(Types&&... args);
 
 	/**
-	 * @brief Clears the tree freeing the memory of the taken by nodes.
+	 * @brief Clears the tree freeing the memory taken by nodes.
 	 */
 
 	void clear() noexcept {
@@ -259,7 +259,7 @@ public:
 
 	/**
 	 * @brief Used to finish an iteration on the binary search tree.
-	 * @return iterator A iterator to one past the rightmost node of the tree.
+	 * @return iterator An iterator to one past the rightmost node of the tree.
 	 */
 
 	iterator end() noexcept {
