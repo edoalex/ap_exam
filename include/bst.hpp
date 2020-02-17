@@ -341,7 +341,7 @@ public:
 	 * It calls the copy implementation of the insert function.
 	 */
 
-	vt& operator[](const kt& x) noexcept {
+	vt& operator[](const kt& x) {
 		auto tmp = insert(std::make_pair(x, vt{}));
 
 		//std::cout << ((tmp.second == true) ? ( "Pair inserted (with dft vt) since it wasn't there\n" ) : ( "Pair not inserted since it was already there\n" ));

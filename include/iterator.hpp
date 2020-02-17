@@ -66,7 +66,8 @@ public:
 	 * @return reference A reference to the data of node pointed by the iterator.
 	 */
 
-	reference operator*() const noexcept{
+	reference operator*() const {
+	  AP_ERROR( _current != nullptr ) << "It is not allowed to dereference an iterator pointing to nullptr" << std::endl;
 	  return _current->_element; 
 	}
 	
@@ -75,7 +76,7 @@ public:
 	 * @return pointer A pointer to the data of node pointed by the iterator.
 	 */
 
-	pointer operator->() const noexcept{
+	pointer operator->() const {
 		return &(*(*this));
 	}
 

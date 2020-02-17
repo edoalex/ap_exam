@@ -7,8 +7,6 @@ int main(){
   try {
    
     bst<int,int> tree{};
-    
-    tree.insert({0,0});
     std::pair<int,int> node = {1,1};
     tree.insert( node );
 
@@ -53,9 +51,8 @@ int main(){
       std::cout << "key: " << it->first
 		<< "\tvalue: " << (*it).second
 		<< std::endl;
-      ++it;
-    }
-
+		++it;
+		}
   } catch (const std::exception& e) {
     std::cerr << e.what() << std::endl;
     return 1;

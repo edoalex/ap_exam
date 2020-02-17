@@ -49,7 +49,7 @@ struct bst<kt, vt, cmp>::node{
  */
 
   node() {
-    AP_ERROR(false) << "It is not allowed to create a node with no key provided" << std::endl;
+    AP_ERROR(false) << "It is not allowed to create a pair with no key provided" << std::endl;
   }
   
 /**
@@ -107,7 +107,7 @@ struct bst<kt, vt, cmp>::node{
   
   node(kt&& k, vt&& v) noexcept : _element{std::make_pair<kt,vt>(std::move(k), std::move(v))} {
     //std::cout << "key from new ctor = " << k << " value from new ctor = " << v << std::endl;
-  } 
+  }  
 };
 
 #endif
